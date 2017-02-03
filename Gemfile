@@ -55,3 +55,6 @@ group :development do
 end
 
 gem "puma"
+gem "hirb"
+gem 'simple_form'
+
