@@ -11,4 +11,11 @@ Rails.application.config.assets.version = '1.0'
 # Rails.application.config.assets.precompile += %w( search.js )
 Rails.application.config.assets.precompile += %w( welcome.css )
 Rails.application.config.assets.precompile += %w( welcome.js )
+Rails.application.config.assets.precompile += %w(welcome/bootstrap.js)
+Rails.application.config.assets.precompile += %w(welcome/jquery-min.js)
+Rails.application.config.assets.precompile += %w(welcome/main.js)
+Rails.application.config.assets.precompile += %w(welcome/wow.js)
+
+
+
 
