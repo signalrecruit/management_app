@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+
+  namespace :recruiter do
+    root 'welcome#dashboard'
+  end
+
   root 'welcome#landing_page'
 
   get 'company/company_dashboard', as: :company_dashboard

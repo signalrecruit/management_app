@@ -19,6 +19,9 @@ Rails.application.config.assets.precompile += %w(welcome/wow.js)
 Rails.application.config.assets.precompile += %w(company.css)
 Rails.application.config.assets.precompile += %w(company.js)
 
+Rails.application.config.assets.precompile += %w(recruiter.css)
+Rails.application.config.assets.precompile += %w(recruiter.js)
+
 
 
 
