@@ -17702,6 +17702,26 @@ a:hover {
 
  */
 
+ /* Fixed navbar */
+/* General sizing */
+
+ul.dropdown-lr {
+  width: 250px;
+}
+label p {
+	font: black;
+}
+
+/* mobile fix */
+@media (max-width: 768px) {
+	.dropdown-lr h3 {
+		color: #eee;
+	}
+	.dropdown-lr label {
+		color: #eee;
+	}
+}
+
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
@@ -17718,3 +17738,29 @@ a:hover {
 
  */
 
+
+.alert-notice {
+    background: #dff0d8;
+    color: #3c763d;
+    border-color: #d6e9c6;
+}
+
+.alert-alert {
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+}
+
+.alert-success {
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+    color: #468847;
+    text-align: left;
+ }
+ 
+.alert-error {
+    background-color: #f2dede;
+    border-color: #eed3d7;
+    color: #b94a48;
+    text-align: left;
+ }

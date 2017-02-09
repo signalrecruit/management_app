@@ -13,3 +13,23 @@
  *= require_tree ./welcome
  *= require_self
  */
+
+ /* Fixed navbar */
+/* General sizing */
+ul.dropdown-lr {
+  width: 250px;
+}
+label p {
+	font: black;
+}
+
+/* mobile fix */
+@media (max-width: 768px) {
+	.dropdown-lr h3 {
+		color: #eee;
+	}
+	.dropdown-lr label {
+		color: #eee;
+	}
+}
+

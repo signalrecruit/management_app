@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-# devise_for :companies
+devise_for :companies
   namespace :recruiter do
     root 'welcome#dashboard'
   end

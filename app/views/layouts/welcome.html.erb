@@ -10,6 +10,128 @@
 	<title>RECMAN</title>
 </head>
 <body>
+ <!-- Nav Menu Section -->
+          <div class="logo-menu">
+            <nav class="navbar navbar-default">
+              <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header col-md-3">
+                  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
+                  <a class="navbar-brand" href="#"><i class="fa fa-fa fa-cubes"></i> RECMAN</a>
+                </div>
+
+                <div class="collapse navbar-collapse" id="navbar">
+                  <ul class="nav navbar-nav pull-right">
+                    <li class="active"><a href="#">Home</a>
+                    </li>
+                    <% if current_company %>
+                      <li><%= link_to "Sign Out", destroy_company_session_path, method: :delete, data: { confirm: "Are you sure you want to sign out?" } %></li>
+                      <li><a>signed in as <%= current_company.email %></a></li>
+                    <% else %>
+                    <li><%= link_to "Log In", company_session_path %></li>
+                    <li>
+                    	
+          <!-- start of log in -->
+
+          <link href="http://cdn.phpoll.com/css/animate.css" rel="stylesheet">
+
+                    <li class="dropdown">
+                        <a href="http://phpoll.com/register" class="dropdown-toggle" data-toggle="dropdown">Log In<span class="caret"></span></a>
+                        <ul class="dropdown-menu dropdown-lr animated flipInX" role="menu">
+                            <div class="col-lg-12">
+                                <div class="text-center"><h3><b>Log In</b></h3></div>
+                <div id="ajax-register-form" action="http://phpoll.com/register/process" role="form" autocomplete="off">
+                <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+                  <div class="form-group">
+                    <%= f.input :email, required: false, autofocus: true, class: "form-control", placeholder: "Email Address" %>
+                  </div>
+                  <div class="form-group">
+                   <%= f.input :password, required: false, class: "form-control", placeholder: "your password" %>
+                  </div>
+                  <div class="form-group">
+                    <%= f.input :password, required: false, class: "form-control", placeholder: "confirm your password" %>
+                    <label><p>Remember</p></label>
+                    <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>   
+                  </div>
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-xs-6 col-xs-offset-3">
+                        <%= f.button :submit, "Log In", class: "form-control btn btn-info" %>
+                      </div>
+                    </div>
+                  </div>
+                                    <input type="hidden" class="hide" name="token" id="token" value="7c6f19960d63f53fcd05c3e0cbc434c0">
+                </div>
+                            </div>
+                        </ul>
+                    </li>
+                    <% end %>
+<!--                     <li class="dropdown">
+                        <a href="http://phpoll.com/login" class="dropdown-toggle" data-toggle="dropdown">Log In <span class="caret"></span></a>
+                        <ul class="dropdown-menu dropdown-lr animated slideInRight" role="menu">
+                            <div class="col-lg-12">
+                                <div class="text-center"><h3><b>Log In</b></h3></div>
+                                <form id="ajax-login-form" action="http://phpoll.com/login/process" method="post" role="form" autocomplete="off">
+                                    <div class="form-group">
+                                        <label for="username">Username</label>
+                                        <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="" autocomplete="off">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="password">Password</label>
+                                        <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password" autocomplete="off">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-xs-7">
+                                                <input type="checkbox" tabindex="3" name="remember" id="remember">
+                                                <label for="remember"> Remember Me</label>
+                                            </div>
+                                            <div class="col-xs-5 pull-right">
+                                                <input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-success" value="Log In">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="text-center">
+                                                    <a href="http://phpoll.com/recover" tabindex="5" class="forgot-password">Forgot Password?</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <input type="hidden" class="hide" name="token" id="token" value="a465a2791ae0bae853cf4bf485dbe1b6">
+                                </form>
+                            </div>
+                        </ul>
+                    </li> -->
+         <!-- end of log in -->
+
+
+                    </li>
+                    <% end %><!-- 
+                    <li><a href="#">Features</a>
+                    </li>
+                    <li><a href="#">Sign In</a>
+                    </li>
+                    <li><a href="#">Sign Up</a> -->
+                     <!-- <li><%#= link_to "Company", company_dashboard_path %>
+                    </li>
+                    <li><%#= link_to "Recruiter", recruiter_root_path %></li> -->
+                  </ul>
+                </div>
+              </div>
+            </nav>
+          </div>
+          <!-- Nav Menu Section End -->
 
 <% flash.each do |key, message| %>
   <div class="alert alert-<%= key %>">
@@ -17,5 +139,69 @@
   </div>
 <% end %>
 	<%= yield %>
+
+	<section id="bottom">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-3 col-sm-3 col-xs-12">
+                  <h3>Products</h3>
+                  <ul>
+                    <li><a href="#">Paypal</a>
+                    </li>
+                    <li><a href="#">BitCoin</a>
+                    </li>
+                    <li><a href="#">Skrill</a>
+                    </li>
+                    <li><a href="#">Alertpay</a>
+                    </li>
+                    <li><a href="#">Payoneer</a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-12">
+                  <h3>FAQs</h3>
+                  <ul>
+                    <li><a href="#">Why choose us?</a>
+                    </li>
+                    <li><a href="#">Where we are?</a>
+                    </li>
+                    <li><a href="#">Fees</a>
+                    </li>
+                    <li><a href="#">Guarantee</a>
+                    </li>
+                    <li><a href="#">Discount</a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-12">
+                  <h3>About</h3>
+                  <ul>
+                    <li><a href="#">Career</a>
+                    </li>
+                    <li><a href="#">Partners</a>
+                    </li>
+                    <li><a href="#">Team</a>
+                    </li>
+                    <li><a href="#">Clients</a>
+                    </li>
+                    <li><a href="#">Contact</a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-12">
+                  <h3>Find us on</h3>
+                  <a class="social" href="#" target="_blank"><i class="fa fa-facebook fa-2x"></i></a>
+                  <a class="social" href="#" target="_blank"><i class="fa fa-twitter fa-2x"></i></a>
+                  <a class="social" href="#" target="_blank"><i class="fa fa-google-plus fa-2x"></i></a>
+                  <a class="social" href="#" target="_blank"><i class="fa fa-linkedin fa-2x"></i></a>
+                </div>
+              </div>
+            </div>
+          </section>
+          <%= javascript_include_tag "welcome/bootstrap" %>
+          <%= javascript_include_tag "welcome/wow" %>
+          <%= javascript_include_tag "welcome/main" %>
+
+
 </body>
 </html>

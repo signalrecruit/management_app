@@ -84670,6 +84670,10 @@ wysihtml5.views.Textarea = wysihtml5.views.View.extend(
     }
   });
 })(wysihtml5);
+(function() {
+
+
+}).call(this);
 // This is a manifest file that'll be compiled into application.js, which will include all the files
 // listed below.
 //
