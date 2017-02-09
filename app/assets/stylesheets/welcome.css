@@ -18,6 +18,7 @@
 /* General sizing */
 ul.dropdown-lr {
   width: 250px;
+  height: 500px;
 }
 label p {
 	font: black;
