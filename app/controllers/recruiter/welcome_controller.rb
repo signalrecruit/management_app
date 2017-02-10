@@ -3,4 +3,7 @@ class Recruiter::WelcomeController < ApplicationController
   
   def dashboard
   end
+
+  def charts_and_graphs
+  end
 end

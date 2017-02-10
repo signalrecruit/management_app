@@ -66,7 +66,10 @@ Rails.application.config.assets.precompile += %w(recruiter/select2.min.js)
 Rails.application.config.assets.precompile += %w(recruiter/matrix.popover.js)
 Rails.application.config.assets.precompile += %w(recruiter/jquery.dataTables.min.js)
 Rails.application.config.assets.precompile += %w(recruiter/matrix.tables.js)
-
+Rails.application.config.assets.precompile += %w(recruiter/jquery.ui.custom.js)
+Rails.application.config.assets.precompile += %w(recruiter/jquery.flot.pie.min.js)
+Rails.application.config.assets.precompile += %w(recruiter/matrix.charts.js)
+Rails.application.config.assets.precompile +=  %w(recruiter/jquery.flot.resize.min.js)
 
 
 

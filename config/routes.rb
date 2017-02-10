@@ -2,7 +2,8 @@ Rails.application.routes.draw do
 
 devise_for :companies, controllers: { registrations: "registrations" }
   namespace :recruiter do
-    root 'welcome#dashboard'
+    root 'welcome#dashboard', as: :dashboard
+    get 'welcome/charts_and_graphs', as: :charts_and_graphs
   end
 
   root 'welcome#landing_page'
