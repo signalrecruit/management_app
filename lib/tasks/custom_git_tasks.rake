@@ -4,7 +4,7 @@ namespace :git do
   end
 
   task :commit_changes, [:commit_message] => [:add, :commit] do 
-    print "changes committed to "
+    puts "changes committed to... "
     sh "git rev-parse --abbrev-ref HEAD"
   end
 
