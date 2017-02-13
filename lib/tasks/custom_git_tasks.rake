@@ -60,6 +60,11 @@ namespace :git do
   task :merge do 
     sh "git merge #{ENV['DELETE_BRANCH']}"
   end
+
+  desc "checkout and delete"
+  task :checkout_and_delete, [:commit_message] => [:add, :commit, :checkout] do 
+    puts "#{ENV['DELETE_BRANCH']} deleted! your current branch is #{ENV['BRANCH']}"
+  end
 end
 
 
