@@ -34,7 +34,12 @@ namespace :git do
   	print ">>>"
   end
 
-  task :push_to_production do 
+  desc "push to production and run migration, rake git:push_to_production['commit_message'] APP_NAME=app_name"
+  task :push_to_production => [:migrate_production_database] do 
+    sh "heroku run rake db:migrate --app #{ENV['APP_NAME']}"
+  end
+
+  task :migrate_production_database do 
     sh "git push #{ENV['HEROKU_REMOTE']} #{ENV['GIT_BRANCH']}:master"
   end
 
