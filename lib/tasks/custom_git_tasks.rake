@@ -21,7 +21,7 @@ end
 
 namespace :gitcheckout do 
   desc "some rake tasks.."
-  task :checkout, [:commit_message] => [:status, :add, :commit, :checkout_branch] do |t, args|
+  task :checkout, [:commit_message] => [:status, :add, :commit, :checkout_branch, :current_branch] do |t, args|
   end
 
   task :status do 
