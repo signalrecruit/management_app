@@ -30,7 +30,7 @@ namespace :git do
   end
 
   task :push do 
-    sh "git push && git push #{ENV['HEROKU_REMOTE']} #{ENV['GIT_BRANCH']}:master"
+    sh "git push #{ENV['HEROKU_REMOTE']} #{ENV['GIT_BRANCH']}:master"
   end
 end
 
