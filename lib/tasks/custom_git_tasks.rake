@@ -33,7 +33,7 @@ namespace :gitcheckout do
    end
 
    task :commit, [:commit_message] do |t, args|
-     if sh "git diff --exit-code"
+     if sh "git status --porcelain"
        sh "git commit -m '#{args[:commit_message]}'" 
      else
        puts "files already commited!"  
