@@ -20,7 +20,7 @@ namespace :git do
 end 
 
 namespace :gitcheckout do 
-   desc "some rake tasks.."
+   desc "some rake tasks"
    task :checkout, [:commit_message] => [:status, :add, :commit] do |t, args|
    end
 
@@ -33,7 +33,7 @@ namespace :gitcheckout do
    end
 
    task :commit, [:commit_message] do |t, args|
-    
+     sh "git commit -m #{args[:commit_message]}"
    end
 
    # task :checkout_branch, [:checkout_params] do |t, args|
