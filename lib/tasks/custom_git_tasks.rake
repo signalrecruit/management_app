@@ -33,13 +33,12 @@ namespace :gitcheckout do
    end
 
    task :commit, [:commit_message] do |t, args|
-   	a = nil
-   	begin
-   	a = sh "git commit -m #{args[:commit_message]}"
-   rescue
-   	puts "already committed"
-   end
-     # sh "git commit -m #{args[:commit_message]}"
+   	 a = nil
+   	 begin
+   	   a = sh "git commit -m #{args[:commit_message]}"
+    rescue
+   	  puts "already committed"
+     end
    end
 
    # task :checkout_branch, [:checkout_params] do |t, args|
