@@ -34,11 +34,15 @@ namespace :gitcheckout do
 
    task :commit, [:commit_message] do |t, args|
    	 a = nil
-      a = "git status --porcelain"
+      a = sh "git commit --exit-code"
+     # if a 
+     #   sh "git commit -m '#{args[:commit_message]}'" 
+     # else
+     #   puts "files already commited!"  
+     # end
+     puts "a is #{a}"
      if a 
-       sh "git commit -m '#{args[:commit_message]}'" 
-     else
-       puts "files already commited!"  
+     	puts "true"
      end
    end
 
