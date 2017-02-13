@@ -43,6 +43,10 @@ namespace :gitcheckout do
    # task :checkout_branch, [:checkout_params] do |t, args|
    # 	 sh "git checkout #{args[:checkout_params]}"
    # end
+
+   task :checkout_branch do 
+     sh "git checkout #args{ENV['BRANCH']}"
+   end
  end
 
 
