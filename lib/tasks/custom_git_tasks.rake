@@ -50,6 +50,15 @@ namespace :git do
     sh "git checkout -b #{ENV['NEW_BRANCH']}"
     puts "new branch #{ENV['NEW_BRANCH']} created!"  
   end
+  
+  desc "merge and delete experimental branch? rake git:merge_and_delete['message'] BRANCH=branch_name DELETE_BRANCH=branch_name"
+  task :merge_and_delete, [:commit_message] => [:add, :commit, :checkout, :merge, :delete] do
+    puts "#{ENV['DELETE_BRANCH']} merged with #{ENV['BRANCH']} followed by deletion"
+  end
+
+  task :merge do 
+    sh "git merge #{ENV['BRANCH']}"
+  end
 end
 
 
