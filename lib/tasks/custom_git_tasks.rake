@@ -33,7 +33,9 @@ namespace :gitcheckout do
    end
 
    task :commit, [:commit_message] do |t, args|
-     if sh "git status --porcelain"
+   	 a = nil
+      a = "git status --porcelain"
+     if a 
        sh "git commit -m '#{args[:commit_message]}'" 
      else
        puts "files already commited!"  
