@@ -32,8 +32,18 @@ namespace :git do
   task :push do 
     sh "git push #{ENV['HEROKU_REMOTE']} #{ENV['GIT_BRANCH']}:master"
   end
+
+  task :delete_branch, [:commit_message] => [:add, :commit, :checkout, :delete] do    
+  end
+
+  task :delete do
+    sh "git branch -D #{ENV['BRANCH']}"
+    puts "#{ENV['BRANCH']} deleted!"
+  end
 end
 
 
+# write tasks for heroku commands, merges for branches
  
 
+# write tasks to discard branch
