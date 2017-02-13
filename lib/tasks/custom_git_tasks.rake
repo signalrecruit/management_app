@@ -33,9 +33,8 @@ namespace :gitcheckout do
    end
 
    task :commit, [:commit_message] do |t, args|
-   	 a = nil
    	 begin
-   	   a = sh "git commit -m #{args[:commit_message]}"
+   	   sh "git commit -m '#{args[:commit_message]}'"
     rescue
    	  puts "files have already been committed"
      end
