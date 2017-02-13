@@ -24,16 +24,26 @@ namespace :git do
   end
 
   task :current_branch do 
-  	print "NOTE!!! YOUR CURRENT BRANCH IS"
+  	print "NOTE!!! YOUR CURRENT BRANCH IS <<<"
   	sh "git rev-parse --abbrev-ref HEAD"
-  	print ""
+  	print ">>>"
   end
 
   task :push do 
     sh "git push #{ENV['HEROKU_REMOTE']} #{ENV['GIT_BRANCH']}:master"
   end
+
+  task :delete_branch, [:commit_message] => [:add, :commit, :checkout, :delete] do    
+  end
+
+  task :delete do
+    sh "git branch -D #{ENV['BRANCH']}"
+    puts "#{ENV['BRANCH']} deleted!"
+  end
 end
 
 
+# write tasks for heroku commands, merges for branches
  
 
+# write tasks to discard branch
