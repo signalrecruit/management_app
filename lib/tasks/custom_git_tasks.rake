@@ -24,9 +24,9 @@ namespace :git do
   end
 
   task :current_branch do 
-  	print "NOTE!!! YOUR CURRENT BRANCH IS <<<"
+  	print "NOTE!!! YOUR CURRENT BRANCH IS"
   	sh "git rev-parse --abbrev-ref HEAD"
-  	print ">>>"
+  	print ""
   end
 end
 
