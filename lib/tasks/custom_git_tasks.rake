@@ -29,7 +29,7 @@ namespace :git do
   	print ">>>"
   end
 
-  task :push do 
+  task :push_to_production do 
     sh "git push #{ENV['HEROKU_REMOTE']} #{ENV['GIT_BRANCH']}:master"
   end
   
