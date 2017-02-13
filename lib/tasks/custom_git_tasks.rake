@@ -46,7 +46,7 @@ namespace :gitcheckout do
 
   task :current_branch do 
   	print "NOTE!!! YOUR CURRENT BRANCH IS <<<"
-  	sh "git branch"
+  	sh "git rev-parse --abbrev-ref HEAD"
   	print ">>>"
   end
 end
