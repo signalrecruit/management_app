@@ -37,8 +37,8 @@ namespace :git do
   end
 
   task :delete do
-    sh "git branch -D #{ENV['BRANCH']}"
-    puts "#{ENV['BRANCH']} deleted!"
+    sh "git branch -D #{ENV['DELETE_BRANCH']}"
+    puts "#{ENV['DELETE_BRANCH']} deleted!"
   end
 end
 
