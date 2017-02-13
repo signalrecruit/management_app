@@ -3,6 +3,12 @@ namespace :git do
   task :checkout, [:commit_message] => [:status, :add, :commit, :checkout_branch, :current_branch] do |t, args|
   end
 
+  task :commit_changes, [:commit_message] => [:add, :commit] do 
+    print "changes committed to "
+    sh "git rev-parse --abbrev-ref HEAD"
+    print "branch"
+  end
+
   task :status do 
     sh "git status"
   end
@@ -62,7 +68,7 @@ namespace :git do
   end
 
   desc "checkout and delete"
-  task :checkout_and_delete, [:commit_message] => [:add, :commit, :checkout] do 
+  task :checkout_and_delete, [:commit_message] => [:add, :commit, :checkout, :delete] do 
     puts "#{ENV['DELETE_BRANCH']} deleted! your current branch is #{ENV['BRANCH']}"
   end
 end
