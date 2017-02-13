@@ -37,7 +37,7 @@ namespace :gitcheckout do
    	 begin
    	   a = sh "git commit -m #{args[:commit_message]}"
     rescue
-   	  puts "files have #{git branch} already been committed"
+   	  puts "files have already been committed"
      end
    end
 
