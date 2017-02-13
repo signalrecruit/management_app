@@ -28,6 +28,10 @@ namespace :git do
   	sh "git rev-parse --abbrev-ref HEAD"
   	print ">>>"
   end
+
+  task :push do 
+    sh "git push && git push #{ENV[HEROKU_REMOTE]} #{ENV[GIT_BRANCH]}:master"
+  end
 end
 
 
