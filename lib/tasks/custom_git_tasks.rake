@@ -57,7 +57,7 @@ namespace :git do
   end
 
   task :merge do 
-    sh "git merge #{ENV['BRANCH']}"
+    sh "git merge #{ENV['DELETE_BRANCH']}"
   end
 end
 
