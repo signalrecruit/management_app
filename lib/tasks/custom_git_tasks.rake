@@ -45,7 +45,7 @@ namespace :gitcheckout do
    # end
 
    task :checkout_branch do 
-     sh "git checkout #args{ENV['BRANCH']}"
+     sh "git checkout #{argrs[ENV['BRANCH']]}"
    end
  end
 
