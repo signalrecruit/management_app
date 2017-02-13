@@ -33,7 +33,11 @@ namespace :gitcheckout do
    end
 
    task :commit, [:commit_message] do |t, args|
-     sh "git commit -m '#{args[:commit_message]}'"
+     if sh "git diff --exit-code"
+       sh "git commit -m '#{args[:commit_message]}'" 
+     else
+       puts "files already commited!"  
+     end
    end
 
    # task :checkout_branch, [:checkout_params] do |t, args|
