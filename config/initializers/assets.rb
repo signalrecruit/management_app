@@ -25,6 +25,7 @@ Rails.application.config.assets.precompile += %w(company/excanvas.min.js)
 Rails.application.config.assets.precompile += %w(company/jquery.flot.resize.min.js)
 Rails.application.config.assets.precompile += %w(company/jquery.peity.min.js)
 Rails.application.config.assets.precompile += %w(company/fullcalendar.min.js)
+Rails.application.config.assets.precompile += %w(company/matrix.calendar.js)
 Rails.application.config.assets.precompile += %w(company/matrix.js)
 Rails.application.config.assets.precompile += %w(company/matrix.dashboard.js)
 Rails.application.config.assets.precompile += %w(company/jquery.gritter.min.js)
@@ -42,6 +43,21 @@ Rails.application.config.assets.precompile += %w(company/jquery.flot.pie.min.js)
 Rails.application.config.assets.precompile += %w(company/jquery.flot.pie.js)
 Rails.application.config.assets.precompile += %w(company/matrix.charts.js )
 Rails.application.config.assets.precompile += %w(company/jquery.ui.custom.js)
+Rails.application.config.assets.precompile += %w(company/masked.js)
+Rails.application.config.assets.precompile += %w(company/jquery.flot.min.js)
+Rails.application.config.assets.precompile += %w(company/jquery.flot.crosshair.js)
+Rails.application.config.assets.precompile += %w(company/jquery.flot.stack.js)
+Rails.application.config.assets.precompile += %w(company/jquery.easy-pie-chart.js)
+Rails.application.config.assets.precompile += %w(company/bootstrap-colorpicker.js)
+Rails.application.config.assets.precompile += %w(company/bootstrap-wysihtml5.js)
+Rails.application.config.assets.precompile += %w(company/matrix.form_common.js)
+Rails.application.config.assets.precompile += %w(company/matrix.login.js)
+Rails.application.config.assets.precompile += %w(company/matrix.popover.js)
+Rails.application.config.assets.precompile += %w(company/matrix.tables.js)
+Rails.application.config.assets.precompile += %w(company/wysihtml5-0.3.0.js)
+
+
+
 
 
 
@@ -70,7 +86,15 @@ Rails.application.config.assets.precompile += %w(recruiter/jquery.ui.custom.js)
 Rails.application.config.assets.precompile += %w(recruiter/jquery.flot.pie.min.js)
 Rails.application.config.assets.precompile += %w(recruiter/matrix.charts.js)
 Rails.application.config.assets.precompile +=  %w(recruiter/jquery.flot.resize.min.js)
-
-
-
-
+Rails.application.config.assets.precompile += %w(recruiter/matrix.calendar.js)
+Rails.application.config.assets.precompile += %w(recruiter/masked.js)
+Rails.application.config.assets.precompile += %w(recruiter/jquery.flot.min.js)
+Rails.application.config.assets.precompile += %w(recruiter/jquery.flot.crosshair.js)
+Rails.application.config.assets.precompile += %w(recruiter/jquery.easy-pie-chart.js)
+Rails.application.config.assets.precompile += %w(recruiter/bootstrap-colorpicker.js)
+Rails.application.config.assets.precompile += %w(recruiter/bootstrap-wysihtml5.js)
+Rails.application.config.assets.precompile += %w(recruiter/matrix.form_common.js)
+Rails.application.config.assets.precompile += %w(recruiter/matrix.login.js)
+Rails.application.config.assets.precompile += %w(recruiter/matrix.popover.js)
+Rails.application.config.assets.precompile += %w(recruiter/matrix.tables.js)
+Rails.application.config.assets.precompile += %w(recruiter/wysihtml5-0.3.0.js)

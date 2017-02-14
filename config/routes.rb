@@ -10,4 +10,5 @@ devise_for :companies, controllers: { registrations: "registrations" }
 
   get 'company/company_dashboard', as: :company_dashboard
   get 'company/charts_and_graphs'
+  get 'company/calendar'
 end
