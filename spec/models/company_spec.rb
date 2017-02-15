@@ -15,7 +15,7 @@ RSpec.describe Company, type: :model do
   end
 
   # test presence of attributes
-  [:email, :name, :phonenumber, :auth_code].each do |attribute|
+  [:email, :password].each do |attribute|
   	it { should validate_presence_of attribute }
   end 
 
