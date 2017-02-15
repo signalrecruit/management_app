@@ -2,17 +2,16 @@ language: ruby
 services: 
   - postgresql
 before_script:
-  - psql -c 'create database management_app_test;' -U postgres
+  - psql -c 'create database makeandbake_test;' -U postgres
 script: bundle exec rake
-# after_success:
-#   - 
 deploy:
   provider: heroku
   api_key:
-    secure: zO9HJ1WmF8DeA7/ekC6qRwWEW7P8qXTDFwmazRrPp630WOX53BluLkIVZZerWxCGx3w3pDSCDNQm7TGTUi4tpzjORzILvztE0Qxvkq+ULyAKbbCoJoTmRAl+qDBqAE2L45ajDvRAbGWxK4mqPV0ePxJQT/V4nR46M9mKvO8xXXee3XvmzT4SLnsY5KnGU5PUlz21qWpm+OXUIERhUh0UPlWkonoobAVNkmqOZ0cBFkLyOURlhCCPBD2wzyQYD/TyQi2W5W32kknmaJXnUj9UYsfJKI57tdgcDzYgoRcsP4rNg9O91sbsEnALC4bOjxKPk63AspjxP8uydx/ksEi2RiClfQgzqFhyBm6kXlCcscfC96jb84AoYs31EjsscIgU4lnytQ2aLaUummtUMSdMdvi9mIjSpSw3YeucW7SDwmahNqwdnQ+xvjBKzQTBMNQMVQ9jvqDfqunaz+oYrveKw/AHWl0zwyNglhFNjQt3oMfMPkzogycejBiY8Au2dorMAt+FEiYd7OutXHy0kEt6URgDSzSbR2Aq21ghWAo55P2oO4dKVZ3hnTBWGCLpUOK4gRjqEtyoL3ldylkScp+ulkKFbPZB9ucC111d2duFmjJaqHm12Y7Pp9F2GyzySEh00vJy38PzuRlPi3InOM2rj62/bpdckBKS22WSd9YT93U=
+    secure: wDgnXIVQJQMJTRv8nnFDcEBvTbhiIzfZ2wcqxXZgPi78Ypjfv1UgfiAtGw1YQij/q1emN3ljamuW5HQHfcmoBQVOUC0MfluMBEup7LDbnvxNg/iiYudzHOjn98T6lKxHeTF6M5vQdjvcat+KvEwOofY1a8YaAYVI3MuMDMM+kx6aA+WeBfzefMN/y3W02HtTk5GmUDhp7YBlD+WKZ4PpDHr2GoAeH8cudtO69rYMCpTENpk2kr9N+C4dfU9lxtBNgWhULX/x7GVfu5YO1nGX8hbVv4A1QtMRHKCRUPc/ZewVrM7owQOrHhRH5Q9pD0rfGHMGpflSgPGq9xn+CZ6dVr3pQEVHeO8mTpatzmGGiaaFu/ii7vveQW52hagr0tu1eva9d56uK+oXEw/4cLehQm/qtouwtYqWq8kc99dKqPB/G6QSimi0k1M025deX5FTaQPozbpeCxj6oTjB2GMKs4SOHjD34BlC/69TesoJh3QBzE3bOZmDRPCwyhv2WuSB9OmT3mvyZcBc3DYrcs13Xagu6Fke2kJYZRUdUMzQzCp/gJ2eJ51Z76LF24XPzZy77Stf0xdjSbohnrBKuutiZcQZPFF4+esyEw87O/xjd9Dd1YzoAL6mpfufo5mPBfgy9xMjFERiuiNI1aK2IJbXEQXmGhfioorcOzjr2SRNRJE=
   app: recmantest
   on:
     repo: paa-yaw/management_app
+    branch: test
 after_deploy:
-  - heroku run rake db:migrate --app makeandbake
-  - heroku restart --app makeandbake
+  - heroku run rake db:migrate --app recmantest
+  - heroku restart --app recmantest
