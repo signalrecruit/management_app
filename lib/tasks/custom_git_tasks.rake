@@ -4,6 +4,15 @@ namespace :git do
   task :checkout, [:commit_message] => [:status, :add, :commit, :checkout_branch, :current_branch] do |t, args|
   end
 
+  desc "to checkout and merge, rake git:checkout_and_merge['commit message'] BRANCH=branch_name MERGE_BRANCH=merge_branch_name"
+  task :checkout_and_merge, [:commit_message] => [:status, :add, :commit, :checkout_branch, :merge_branch] do 
+    puts "checkout and merge successful!"  
+  end
+
+  task :merge_branch do 
+    sh "git merge #{ENV['MERGE_BRANCH']}"
+  end
+
   task :commit_changes, [:commit_message] => [:add, :commit] do 
     puts "changes committed to... "
     sh "git rev-parse --abbrev-ref HEAD"
