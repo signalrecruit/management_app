@@ -62,10 +62,18 @@
       <i class="icon icon-th"></i> <span>Requests for demo</span>
       <% end %>
       </li>
-      <li class="submenu"> <a href="#"><i class="icon icon-user"></i> <span>Account Creation</span> <span class="label label-important">2</span></a>
+      <li class="submenu"> <a href="#"><i class="icon icon-user"></i> <span>Account Management</span> <span class="label label-important">3</span></a>
             <ul>
           <li><%= link_to "Clients", "#" %></li>
           <li><%= link_to "Candidates", "#" %></li>
+          <li><%= link_to "Companies", "#" %></li>
+        </ul>
+      </li>
+      <li class="submenu"> <a href="#"><i class="icon icon-file"></i> <span>Hiring</span> <span class="label label-important">3</span></a>
+        <ul>
+          <li><a href="#">Client Requests</a></li>
+          <li><a href="#">Progress of Requests</a></li>
+          <li><a href="#">Schedule Interview & Test</a></li>
         </ul>
       </li>
       <li> 
@@ -73,38 +81,10 @@
       <i class="icon icon-signal"></i> <span>Charts &amp; graphs</span>
       <% end %>
       </li>
-      <li> 
-      <%= link_to "#" do %>  
-      <i class="icon icon-briefcase"></i> <span>Companies</span>
-      <% end %>
-      </li>
-      <li>
-      <%= link_to "#" do %>
-      <i class="icon icon-book"></i> <span>Applications(Job Descriptions)</span>
-      <% end %>
-      </li>
       <li>
         <%= link_to recruiter_calendar_path do %>
-        <i class="icon icon-calendar"></i> <span>Schedule Interview &amp; Tests</span>
+        <i class="icon icon-calendar"></i> <span>Orientation &amp; Onboarding</span>
         <% end %>  
-      <li><a href="#"><i class="icon icon-pencil"></i> <span>Eelements</span></a></li>
-      <li class="submenu"> <a href="#"><i class="icon icon-file"></i> <span>Addons</span> <span class="label label-important">5</span></a>
-        <ul>
-          <li><a href="#">Dashboard2</a></li>
-          <li><a href="#">Gallery</a></li>
-          <li><a href="#">Calendar</a></li>
-          <li><a href="#">Invoice</a></li>
-          <li><a href="#">Chat option</a></li>
-        </ul>
-      </li>
-      <li class="submenu"> <a href="#"><i class="icon icon-info-sign"></i> <span>Error</span> <span class="label label-important">4</span></a>
-        <ul>
-          <li><a href="#">Error 403</a></li>
-          <li><a href="#">Error 404</a></li>
-          <li><a href="#">Error 405</a></li>
-          <li><a href="#">Error 500</a></li>
-        </ul>
-      </li>
       <li class="content"> <span>Monthly Bandwidth Transfer</span>
         <div class="progress progress-mini progress-danger active progress-striped">
           <div style="width: 77%;" class="bar"></div>
