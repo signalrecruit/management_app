@@ -29,6 +29,55 @@
                   <ul class="nav navbar-nav pull-right">
                     <li class="active"><a href="#">Home</a>
                     </li>
+                    <li>
+                    <button data-toggle="modal" data-target="#squarespaceModal" class="btn btn-primary center-block">Request Demo</button>
+                    </li>
+
+                    <!-- line modal -->
+                    <div class="modal fade" id="squarespaceModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                            <h3 class="modal-title" id="lineModalLabel">Request A Demo</h3>
+                          </div>
+                          <div class="modal-body">
+
+                            <!-- content goes here -->
+                            <%= simple_form_for(Request.new) do |f| %>
+                              <div class="form-group">
+                                <%= f.input :company, label: "Name of Company",  class: "form-control", autofocus: true %>
+                              </div>
+                              <div class="form-group">
+                                <%= f.input :fullname, class: "form-control", placeholder: "fullname", require: true %>
+                                <%= f.input :email, class: "form-control", placeholder: "email" %> 
+                                <%= f.input :phonenumber, class: "form-control", placeholder: "phonenumber" %>
+                                <%= f.input :job_title, class: "form-control", placeholder: "job title" %>
+                              </div>
+
+                              <div class="form-group">
+                              <%= f.button :submit, "Request Demo", id: "contactbtn", class: "btn btn-default" %>
+                              <% end %>
+
+                              </div>
+                          <!-- <div class="modal-footer">
+                            <div class="btn-group btn-group-justified" role="group" aria-label="group button">
+                              <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-default" data-dismiss="modal"  role="button">Close</button>
+                              </div>
+                              <div class="btn-group btn-delete hidden" role="group">
+                                <button type="button" id="delImage" class="btn btn-default btn-hover-red" data-dismiss="modal"  role="button">Delete</button>
+                              </div>
+                              <div class="btn-group" role="group">
+                                <button type="button" id="saveImage" class="btn btn-default btn-hover-green" data-action="save" role="button">Save</button>
+                              </div>
+                            </div>
+                          </div> -->
+                        </div>
+                      </div>
+                    </div>
+
+
                     <%# if current_company %>
                       <!-- <li><%#= link_to "Sign Out", destroy_company_session_path, method: :delete, data: { confirm: "Are you sure you want to sign out?" } %></li> -->
                       <!-- <li><a><!-- signed in as --> <%#= current_company.try(:email) || "Admin" %><!-- </a></li> --> 
@@ -203,6 +252,60 @@
           <%= javascript_include_tag "welcome/bootstrap" %>
           <%= javascript_include_tag "welcome/wow" %>
           <%= javascript_include_tag "welcome/main" %>
+
+          <script type="text/javascript">
+          // function validateText(id)
+          // {
+          //   if($("#"*id).val()==null || $("#"*id).val()=="") 
+          //   {
+          //     var div = $("#"*id).closest("div");
+          //     div.addClass("has-error");
+          //     event.preventDefault();
+          //     return false;
+          //   }
+          // }
+
+          //   $(document).ready(
+          //     function()
+          //     {
+          //       $("#contactbtn").click(
+          //         function()
+          //         {
+          //           validateText("request_company");
+          //         });
+          //     });
+
+
+          $(document).ready(
+          $("#new_request").on('submit', function(e){
+            var company = $('#request_company');
+            var fullname = $('#request_fullname');
+            var email = $('#request_email');
+            var phonenumber = $('#request_phonenumber');
+            var job_title = $('#request_job_title');
+
+            if(!company.val()) {
+              company.closest('.form-group').addClass('has-error');
+              e.preventDefault();
+            }
+            if(!fullname.val()) {
+              fullname.closest('.form-group').addClass('has-error');
+              e.preventDefault();
+            }
+            if(!email.val()) {
+              email.closest('.form-group').addClass('has-error');
+              e.preventDefault();
+            } 
+            if(!phonenumber.val()) {
+              phonenumber.closest('.form-group').addClass('has-error');
+              e.preventDefault();
+            }
+            if(!job_title.val()) {
+              job_title.closest('.form-group').addClass('has-error');
+              e.preventDefault();
+            }
+          }));
+          </script>
 
 
 </body>
