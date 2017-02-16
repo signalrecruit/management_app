@@ -57,6 +57,17 @@
     <i class="icon icon-dashboard"></i> <span>Dashboard</span>
     <% end %>
     </li>
+      <li>
+      <%= link_to recruiter_demo_requests_path do %>
+      <i class="icon icon-th"></i> <span>Requests for demo</span>
+      <% end %>
+      </li>
+      <li class="submenu"> <a href="#"><i class="icon icon-user"></i> <span>Account Creation</span> <span class="label label-important">2</span></a>
+            <ul>
+          <li><%= link_to "Clients", "#" %></li>
+          <li><%= link_to "Candidates", "#" %></li>
+        </ul>
+      </li>
       <li> 
       <%= link_to recruiter_charts_and_graphs_path do %>  
       <i class="icon icon-signal"></i> <span>Charts &amp; graphs</span>
@@ -64,27 +75,18 @@
       </li>
       <li> 
       <%= link_to "#" do %>  
-      <i class="icon icon-briefcase"></i> <span>Companies</span></a> 
+      <i class="icon icon-briefcase"></i> <span>Companies</span>
       <% end %>
       </li>
       <li>
       <%= link_to "#" do %>
-      <i class="icon icon-th"></i> <span>Tables</span>
+      <i class="icon icon-book"></i> <span>Applications(Job Descriptions)</span>
       <% end %>
       </li>
       <li>
-      <%= link_to "#" do %>
-      <i class="icon icon-fullscreen"></i> <span>Full width</span>
-      <% end %>
-      </li>
-      <li class="submenu"> <a href="#"><i class="icon icon-th-list"></i> <span>Forms</span> <span class="label label-important">3</span></a>
-            <ul>
-          <li><a href="#">Basic Form</a></li>
-          <li><a href="#">Form with Validation</a></li>
-          <li><a href="#">Form with Wizard</a></li>
-        </ul>
-      </li>
-      <li><a href="#"><i class="icon icon-tint"></i> <span>Buttons &amp; icons</span></a></li>
+        <%= link_to recruiter_calendar_path do %>
+        <i class="icon icon-calendar"></i> <span>Schedule Interview &amp; Tests</span>
+        <% end %>  
       <li><a href="#"><i class="icon icon-pencil"></i> <span>Eelements</span></a></li>
       <li class="submenu"> <a href="#"><i class="icon icon-file"></i> <span>Addons</span> <span class="label label-important">5</span></a>
         <ul>
@@ -144,11 +146,6 @@
 
   <!--end-Footer-part-->
 
-
-  <%= javascript_include_tag "recruiter/matrix.dashboard" %>
-   <%= javascript_include_tag "recruiter/fullcalendar.min" %>
-   <%= javascript_include_tag "recruiter/jquery.flot.min" %>
-   <%= javascript_include_tag "recruiter/jquery.flot.resize.min" %>
 <!-- <script type="text/javascript">
   // This function is called from the pop-up menus to transfer to
   // a different page. Ignore if the value returned is a null string:

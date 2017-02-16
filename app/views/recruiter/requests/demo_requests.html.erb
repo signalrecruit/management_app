@@ -1,0 +1,61 @@
+<div>
+	<h1>Demo Requests</h1>
+</div>
+<hr>
+<div class="row-fluid">
+	<div class="span12">
+<div class="widget-box">
+          <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
+            <h5><%= pluralize(Request.all.count, "Demo Request") %></h5>
+          </div>
+          <div class="widget-content nopadding">
+          <div class="table-responsive">
+            <table class="table table-bordered table-striped table-hover">
+              <thead>
+                <tr>
+                	<th></th>
+                	<th>Fullname</th>
+                	<th>Email</th>
+                	<th>Phonenumber</th>
+                	<th>Company</th>
+                	<th>Job Title</th>
+                	<th>Contact Status</th>
+                </tr>
+              </thead>
+              <tbody>
+              <% @requests.each do |request| %>
+                <tr class="odd gradeX">
+                    <td>
+                      <% if request.contacted? %>
+                        <i class="fa fa-check-circle fa-2x" aria-hidden="true"></i>
+                      <% end %>	
+                    </td>
+                	<td><%= request.fullname %></td>
+                	<td><%= request.email %></td>
+                	<td><%= request.phonenumber %></td>
+                	<td class="center"><%= request.company %></td>
+                	<td class="center"><%= request.job_title %></td>
+                	<td>
+                		<div class="btn-group">
+                		<button class="btn btn-primary">Contacted?</button>
+                			<button data-toggle="dropdown" class="btn btn-primary dropdown-toggle"><span class="caret"></span></button>
+                			<ul class="dropdown-menu">
+                				<li><%= link_to "Yes", recruiter_contact_path(request), method: :patch %></li>
+                				<li><%= link_to "No", recruiter_no_contact_path(request), method: :patch %></li>
+                			</ul>
+                		</div>
+                	</td>
+                </tr>
+              <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        </div>
+        </div>
+        </div>
+
+        <%= javascript_include_tag "recruiter/jquery.min" %>
+        <%= javascript_include_tag "recruiter/jquery.ui.custom" %>
+        <%= javascript_include_tag "recruiter/bootstrap.min" %>
+        <%= javascript_include_tag "recruiter/matrix" %>

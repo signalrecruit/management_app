@@ -6,4 +6,7 @@ class Recruiter::WelcomeController < ApplicationController
 
   def charts_and_graphs
   end
+
+  def calendar
+  end
 end

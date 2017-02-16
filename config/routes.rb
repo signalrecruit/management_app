@@ -1,13 +1,17 @@
 Rails.application.routes.draw do
 
-  get 'requests/new'
 
-  get 'requests/create'
+  
 
 devise_for :companies, controllers: { registrations: "registrations" }
   namespace :recruiter do
     root 'welcome#dashboard', as: :dashboard
     get 'welcome/charts_and_graphs', as: :charts_and_graphs
+    get 'welcome/calendar', as: :calendar
+    get 'requests/demo_requests', as: :demo_requests
+    patch 'requests/:id/contact', to: 'requests#contact', as: :contact
+    patch 'requests/:id/no_contact', to: 'requests#no_contact', as: :no_contact
+
   end
 
   root 'welcome#landing_page'
@@ -16,5 +20,5 @@ devise_for :companies, controllers: { registrations: "registrations" }
   get 'company/charts_and_graphs'
   get 'company/calendar'
 
-  resources :requests
+  resources :requests, only: [:new, :create]
 end
