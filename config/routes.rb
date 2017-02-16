@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'requests/new'
+
+  get 'requests/create'
+
 devise_for :companies, controllers: { registrations: "registrations" }
   namespace :recruiter do
     root 'welcome#dashboard', as: :dashboard
@@ -11,4 +15,6 @@ devise_for :companies, controllers: { registrations: "registrations" }
   get 'company/company_dashboard', as: :company_dashboard
   get 'company/charts_and_graphs'
   get 'company/calendar'
+
+  resources :requests
 end

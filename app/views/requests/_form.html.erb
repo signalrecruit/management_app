@@ -1,0 +1,22 @@
+		<div class="col-md-12 text-center">
+                  <div role="form" class="sign-up-form">
+		<%= simple_form_for(Request.new) do |f| %>
+		<div class="form-group col-md-offset-4 col-md-4 col-md-offset-4 wow fadeInDown">
+			<%= f.input :company, label: "Name of Company",  class: "form-control", autofocus: true %>
+		</div>
+
+		<div class="form-group col-md-offset-4 col-md-4 col-md-offset-4 wow fadeInDown" data-wow-delay=".7s">
+		  <%= f.input :fullname, class: "form-control", placeholder: "fullname", require: true %>
+		  <%= f.input :email, class: "form-control", placeholder: "email" %>	
+		  <%= f.input :phonenumber, class: "form-control", placeholder: "phonenumber" %>
+          <%= f.input :job_title, class: "form-control", placeholder: "job title" %>
+		</div>
+
+		<a class="col-md-offset-3 col-md-6 col-md-offset-3 wow fadeInUp" data-wow-delay="1s">
+		  <%= f.button :submit, "Request Demo" %>
+		</a>
+
+		<% end %>
+	
+	</div>
+	</div>
