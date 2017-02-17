@@ -19,6 +19,9 @@ RSpec.describe Request, type: :model do
   	it { should validate_presence_of attribute }
   end
 
+  # validate uniqueness of email
+  it { should validate_uniqueness_of(:email).case_insensitive }
+
   # instance methods
 describe "test instance methods" do 
   before { @request.save }
