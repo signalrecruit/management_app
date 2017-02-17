@@ -31,7 +31,7 @@
                     <li class="active"><a href="#">Home</a>
                     </li>
                     <li>
-                    <button data-toggle="modal" data-target="#squarespaceModal" class="btn btn-primary center-block">Request Demo</button>
+                    <button data-toggle="modal" data-target="#squarespaceModal" class="btn btn-success center-block">Request Demo</button>
                     </li>
 
                     <!-- line modal -->
@@ -279,7 +279,7 @@
               formvalidator.addValidation("request[email]", "email");
               formvalidator.addValidation("request[email]", "req");
               email.closest('.form-group').addClass('has-error');
-              email.val('email format is invalid!! ');
+              email.val(email.val()+ ' is invalid!! ');
               e.preventDefault();
             }
             if(!phonenumber.val()) {
