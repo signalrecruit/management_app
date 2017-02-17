@@ -1,0 +1,2 @@
+module Recruiter::RegistrationsHelper
+end

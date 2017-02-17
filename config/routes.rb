@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
 
 
-  
-
-devise_for :companies, controllers: { registrations: "registrations" }
+get 'identifier/identify', to: 'identifier#identify', as: :identifier
+post 'identifier/authenticate', to: 'identifier#authenticate'
+devise_for :recruiters, controllers: { registrations: "recruiter/registrations" }
+devise_for :companies, controllers: { registrations: "company/registrations", sessions: "company/sessions" }
   namespace :recruiter do
     root 'welcome#dashboard', as: :dashboard
     get 'welcome/charts_and_graphs', as: :charts_and_graphs

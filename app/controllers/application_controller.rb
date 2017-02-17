@@ -15,6 +15,10 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    company_dashboard_path
+    if resource == :company
+      company_dashboard_path
+    elsif resource == :recruiter
+      recruiter_dashboard_path
+    end
   end
 end

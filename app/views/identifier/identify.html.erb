@@ -1,0 +1,5 @@
+<%= form_tag("/identifier/authenticate", method: "authenticate") do %>
+  <%= label_tag(:email, "Input your email") %>
+  <%= text_field_tag(:email) %>
+  <%= submit_tag("who are you?") %>
+<% end %>
