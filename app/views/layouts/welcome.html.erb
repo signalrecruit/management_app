@@ -6,6 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<%= stylesheet_link_tag "welcome", media: 'all' %>
 	<%= javascript_include_tag "welcome" %>
+  <%= javascript_include_tag "welcome/gen_validatorv4" %>
 	<%= csrf_meta_tags %>
 	<title>RECMAN</title>
 </head>
@@ -254,28 +255,6 @@
           <%= javascript_include_tag "welcome/main" %>
 
           <script type="text/javascript">
-          // function validateText(id)
-          // {
-          //   if($("#"*id).val()==null || $("#"*id).val()=="") 
-          //   {
-          //     var div = $("#"*id).closest("div");
-          //     div.addClass("has-error");
-          //     event.preventDefault();
-          //     return false;
-          //   }
-          // }
-
-          //   $(document).ready(
-          //     function()
-          //     {
-          //       $("#contactbtn").click(
-          //         function()
-          //         {
-          //           validateText("request_company");
-          //         });
-          //     });
-
-
           $(document).ready(
           $("#new_request").on('submit', function(e){
             var company = $('#request_company');
@@ -295,7 +274,14 @@
             if(!email.val()) {
               email.closest('.form-group').addClass('has-error');
               e.preventDefault();
-            } 
+            } else {
+              formvalidator = new Validator('new_request');
+              formvalidator.addValidation("request[email]", "email");
+              formvalidator.addValidation("request[email]", "req");
+              email.closest('.form-group').addClass('has-error');
+              email.val('email format is invalid!! ');
+              e.preventDefault();
+            }
             if(!phonenumber.val()) {
               phonenumber.closest('.form-group').addClass('has-error');
               e.preventDefault();

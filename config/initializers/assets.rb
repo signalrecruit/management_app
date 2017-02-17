@@ -15,6 +15,7 @@ Rails.application.config.assets.precompile += %w(welcome/bootstrap.js)
 Rails.application.config.assets.precompile += %w(welcome/jquery-min.js)
 Rails.application.config.assets.precompile += %w(welcome/main.js)
 Rails.application.config.assets.precompile += %w(welcome/wow.js)
+Rails.application.config.assets.precompile += %w( welcome/gen_validatorv4.js )
 
 Rails.application.config.assets.precompile += %w(company.css)
 Rails.application.config.assets.precompile += %w(company.js)
