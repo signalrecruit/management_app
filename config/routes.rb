@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
 get 'identifier/identify', to: 'identifier#identify', as: :identifier
 post 'identifier/authenticate', to: 'identifier#authenticate'
-devise_for :recruiters, controllers: { registrations: "recruiter/registrations" }
+devise_for :recruiters, controllers: { registrations: "recruiter/registrations", sessions: "recruiter/sessions" }
 devise_for :companies, controllers: { registrations: "company/registrations", sessions: "company/sessions" }
   namespace :recruiter do
     root 'welcome#dashboard', as: :dashboard

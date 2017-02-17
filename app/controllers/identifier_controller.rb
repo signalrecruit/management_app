@@ -9,11 +9,11 @@ class IdentifierController < ApplicationController
   	email = params[:email]
 
   	if Company.all.pluck(:email).include? email
-  	  flash[:notice] = "please log in your detais"
-  	  redirect_to new_company_session_path(email: "#{email}")
+  	  flash[:notice] = "please log in your details"
+  	  redirect_to new_company_session_path(email: email)
   	elsif Recruiter.all.pluck(:email).include? email
   	  flash[:notice] = "please log in your details"
-  	  redirect_to new_recruiter_session_path
+  	  redirect_to new_recruiter_session_path(email: email)
   	else
       flash[:notice] = "we don't have a record of you. Please sign up in order to proceed."
       redirect_to root_path

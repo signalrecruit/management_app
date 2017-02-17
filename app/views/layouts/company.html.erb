@@ -27,7 +27,7 @@
           <li class="divider"></li>
           <li><a href="#"><i class="icon-check"></i> My Tasks</a></li>
           <li class="divider"></li>
-          <li><a href="#">
+          <li><a>
             <% if current_company %>
        <li><%= link_to fa_icon("sign-out") + " Log Out", destroy_company_session_path, method: :delete, data: { confirm: "Are you sure you want to sign out?" } %></li>
         <% end %>
