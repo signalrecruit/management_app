@@ -92,6 +92,11 @@ namespace :git do
   task :checkout_and_delete, [:commit_message] => [:add, :commit, :checkout, :delete] do 
     puts "#{ENV['DELETE_BRANCH']} deleted! your current branch is #{ENV['BRANCH']}"
   end
+
+  desc "run db:migrate on heroku, rake git:migrate_on_production APP_NAME=herokuapp_name"
+  task :migrate_on_production do
+    sh "heroku run rake db:migrate --app APP_NAME"
+  end
 end
 
 
