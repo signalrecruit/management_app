@@ -13,5 +13,5 @@ deploy:
     repo: paa-yaw/management_app
     branch: test
 after_deploy:
-  - heroku run rake db:migrate --app recmantest
-  - heroku restart --app recmantest
+  - bundle exec rake git:migrate_on_production APP_NAME=recmantest
+  - bundle exec rake git:restart_dyno APP_NAME=recmantest
