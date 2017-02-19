@@ -13,4 +13,12 @@ class Request < ActiveRecord::Base
   def no_contact
   	self.update(contacted: false)
   end
+
+  def accept_offer
+    self.update(accepted_offer: true)
+  end
+
+  def reject_offer
+    self.update(accepted_offer: false)
+  end
 end

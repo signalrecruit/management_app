@@ -9,9 +9,14 @@ devise_for :companies, controllers: { registrations: "company/registrations", se
     root 'welcome#dashboard', as: :dashboard
     get 'welcome/charts_and_graphs', as: :charts_and_graphs
     get 'welcome/calendar', as: :calendar
-    get 'requests/demo_requests', as: :demo_requests
+    get 'requests/demo_requests', to: 'requests#demo_requests', as: :demo_requests
+    get 'requests/:id/company_signup', to: 'requests#send_company_login_details', as: :company_signup
+    patch 'requests/:id/accept_offer', to: 'requests#accept_offer', as: :company_accept_offer
+    patch 'request/:id/reject_offer', to: 'requests#reject_offer', as: :company_reject_offer
     patch 'requests/:id/contact', to: 'requests#contact', as: :contact
     patch 'requests/:id/no_contact', to: 'requests#no_contact', as: :no_contact
+
+    resources :requests, only: [:new, :create]
 
   end
 

@@ -318,12 +318,12 @@
               email.closest('.form-group').addClass('has-error');
               e.preventDefault();
             } else {
-              formvalidator = new Validator('new_request');
-              formvalidator.addValidation("request[email]", "email");
-              formvalidator.addValidation("request[email]", "req");
-              email.closest('.form-group').addClass('has-error');
-              email.val(email.val()+ ' is invalid!! ');
-              e.preventDefault();
+              // formvalidator = new Validator('new_request');
+              // formvalidator.addValidation("request[email]", "email");
+              // formvalidator.addValidation("request[email]", "req");
+              // email.closest('.form-group').addClass('has-error');
+              // email.val(email.val()+ ' is invalid!! ');
+              // e.preventDefault();
             }
             if(!phonenumber.val()) {
               phonenumber.closest('.form-group').addClass('has-error');

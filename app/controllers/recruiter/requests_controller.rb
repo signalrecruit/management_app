@@ -1,7 +1,23 @@
 class Recruiter::RequestsController < ApplicationController
-  before_action :set_request, only: [:contact, :no_contact]
+  before_action :set_request, only: [:contact, :no_contact, :send_company_login_details, :accept_offer, :reject_offer]
 
   layout "recruiter"
+
+  def new
+    @request = Request.new  
+  end
+
+  def create
+    @request = Request.new(request_params)
+    
+    if @request.save
+      flash[:success] = "Your successfully made a request for a demo. We will be in touch with you soon"
+      redirect_to :back
+    else
+      flash[:alert] = "Something went wrong. Please submit the request again."
+      redirect_to :back   
+    end
+  end
 
   def demo_requests
   	@requests = Request.all.order(created_at: :desc)
@@ -13,14 +29,79 @@ class Recruiter::RequestsController < ApplicationController
   end
 
   def no_contact
-    @request.no_contact
+    if Company.all.pluck(:email).include? @request.email
+      flash[:alert] = "account has already been created. This action is irreversible"
+    else
+      @request.no_contact 
+    end
+    redirect_to :back
+  end
+
+  def send_company_login_details
+     if @request.contacted? && @request.accepted_offer?
+       create_company_account(@request)
+     elsif !@request.contacted? && @request.accepted_offer.nil?
+       flash[:alert] = "#{@request.fullname} has not contacted the offer yet!"
+     elsif @request.contacted? && @request.accepted_offer.nil?
+        flash[:alert] = "#{@request.fullname} has neither accepted nor rejected the offer yet"
+     elsif @request.contacted? && !@request.accepted_offer?
+        flash[:alert] = "#{@request.fullname} rejected the offer. You can't send him an email."         
+     end
+     redirect_to :back 
+  end
+
+  def accept_offer
+    if @request.contacted?
+      @request.accept_offer
+      flash[:notice] = "this means #{@request.fullname} has accepted the offer to try out demo."
+    else
+      flash[:alert] = "you have not contacted #{@request.fullname}. Therefore his action is not permissible."
+    end
+    redirect_to :back
+  end
+
+  def reject_offer
+    if @request.contacted? && @request.accepted_offer.nil?
+      @request.reject_offer
+      flash[:notice] = "this means #{@request.fullname} declined on the offer to try out demo."
+    elsif @request.contacted? && @request.accepted_offer? && (!Company.all.pluck(:email).include? @request.email)
+      @request.reject_offer
+       flash[:notice] = "this means #{@request.fullname} declined on the offer to try out demo."
+    elsif !@request.contacted?
+      flash[:alert] = "you have not contacted #{@request.fullname}. Therefore his action is not permissible."
+    elsif Company.all.pluck(:email).include? @request.email
+      flash[:alert] = "account has already been created. This action is irreversible"
+    end
     redirect_to :back
   end
 
   
   private
 
+  def request_params
+    params.require(:request).permit(:fullname, :phonenumber, :email, :company, :job_title, :contacted, :accepted_offer)
+  end
+
   def set_request
     @request = Request.find(params[:id])
+  end
+
+  def create_company_account(request)
+    @secure_password = SecureRandom.hex(5)
+    @company = Company.new do |company|
+      company.email = request.email
+      company.password = @secure_password
+      company.password_confirmation = @secure_password
+      company.phonenumber = request.phonenumber
+      company.name = request.fullname
+      company.auth_code = SecureRandom.hex(7)
+
+      if company.save
+        # send email
+        flash[:notice] = "company account has been created for #{request.company} and an email has been sent."
+      elsif Company.all.pluck(:email).include? company.email
+        flash[:alert] = "An account with the email #{company.email} already exists. Company account could not be created."
+      end
+    end
   end
 end

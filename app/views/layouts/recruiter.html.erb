@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <%= stylesheet_link_tag "recruiter", media: 'all' %>
   <%= javascript_include_tag "recruiter" %>
+  <%= javascript_include_tag "recruiter/gen_validatorv4" %>
   <%= csrf_meta_tags %>
   <title>RECMAN</title>
 </head>
@@ -157,6 +158,46 @@ function resetMenu() {
  document.gomenu.selector.selectedIndex = 2;
 }
 </script> -->
+ <!-- <script type="text/javascript">
+          $(document).ready(
+          $("#new_request").on('submit', function(e){
+            var company = $('#request_company');
+            var fullname = $('#request_fullname');
+            var email = $('#request_email');
+            var phonenumber = $('#request_phonenumber');
+            var job_title = $('#request_job_title');
+
+            if(!company.val()) {
+              company.closest('.form-group').addClass('has-error');
+              e.preventDefault();
+            }
+            if(!fullname.val()) {
+              fullname.closest('.form-group').addClass('has-error');
+              e.preventDefault();
+            }
+            if(!email.val()) {
+              email.closest('.form-group').addClass('has-error');
+              e.preventDefault();
+            } else {
+              formvalidator = new Validator('new_request');
+              formvalidator.addValidation("request[email]", "email");
+              formvalidator.addValidation("request[email]", "req");
+              email.closest('.form-group').addClass('has-error');
+              email.val(email.val()+ ' is invalid!! ');
+              e.preventDefault();
+            }
+            if(!phonenumber.val()) {
+              phonenumber.closest('.form-group').addClass('has-error');
+              e.preventDefault();
+            }
+            if(!job_title.val()) {
+              job_title.closest('.form-group').addClass('has-error');
+              e.preventDefault();
+            }
+          }));
+          </script>
+
+ -->
 
 </body>
 </html>

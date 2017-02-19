@@ -1,0 +1,3 @@
+CompanySignupMailer#signup_company
+
+Hi, find me in app/views/company_signup_mailer/signup_company
