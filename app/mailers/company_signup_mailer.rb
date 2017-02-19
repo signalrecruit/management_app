@@ -6,6 +6,6 @@ class CompanySignupMailer < ApplicationMailer
     @email = @company.email
     @url = url
 
-    mail(to: @email, subject: "Dear #{@company.fullname}, you have been invited to try out recman")
+    mail(to: @email, subject: "Dear #{@company.name}, you have been invited to try out recman")
   end
 end

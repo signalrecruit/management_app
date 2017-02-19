@@ -1,4 +1,4 @@
-class Recruiter::RequestsController < ApplicationController
+class Recruiter::RequestsController < Recruiter::ApplicationController
   before_action :set_request, only: [:contact, :no_contact, :send_company_login_details, :accept_offer, :reject_offer]
 
   layout "recruiter"
@@ -11,7 +11,7 @@ class Recruiter::RequestsController < ApplicationController
     @request = Request.new(request_params)
     
     if @request.save
-      flash[:success] = "Your successfully made a request for a demo. We will be in touch with you soon"
+      flash[:success] = "Demo request successfully created for #{@request.fullname}."
       redirect_to :back
     else
       flash[:alert] = "Something went wrong. Please submit the request again."
@@ -97,7 +97,7 @@ class Recruiter::RequestsController < ApplicationController
       company.auth_code = SecureRandom.hex(7)
 
       if company.save
-        # send email
+         CompanySignupJob.set(wait: 2.seconds).perform_later(company, new_recruiter_session_url)
         flash[:notice] = "company account has been created for #{request.company} and an email has been sent."
       elsif Company.all.pluck(:email).include? company.email
         flash[:alert] = "An account with the email #{company.email} already exists. Company account could not be created."

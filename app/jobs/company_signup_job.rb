@@ -4,6 +4,6 @@ class CompanySignupJob < ActiveJob::Base
   def perform(company, url)
     @company = company
     @url = url
-    CompanySignupMailer.company_signup_mailer(@company, @url).deliver_later
+    CompanySignupMailer.signup_company(@company, @url).deliver_later
   end
 end

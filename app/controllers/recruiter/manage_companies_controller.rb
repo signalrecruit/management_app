@@ -1,4 +1,4 @@
-class Recruiter::ManageCompaniesController < ApplicationController
+class Recruiter::ManageCompaniesController < Recruiter::ApplicationController
   layout "recruiter"
 
   def list_of_companies

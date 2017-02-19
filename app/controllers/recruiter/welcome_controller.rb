@@ -1,4 +1,4 @@
-class Recruiter::WelcomeController < ApplicationController
+class Recruiter::WelcomeController < Recruiter::ApplicationController
   layout "recruiter"
   
   def dashboard

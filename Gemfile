@@ -59,5 +59,6 @@ gem "hirb"
 gem 'simple_form'
 gem "font-awesome-rails"
 gem 'devise'
+gem 'delayed_job_active_record'
 
 

@@ -36,7 +36,7 @@
                 	<!-- <td class="center"><%#= company.job_title %></td> -->
                 	<td>
                 		<div class="btn-group">
-                		<button class="btn btn-primary">Contacted?</button>
+                		<button class="btn btn-primary">Action?</button>
                 			<button data-toggle="dropdown" class="btn btn-primary dropdown-toggle"><span class="caret"></span></button>
                 			<ul class="dropdown-menu">
                 				<li><%#= link_to "Yes", recruiter_contact_path(company), method: :patch %></li>
@@ -44,7 +44,7 @@
                 			</ul>
                 		</div>
                     <div class="btn-group">
-                    <button class="btn btn-primary">Accepted Offer?</button>
+                    <button class="btn btn-primary">Action?</button>
                       <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle"><span class="caret"></span></button>
                       <ul class="dropdown-menu">
                         <li><%#= link_to "Yes", recruiter_company_accept_offer_path(company), method: :patch %></li>
