@@ -89,11 +89,11 @@ class Recruiter::RequestsController < ApplicationController
   def create_company_account(request)
     @secure_password = SecureRandom.hex(5)
     @company = Company.new do |company|
+      company.name = request.company
       company.email = request.email
       company.password = @secure_password
       company.password_confirmation = @secure_password
       company.phonenumber = request.phonenumber
-      company.name = request.fullname
       company.auth_code = SecureRandom.hex(7)
 
       if company.save

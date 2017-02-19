@@ -16,6 +16,8 @@ devise_for :companies, controllers: { registrations: "company/registrations", se
     patch 'requests/:id/contact', to: 'requests#contact', as: :contact
     patch 'requests/:id/no_contact', to: 'requests#no_contact', as: :no_contact
 
+    get 'manage_companies/list_of_companies', to: 'manage_companies#list_of_companies', as: :list_of_companies
+
     resources :requests, only: [:new, :create]
 
   end
