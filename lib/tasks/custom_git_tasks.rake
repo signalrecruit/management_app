@@ -97,6 +97,11 @@ namespace :git do
   task :migrate_on_production do
     sh "heroku run rake db:migrate --app APP_NAME"
   end
+
+  desc "restart heroku server"
+  task :restart_dyno do 
+    sh "heroku restart --app APP_NAME"
+  end
 end
 
 
