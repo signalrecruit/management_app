@@ -8,11 +8,11 @@
 
 <p>
   You have been invited to try recman. Below is you account details:
-  <p>Name of Company: @company.name</p>
-  <p>Phone number: @company.phonenumber</p>
-  <p>email: @company.email</p>
-  <p>password: @secure_password</p>
-  <p>Authentication Code: @company.auth_code</p>
+  <p>Name of Company: <%= @company.name %></p>
+  <p>Phone number: <%= @company.phonenumber %></p>
+  <p>email: <%= @company.email %></p>
+  <p>password: <%= @secure_password %></p>
+  <p>Authentication Code: <%= @company.auth_code %></p>
 </p>
 
 <p>Please use the both the password and authentication code to login here: <%= link_to "recman", @url %></p>

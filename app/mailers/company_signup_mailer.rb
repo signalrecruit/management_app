@@ -1,5 +1,5 @@
 class CompanySignupMailer < ApplicationMailer
-  default from: "recman.com"
+  default from: "no-reply@recman.com"
   
   def signup_company(company, secure_password, url)
     @company = company

@@ -1,6 +1,63 @@
 require 'rails_helper'
 
 RSpec.describe Recruiter::RequestsController, type: :controller do
+  before do 
+    @recruiter = FactoryGirl.create :recruiter
+    sign_in @recruiter
+  end
+  
+  # NOTE: get :new can't be tested in controller because it's being handled 
+  # by a modal which is called by a simple HTML button, and no references to
+  # to use of link_to helper
+
+  describe "POST #create" do 
+    before { request.env["HTTP_REFERER"] = "origin" }
+
+    context "create a request successfully" do 
+      before { @request_attributes = FactoryGirl.attributes_for :request }
+
+      it "should create and save request successfully" do 
+        expect{
+          post :create, { request: @request_attributes }
+        }.to change(Request, :count).by(1)   
+      end
+
+      it "should display flash message on redirect" do 
+        post :create, { request: @request_attributes }
+        message = "Demo request successfully created for #{assigns[:request].fullname}."
+        expect(flash[:success]).to eq message
+      end
+
+      it "should successfully redirect to previous page" do
+        post :create, { request: @request_attributes } 
+        expect(response).to redirect_to "origin"   
+      end
+    end  
+
+    context "unsucceful attempt to create request" do 
+      before do 
+        @invalid_attributes = FactoryGirl.attributes_for :request 
+        @invalid_attributes[:email] = ""
+      end
+
+      it "should not save request" do 
+        expect{
+          post :create, { request: @invalid_attributes }
+        }.not_to change(Request, :count)  
+      end
+
+      it "should display alert flash message" do 
+        post :create, { request: @invalid_attributes }
+        message = "Something went wrong. Please submit the request again."
+        expect(flash[:alert]).to eq message
+      end
+
+      it "should redirect to previous page" do 
+        post :create, { request: @invalid_attributes }
+        expect(response).to redirect_to "origin"
+      end
+    end
+  end
 
   describe "GET #demo_requests" do 
     context "return demo_requests" do 

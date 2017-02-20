@@ -6,5 +6,13 @@ FactoryGirl.define do
     phonenumber "0204704427"
     company { FFaker::Company.name }
     job_title { position[rand(0..5)] }
+
+    trait :contacted do 
+      contacted true	
+    end
+
+    trait :accepted_offer do 
+      accepted_offer true	
+    end
   end
 end

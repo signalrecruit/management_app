@@ -7,7 +7,7 @@ RSpec.describe Request, type: :model do
 
   it { should be_valid }
   
-  @request_attributes = [:fullname, :phonenumber, :email, :company, :job_title, :contacted]
+  @request_attributes = [:fullname, :phonenumber, :email, :company, :job_title, :contacted, :accepted_offer]
 
   # model should respond to attributes
   @request_attributes.each do |attribute|
@@ -22,17 +22,47 @@ RSpec.describe Request, type: :model do
   # validate uniqueness of email
   it { should validate_uniqueness_of(:email).case_insensitive }
 
+
+  describe "test number format of phonenumber" do 
+    context "when phonenumber is set to string containing string" do 
+      before {  @request.phonenumber = "some string" }
+      
+      it "@request should be invalid" do 
+        expect(@request).not_to be_valid
+      end  
+    end
+
+    context "when phonenumber is set to string containing numbers" do
+      before { @request.phonenumber = "0204704427" }
+      
+      it "@request should be valid" do 
+        expect(@request).to be_valid  
+      end  
+    end
+  end
   # instance methods
 describe "test instance methods" do 
   before { @request.save }
 
   it "should return true for contact" do 
-    expect(@request.contact).to eq @request.contacted? 
+    @request.contact
+    expect(@request.contacted).to eq true 
   end
 
   it "should return false for no_contact" do 
-    expect(@request.no_contact).to eq !@request.contacted
+    @request.no_contact
+    expect(@request.contacted).to eq false
   end
+
+  it "should return true for accept_offer" do 
+    @request.accept_offer
+    expect(@request.accepted_offer).to eq true
+  end
+
+  it "should return false for reject_offer" do 
+    @request.reject_offer
+    expect(@request.accepted_offer).to eq false
+  end 
 end
 
 end

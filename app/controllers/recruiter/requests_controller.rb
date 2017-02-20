@@ -3,9 +3,9 @@ class Recruiter::RequestsController < Recruiter::ApplicationController
 
   layout "recruiter"
 
-  def new
-    @request = Request.new  
-  end
+  # def new
+  #   @request = Request.new  
+  # end
 
   def create
     @request = Request.new(request_params)
@@ -94,11 +94,11 @@ class Recruiter::RequestsController < Recruiter::ApplicationController
       company.password = @secure_password
       company.password_confirmation = @secure_password
       company.phonenumber = request.phonenumber
-      company.auth_code = SecureRandom.hex(7)
+      company.auth_code = Devise.friendly_token
 
       if company.save
         # CompanySignupMailer.signup_company(@company, @url).deliver_later
-         CompanySignupJob.set(wait: 2.seconds).perform_later(company, @secure_password, new_recruiter_session_url)
+         CompanySignupJob.set(wait: 2.seconds).perform_later(company, @secure_password, new_company_session_url(email: company.email))
         flash[:notice] = "company account has been created for #{request.company} and an email has been sent."
       elsif Company.all.pluck(:email).include? company.email
         flash[:alert] = "An account with the email #{company.email} already exists. Company account could not be created."

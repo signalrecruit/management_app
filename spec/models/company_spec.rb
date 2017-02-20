@@ -18,6 +18,23 @@ RSpec.describe Company, type: :model do
   [:email, :password].each do |attribute|
   	it { should validate_presence_of attribute }
   end 
+  
+  describe "test number format of phonenumber" do 
+    context "when phonenumber is set to string containing string" do 
+      before {  @company.phonenumber = "some string" }
+      
+      it "@company should be invalid" do 
+        expect(@company).not_to be_valid
+      end  
+    end
 
+    context "when phonenumber is set to string containing numbers" do
+      before { @company.phonenumber = "0204704427" }
+      
+      it "@company should be valid" do 
+        expect(@company).to be_valid  
+      end  
+    end
+  end
 
 end
