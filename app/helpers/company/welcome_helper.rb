@@ -1,0 +1,2 @@
+module Company::WelcomeHelper
+end

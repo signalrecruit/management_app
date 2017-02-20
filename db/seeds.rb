@@ -5,3 +5,8 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+
+Recruiter.create(email: "user@recruiter.com", password: "password", password_confirmation: "password")
+Company.create(email: "user@company.com", password: "password", password_confirmation: "password",
+ phonenumber: "0204704427", name: "BioGen", auth_code: Devise.friendly_token)

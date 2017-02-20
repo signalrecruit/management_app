@@ -7,8 +7,8 @@ devise_for :recruiters, controllers: { registrations: "recruiter/registrations",
 devise_for :companies, controllers: { registrations: "company/registrations", sessions: "company/sessions" }
   namespace :recruiter do
     root 'welcome#dashboard', as: :dashboard
-    get 'welcome/charts_and_graphs', as: :charts_and_graphs
-    get 'welcome/calendar', as: :calendar
+    get 'welcome/charts_and_graphs', to: 'welcome#charts_and_graphs', as: :charts_and_graphs
+    get 'welcome/calendar', to: 'welcome#calendar', as: :calendar
     get 'requests/demo_requests', to: 'requests#demo_requests', as: :demo_requests
     get 'requests/:id/company_signup', to: 'requests#send_company_login_details', as: :company_signup
     patch 'requests/:id/accept_offer', to: 'requests#accept_offer', as: :company_accept_offer
@@ -22,11 +22,12 @@ devise_for :companies, controllers: { registrations: "company/registrations", se
 
   end
 
+  namespace :company do 
+    root 'welcome#dashboard', as: :dashboard
+    get 'welcome/charts_and_graphs', to: 'welcome#charts_and_graphs', as: :charts_and_graphs
+    get 'welcome/calendar', to: 'welcome#calendar', as: :calendar
+  end
+
   root 'welcome#landing_page'
-
-  get 'company/company_dashboard', as: :company_dashboard
-  get 'company/charts_and_graphs'
-  get 'company/calendar'
-
   resources :requests, only: [:new, :create]
 end
