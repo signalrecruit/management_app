@@ -30,7 +30,7 @@ class Recruiter::RequestsController < Recruiter::ApplicationController
 
   def no_contact
     if Company.all.pluck(:email).include? @request.email
-      flash[:alert] = "account has already been created. This action is irreversible"
+      flash[:alert] = "account has already been created. This action is not permissible"
     else
       @request.no_contact 
     end
@@ -41,7 +41,7 @@ class Recruiter::RequestsController < Recruiter::ApplicationController
      if @request.contacted? && @request.accepted_offer?
        create_company_account(@request)
      elsif !@request.contacted? && @request.accepted_offer.nil?
-       flash[:alert] = "#{@request.fullname} has not contacted the offer yet!"
+       flash[:alert] = "#{@request.fullname} has not accepted the offer yet!"
      elsif @request.contacted? && @request.accepted_offer.nil?
         flash[:alert] = "#{@request.fullname} has neither accepted nor rejected the offer yet"
      elsif @request.contacted? && !@request.accepted_offer?
@@ -70,7 +70,7 @@ class Recruiter::RequestsController < Recruiter::ApplicationController
     elsif !@request.contacted?
       flash[:alert] = "you have not contacted #{@request.fullname}. Therefore his action is not permissible."
     elsif Company.all.pluck(:email).include? @request.email
-      flash[:alert] = "account has already been created. This action is irreversible"
+      flash[:alert] = "account has already been created. This action is not permissible."
     end
     redirect_to :back
   end
@@ -97,7 +97,8 @@ class Recruiter::RequestsController < Recruiter::ApplicationController
       company.auth_code = SecureRandom.hex(7)
 
       if company.save
-         CompanySignupJob.set(wait: 2.seconds).perform_later(company, new_recruiter_session_url)
+        # CompanySignupMailer.signup_company(@company, @url).deliver_later
+         CompanySignupJob.set(wait: 2.seconds).perform_later(company, @secure_password, new_recruiter_session_url)
         flash[:notice] = "company account has been created for #{request.company} and an email has been sent."
       elsif Company.all.pluck(:email).include? company.email
         flash[:alert] = "An account with the email #{company.email} already exists. Company account could not be created."
