@@ -90,4 +90,5 @@ Rails.application.configure do
     enable_starttls_auto: true,
     user_name: ENV["RECMAN_USERNAME"],
     password: ENV["RECMAN_PASSWORD"]
+  }
 end
