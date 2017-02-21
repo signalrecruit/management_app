@@ -13,5 +13,6 @@ deploy:
     repo: paa-yaw/management_app
     branch: test
 after_deploy:
-  - bundle exec rake git:migrate_on_production APP_NAME=recmantest
-  - bundle exec rake git:restart_dyno APP_NAME=recmantest
+  run:
+    script: bundle exec rake git:migrate_on_production APP_NAME=recmantest
+    script: bundle exec rake git:restart_dyno APP_NAME=recmantest
