@@ -5,6 +5,7 @@ get 'identifier/identify', to: 'identifier#identify', as: :identifier
 post 'identifier/authenticate', to: 'identifier#authenticate'
 devise_for :recruiters, controllers: { registrations: "recruiter/registrations", sessions: "recruiter/sessions" }
 devise_for :companies, controllers: { registrations: "company/registrations", sessions: "company/sessions" }
+
   namespace :recruiter do
     root 'welcome#dashboard', as: :dashboard
     get 'welcome/charts_and_graphs', to: 'welcome#charts_and_graphs', as: :charts_and_graphs
@@ -19,13 +20,14 @@ devise_for :companies, controllers: { registrations: "company/registrations", se
     get 'manage_companies/list_of_companies', to: 'manage_companies#list_of_companies', as: :list_of_companies
 
     resources :requests, only: [:new, :create]
-
   end
 
   namespace :company do 
     root 'welcome#dashboard', as: :dashboard
     get 'welcome/charts_and_graphs', to: 'welcome#charts_and_graphs', as: :charts_and_graphs
     get 'welcome/calendar', to: 'welcome#calendar', as: :calendar
+    
+    resources :job_requirements
   end
 
   root 'welcome#landing_page'

@@ -69,7 +69,7 @@
     <% end %>
     </li>
     <li>
-      <%= link_to "" do %>
+      <%= link_to new_company_job_requirement_path do %>
       <i class="icon icon-briefcase"></i> <span>Job Description</span>
       <% end %>
     </li>
@@ -140,12 +140,15 @@
     </div>
     <!--End-breadcrumbs-->
      <div class="container-fluid">
+     <hr>
+     <div class="row-fluid">
     <% flash.each do |key, message| %>
     <div class="alert alert-<%= key %>">
       <%= message %>
     </div>
     <% end %>
     <%= yield %>
+    </div>
     </div>
 
     <!--Footer-part-->

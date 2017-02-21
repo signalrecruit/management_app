@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170219203458) do
+ActiveRecord::Schema.define(version: 20170221142420) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,21 @@ ActiveRecord::Schema.define(version: 20170219203458) do
 
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
 
+  create_table "job_requirements", force: :cascade do |t|
+    t.string   "title"
+    t.string   "location"
+    t.string   "job_type"
+    t.integer  "experience"
+    t.decimal  "min_salary"
+    t.decimal  "max_salary"
+    t.integer  "number_of_vacancies"
+    t.integer  "company_id"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  add_index "job_requirements", ["company_id"], name: "index_job_requirements_on_company_id", using: :btree
+
   create_table "recruiters", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -83,4 +98,5 @@ ActiveRecord::Schema.define(version: 20170219203458) do
     t.boolean  "accepted_offer"
   end
 
+  add_foreign_key "job_requirements", "companies"
 end

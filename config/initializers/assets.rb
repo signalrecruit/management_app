@@ -50,6 +50,7 @@ Rails.application.config.assets.precompile += %w(company/jquery.flot.crosshair.j
 Rails.application.config.assets.precompile += %w(company/jquery.flot.stack.js)
 Rails.application.config.assets.precompile += %w(company/jquery.easy-pie-chart.js)
 Rails.application.config.assets.precompile += %w(company/bootstrap-colorpicker.js)
+Rails.application.config.assets.precompile += %w( company/bootstrap-datepicker.js )
 Rails.application.config.assets.precompile += %w(company/bootstrap-wysihtml5.js)
 Rails.application.config.assets.precompile += %w(company/matrix.form_common.js)
 Rails.application.config.assets.precompile += %w(company/matrix.login.js)

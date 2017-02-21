@@ -16,10 +16,7 @@ class ApplicationController < ActionController::Base
     elsif resource_class == Company
       devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :phonenumber, :auth_code])    
       devise_parameter_sanitizer.permit(:account_update, keys: [:name, :phonenumber, :auth_code])
-    end 
-    # devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :phonenumber, :auth_code])
-    
-    # devise_parameter_sanitizer.permit(:account_update, keys: [:name, :phonenumber, :auth_code])
+    end
   end
 
   def after_sign_in_path_for(resource)
