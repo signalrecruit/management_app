@@ -1,0 +1,77 @@
+<%= simple_form_for([:company, requirement, compulsory_requirement]) do |f| %>
+<div class="control-group">
+	<label class="control-label">Requirement 1</label>
+	<div class="controls">
+	  <%= f.input :requirement_1, label: false %>	
+    </div>
+</div>
+
+<div class="control-group">
+	<label class="control-label">Requirement 2</label>
+	<div class="controls">
+	  <%= f.input :requirement_2, label: false %>	
+    </div>
+</div>
+
+<div class="control-group">
+	<label class="control-label">Requirement 3</label>
+	<div class="controls">
+	  <%= f.input :requirement_3, label: false %>	
+    </div>
+</div>
+
+<div class="control-group">
+	<label class="control-label">Requirement 4</label>
+	<div class="controls">
+	  <%= f.input :requirement_4, label: false %>	
+    </div>
+</div>
+
+<div class="control-group">
+	<label class="control-label">Requirement 5</label>
+	<div class="controls">
+	  <%= f.input :requirement_5, label: false %>	
+    </div>
+</div>
+
+<div class="control-group">
+	<label class="control-label">Requirement 6</label>
+	<div class="controls">
+	  <%= f.input :requirement_6, label: false %>	
+    </div>
+</div>
+
+<div class="control-group">
+	<label class="control-label">Requirement 7</label>
+	<div class="controls">
+	  <%= f.input :requirement_7, label: false %>	
+    </div>
+</div>
+
+<div class="control-group">
+	<label class="control-label">Requirement 8</label>
+	<div class="controls">
+	  <%= f.input :requirement_8, label: false %>	
+    </div>
+</div>
+
+<div class="control-group">
+	<label class="control-label">Requirement 9</label>
+	<div class="controls">
+	  <%= f.input :requirement_9, label: false %>	
+    </div>
+</div>
+
+<div class="control-group">
+	<label class="control-label">Requirement 10</label>
+	<div class="controls">
+	  <%= f.input :requirement_10, label: false %>	
+    </div>
+</div>
+
+<div class="form-actions" %>  
+  <%= f.button :submit, "submit requirements", class: "btn btn-primary" %>
+</div>
+<% end %>
+
+<%= javascript_include_tag "company/matrix" %>

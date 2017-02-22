@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
 
-get 'identifier/identify', to: 'identifier#identify', as: :identifier
-post 'identifier/authenticate', to: 'identifier#authenticate'
-devise_for :recruiters, controllers: { registrations: "recruiter/registrations", sessions: "recruiter/sessions" }
-devise_for :companies, controllers: { registrations: "company/registrations", sessions: "company/sessions" }
+  get 'identifier/identify', to: 'identifier#identify', as: :identifier
+  post 'identifier/authenticate', to: 'identifier#authenticate'
+  devise_for :recruiters, controllers: { registrations: "recruiter/registrations", sessions: "recruiter/sessions" }
+  devise_for :companies, controllers: { registrations: "company/registrations", sessions: "company/sessions" }
 
   namespace :recruiter do
     root 'welcome#dashboard', as: :dashboard
@@ -19,6 +19,7 @@ devise_for :companies, controllers: { registrations: "company/registrations", se
     get 'manage_companies/list_of_companies', to: 'manage_companies#list_of_companies', as: :list_of_companies
 
     resources :requests, only: [:new, :create]
+    resources :requirements
   end
 
   namespace :company do 
@@ -26,7 +27,11 @@ devise_for :companies, controllers: { registrations: "company/registrations", se
     get 'welcome/charts_and_graphs', to: 'welcome#charts_and_graphs', as: :charts_and_graphs
     get 'welcome/calendar', to: 'welcome#calendar', as: :calendar
     
+    get 'requirements/:id/send_requirements',to: 'requirements#send_requirements', as: :send_requirements
     resources :requirements
+    resources :requirements, only: [] do
+      resources :compulsory_requirements, only: [:show, :new, :create, :edit, :update, :destroy  ]
+    end
   end
 
   root 'welcome#landing_page'

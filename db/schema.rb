@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170222003602) do
+ActiveRecord::Schema.define(version: 20170222130426) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,34 @@ ActiveRecord::Schema.define(version: 20170222003602) do
 
   add_index "companies", ["email"], name: "index_companies_on_email", unique: true, using: :btree
   add_index "companies", ["reset_password_token"], name: "index_companies_on_reset_password_token", unique: true, using: :btree
+
+  create_table "compulsory_requirements", force: :cascade do |t|
+    t.text     "requirement_1"
+    t.integer  "score_1",        default: 1
+    t.text     "requirement_2"
+    t.integer  "score_2",        default: 1
+    t.text     "requirement_3"
+    t.integer  "score_3",        default: 1
+    t.text     "requirement_4"
+    t.integer  "score_4",        default: 1
+    t.text     "requirement_5"
+    t.integer  "score_5",        default: 1
+    t.text     "requirement_6"
+    t.integer  "score_6",        default: 1
+    t.text     "requirement_7"
+    t.integer  "score_7",        default: 1
+    t.text     "requirement_8"
+    t.integer  "score_8",        default: 1
+    t.text     "requirement_9"
+    t.integer  "score_9",        default: 1
+    t.text     "requirement_10"
+    t.integer  "score_10",       default: 1
+    t.integer  "requirement_id"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  add_index "compulsory_requirements", ["requirement_id"], name: "index_compulsory_requirements_on_requirement_id", using: :btree
 
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer  "priority",   default: 0, null: false
@@ -109,6 +137,7 @@ ActiveRecord::Schema.define(version: 20170222003602) do
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
     t.text     "note"
+    t.datetime "sent"
   end
 
   add_index "requirements", ["company_id"], name: "index_requirements_on_company_id", using: :btree

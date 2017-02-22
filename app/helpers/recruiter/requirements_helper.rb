@@ -1,0 +1,2 @@
+module Recruiter::RequirementsHelper
+end

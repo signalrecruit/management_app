@@ -1,5 +1,5 @@
 <div>
-	<h1>Job Descriptions</h1>
+	<h1>Job Descriptions Received</h1>
 </div>
 <hr>
 <div class="row-fluid">
@@ -30,7 +30,7 @@
               <tbody>
               <% @requirements.each do |requirement| %>
                 <tr class="odd gradeX">
-                    <td><%= link_to requirement.job_type, [:company, requirement] %></td>
+                    <td><%= link_to requirement.job_type, [:recruiter, requirement] %></td>
                 	<td><%= requirement.title %></td>
                 	<td><%= requirement.location %></td>
                 	<td><%= requirement.experience %></td>

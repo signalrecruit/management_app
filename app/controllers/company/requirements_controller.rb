@@ -1,5 +1,5 @@
-class Company::RequirementsController < ApplicationController
-   before_action :set_requirement, only: [:show, :edit, :update, :destroy]
+class Company::RequirementsController < Company::ApplicationController
+   before_action :set_requirement, only: [:show, :edit, :update, :destroy, :send_requirements]
    before_action :set_company, only: [:create]
    layout "company"
 
@@ -47,6 +47,13 @@ class Company::RequirementsController < ApplicationController
   	redirect_to company_requirements_url
   end
 
+  def send_requirements
+    # send email
+    @requirement.send_requirements
+    flash[:notice] = "Your details have been sent to the recruiter."
+    redirect_to :back
+  end
+  
 
   private
 
