@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170221142420) do
+ActiveRecord::Schema.define(version: 20170222003602) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,20 +53,19 @@ ActiveRecord::Schema.define(version: 20170221142420) do
 
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
 
-  create_table "job_requirements", force: :cascade do |t|
-    t.string   "title"
-    t.string   "location"
-    t.string   "job_type"
-    t.integer  "experience"
-    t.decimal  "min_salary"
-    t.decimal  "max_salary"
-    t.integer  "number_of_vacancies"
-    t.integer  "company_id"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+  create_table "qualifications", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "score"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  add_index "job_requirements", ["company_id"], name: "index_job_requirements_on_company_id", using: :btree
+  create_table "qualifications_requirements", id: false, force: :cascade do |t|
+    t.integer "qualification_id"
+    t.integer "requirement_id"
+  end
+
+  add_index "qualifications_requirements", ["qualification_id", "requirement_id"], name: "qualifications_req", unique: true, using: :btree
 
   create_table "recruiters", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -98,5 +97,35 @@ ActiveRecord::Schema.define(version: 20170221142420) do
     t.boolean  "accepted_offer"
   end
 
-  add_foreign_key "job_requirements", "companies"
+  create_table "requirements", force: :cascade do |t|
+    t.string   "title"
+    t.string   "job_type"
+    t.string   "location"
+    t.integer  "experience"
+    t.decimal  "min_salary"
+    t.decimal  "max_salary"
+    t.integer  "number_of_vacancies"
+    t.integer  "company_id"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.text     "note"
+  end
+
+  add_index "requirements", ["company_id"], name: "index_requirements_on_company_id", using: :btree
+
+  create_table "requirements_skills", id: false, force: :cascade do |t|
+    t.integer "requirement_id"
+    t.integer "skill_id"
+  end
+
+  add_index "requirements_skills", ["requirement_id", "skill_id"], name: "index_requirements_skills_on_requirement_id_and_skill_id", unique: true, using: :btree
+
+  create_table "skills", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "score"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "requirements", "companies"
 end

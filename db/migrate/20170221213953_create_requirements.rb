@@ -1,9 +1,9 @@
-class CreateJobRequirements < ActiveRecord::Migration
+class CreateRequirements < ActiveRecord::Migration
   def change
-    create_table :job_requirements do |t|
+    create_table :requirements do |t|
       t.string :title
-      t.string :location
       t.string :job_type
+      t.string :location
       t.integer :experience
       t.decimal :min_salary
       t.decimal :max_salary

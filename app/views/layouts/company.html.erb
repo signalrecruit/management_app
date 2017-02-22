@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <%= stylesheet_link_tag "company", media: 'all' %>
-  <%#= javascript_include_tag "company" %>
+  <%= javascript_include_tag "company" %>
   <%= csrf_meta_tags %>
   <title>RECMAN</title>
 </head>
@@ -68,11 +68,20 @@
     <i class="icon icon-dashboard"></i> <span>Dashboard</span>
     <% end %>
     </li>
-    <li>
-      <%= link_to new_company_job_requirement_path do %>
-      <i class="icon icon-briefcase"></i> <span>Job Description</span>
-      <% end %>
-    </li>
+    <li class="submenu"> <a href="#"><i class="icon icon-briefcase"></i> <span>Job Description</span> <span class="label label-important">2</span></a>
+        <ul>
+        <li>
+          <%= link_to new_company_requirement_path do %>
+          <i class="icon icon-plus"></i> <span>Create Job Description</span>
+          <% end %>
+        </li>
+        <li>
+           <%= link_to company_requirements_path do %>
+           <i class="icon icon-eye-open"></i> <span>View All Job Descriptions</span>
+           <% end %>
+       </li>
+        </ul>
+      </li>
     <%= link_to "" do %>
     <li class="content"> <span>Progress of Applicants</span>
         <div class="progress progress-mini active progress-striped">

@@ -1,0 +1,38 @@
+<div class="widget-box">
+          <div class="widget-title bg_lo"> <span class="icon"> <i class="icon-briefcase"></i> </span>
+            <h5>Job Type: <%= @requirement.job_type %></h5><span class="pull-right"><%= link_to fa_icon("pencil") + "Edit", [:edit, :company, @requirement], class:"btn btn-primary" %> <%= link_to fa_icon("trash") + "Remove", [:company, @requirement], method: :delete, data: {confirm: "Are you sure you want to delete this job description?"}, class:"btn btn-danger" %></span>
+          </div>
+          <div class="widget-content nopadding updates collapse in" id="collapseG3">
+            <div class="new-update clearfix"><i class="icon-ok-sign"></i>
+              <div class="update-done"><a title="" href="#"><strong>Job Title</strong></a> <span><%= @requirement.title %></span> </div>
+            </div>
+            <div class="new-update clearfix"> <i class="icon-ok-sign"></i> <span class="update-notice"> <a title="" href="#"><strong>Location/Address </strong></a> <span><%= @requirement.location %></span> </span> </div>
+            <div class="new-update clearfix"> <i class="icon-ok-sign"></i> <span class="update-alert"> <a title="" href="#"><strong>Experience</strong></a> <span><%= @requirement.experience %> Years</span> </span>  </div>
+            <div class="new-update clearfix"> <i class="icon-ok-sign"></i> <span class="update-done"> <a title="" href="#"><strong>Salary Range</strong></a><span>GHS <%= @requirement.min_salary %> - GHS <%= @requirement.max_salary %></span> </span> </div>
+            <div class="new-update clearfix"> <i class="icon-ok-sign"></i> <span class="update-notice"> <a title="" href="#"><strong>Required Skills</strong></a> <span>
+            	<% @requirement.skills.each do |skill| %>
+            	  <%= skill.name %>, 
+            	<% end %>
+            </span> </span></div>
+            <div class="new-update clearfix"> <i class="icon-ok-sign"></i> <span class="update-notice"> <a title="" href="#"><strong>Education Qualifications</strong></a> <span>
+            	<% @requirement.qualifications.each do |qualification| %>
+            	  <%= qualification.name %>, 
+            	<% end %>
+            </span> </span></div>
+            <div class="new-update clearfix"> <i class="icon-ok-sign"></i> <span class="update-notice"> <a title="" href="#"><strong>Number of Vacancies</strong></a> <span>
+            	<%= @requirement.number_of_vacancies %>
+            </span> </span></div>
+            <div class="new-update clearfix"> <i class="icon-ok-sign"></i> <span class="update-notice"> <a title="" href="#"><strong>Note To Recruiter</strong></a> <span>
+            	<% if @requirement.note.present? %>
+            	  <%= @requirement.note %>
+            	<% else %>
+
+            	<% end %>
+            </span> </span></div>
+          </div>
+        </div>
+
+        <%= javascript_include_tag "company/jquery.min" %>
+        <%= javascript_include_tag "company/jquery.ui.custom" %>
+        <%= javascript_include_tag "company/bootstrap.min" %>
+        <%= javascript_include_tag "company/matrix" %>

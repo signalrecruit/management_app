@@ -5,7 +5,7 @@ class Company < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
 
-  has_many :job_requirements       
+  has_many :requirements       
   # validates :name, :phonenumber, :auth_code, presence: true
   validates :phonenumber, format: { with: /\A[-+]?[0-9]*\.?[0-9]+\Z/, message: "only allows numbers" }, allow_blank: true
 end

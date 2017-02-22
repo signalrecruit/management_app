@@ -10,3 +10,13 @@
 Recruiter.create(email: "user@recruiter.com", password: "password", password_confirmation: "password")
 Company.create(email: "user@company.com", password: "password", password_confirmation: "password",
  phonenumber: "0204704427", name: "BioGen", auth_code: Devise.friendly_token)
+
+array_of_skills = ["management", "accounting", "programming"]
+array_of_skills.each do |skill|
+  Skill.create(name: skill, score: 10)
+end
+
+educational_requirements = ["BSc", "MSc", "PhD", "diploma", "MPhil"]
+educational_requirements.each do |educational_requirement|
+  Qualification.create(name: educational_requirement, score: 10)
+end

@@ -1,0 +1,99 @@
+<div class="span8">
+<div class="widget-box">
+        <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+          <h5>Job Description</h5>
+        </div>
+        <div class="widget-content nopadding form-horizontal">
+          <%= simple_form_for([:company, requirement]) do |f| %>
+            <div class="control-group">
+              <label class="control-label">Job Title :</label>
+              <div class="controls">
+                <%= f.input :title, label: false, placeholder: "job title" %>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">Job Type :</label>
+              <div class="controls">
+                <%= f.input :job_type, label: false, placeholder: "job type" %>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">Location/Address :</label>
+              <div class="controls">
+                <%= f.input :location, label: false, placeholder: "location" %>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">Required Experience(yrs) :</label>
+              <div class="controls">
+                <%= f.input :experience, label: false, placeholder: "required experience in years" %>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">Minimum Salary :</label>
+              <div class="controls">
+                <%= f.input :min_salary, label: false, placeholder: "minimum salary" %>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">Maximum Salary</label>
+              <div class="controls">
+                <%= f.input :max_salary, label: false, placeholder: "maximum salary" %>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label"> Required Skill Set</label>
+              <div class="controls">
+                  <%= f.association :skills, label: false %>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">Educational Qualification</label>
+              <div class="controls">
+                <%= f.association :qualifications, label: false %>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">Number of Vacancies</label>
+              <div class="controls">
+                <%= f.input :number_of_vacancies, label: false, placeholder: "number of vacancies" %>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">Note to recruiter</label>
+              <div class="controls">
+                <%= f.input :note, label: false, placeholder: "note to recruiter" %>
+              </div>
+            </div>
+            <div class="form-actions">
+            <!--   <button data-toggle="modal" data-target="#nonnegotiableRequirements" class="btn btn-primary center-block">Add Non-Negotiable Requirements</button> -->
+              <% if requirement.persisted? %>
+                <%= f.button :submit, "Update Job Description", class: "btn btn-success" %>
+              <% else %>
+                <%= f.button :submit, "Create Job Description", class: "btn btn-success" %>
+              <% end %>
+            </div>
+            <% end %>
+        </div>
+      </div>
+      </div>
+          <!-- line modal -->
+                    
+      
+      <%= javascript_include_tag "company/jquery.min" %>
+      <%= javascript_include_tag "company/jquery.ui.custom" %>
+      <%= javascript_include_tag "company/bootstrap.min" %>
+      <%= javascript_include_tag "company/bootstrap-colorpicker" %>
+      <%= javascript_include_tag "company/bootstrap-datepicker" %>
+      <%= javascript_include_tag "company/jquery.toggle.buttons" %>
+      <%= javascript_include_tag "company/masked" %>
+      <%= javascript_include_tag "company/jquery.uniform" %>
+      <%= javascript_include_tag "company/select2.min" %>
+      <%= javascript_include_tag "company/matrix" %>
+      <%= javascript_include_tag "company/matrix.form_common" %>
+      <%= javascript_include_tag "company/wysihtml5-0.3.0" %>
+      <%= javascript_include_tag "company/jquery.peity.min" %>
+      <%= javascript_include_tag "company/bootstrap-wysihtml5" %>
+      <script>
+        $('.textarea_editor').wysihtml5();
+      </script>

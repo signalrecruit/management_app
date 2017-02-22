@@ -1,8 +1,8 @@
 FactoryGirl.define do
-  factory :job_requirement do
+  factory :requirement do
     title "MyString"
-    location "MyString"
     job_type "MyString"
+    location "MyString"
     experience 1
     min_salary "9.99"
     max_salary "9.99"

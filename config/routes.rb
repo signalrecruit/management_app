@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-
 get 'identifier/identify', to: 'identifier#identify', as: :identifier
 post 'identifier/authenticate', to: 'identifier#authenticate'
 devise_for :recruiters, controllers: { registrations: "recruiter/registrations", sessions: "recruiter/sessions" }
@@ -27,7 +26,7 @@ devise_for :companies, controllers: { registrations: "company/registrations", se
     get 'welcome/charts_and_graphs', to: 'welcome#charts_and_graphs', as: :charts_and_graphs
     get 'welcome/calendar', to: 'welcome#calendar', as: :calendar
     
-    resources :job_requirements
+    resources :requirements
   end
 
   root 'welcome#landing_page'
