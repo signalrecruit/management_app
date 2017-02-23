@@ -8,6 +8,7 @@ class Recruiter::RequirementsController < Recruiter::ApplicationController
   end
 
   def show
+    @compulsory_requirement = @requirement.compulsory_requirement
   end
 
   def new
