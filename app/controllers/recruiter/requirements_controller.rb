@@ -29,6 +29,6 @@ class Recruiter::RequirementsController < Recruiter::ApplicationController
 
   def requirement_params
   	params.require(:requirement).permit(:title, :job_type, :location, :experience, :min_salary, :max_salary,
-  		:number_of_vacancies, :note, :company_id, :qualification_ids => [], :skill_ids => [])
+  		:number_of_vacancies, :note, :company_id, :qualification_names, :skill_names, :qualification_ids => [], :skill_ids => [])
   end
 end

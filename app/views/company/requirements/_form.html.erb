@@ -48,9 +48,21 @@
               </div>
             </div>
             <div class="control-group">
+              <label class="control-label">Input your own required skills</label>
+              <div class="controls">
+                  <%= f.input :skill_names, label: false, placeholder: "accounting, web development, digital design" %>
+              </div>
+            </div>
+            <div class="control-group">
               <label class="control-label">Educational Qualification</label>
               <div class="controls">
                 <%= f.association :qualifications, label: false %>
+              </div>
+            </div>
+             <div class="control-group">
+              <label class="control-label">Input your own qualification requirements</label>
+              <div class="controls">
+                <%= f.input :qualification_names, label: false, placeholder: "PhD, MSc, BSc" %>
               </div>
             </div>
             <div class="control-group">

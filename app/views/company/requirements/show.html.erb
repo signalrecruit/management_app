@@ -1,6 +1,10 @@
 <div class="widget-box">
           <div class="widget-title bg_lo"> <span class="icon"> <i class="icon-briefcase"></i> </span>
-            <h5>Job Type: <%= @requirement.job_type %></h5><span class="pull-right"><%= link_to fa_icon("pencil") + " Edit", [:edit, :company, @requirement], class:"btn btn-primary" %> <%= link_to fa_icon("trash") + " Remove", [:company, @requirement], method: :delete, data: {confirm: "Are you sure you want to delete this job description?"}, class:"btn btn-danger" %> <%= link_to fa_icon("arrow-circle-right", class: "pull-right") + "Add Compulsory Requirements", new_company_requirement_compulsory_requirement_url(@requirement), class:"btn btn-success" %>
+            <h5>Job Type: <%= @requirement.job_type %>
+              <% if @requirement.sent? %>  
+             (Note that this job description has been sent to recruiter for review)
+              <% end %>
+               </h5><span class="pull-right"><%= link_to fa_icon("pencil") + " Edit", [:edit, :company, @requirement], class:"btn btn-primary" if @requirement.sent.nil? %> <%= link_to fa_icon("trash") + " Remove", [:company, @requirement], method: :delete, data: {confirm: "Are you sure you want to delete this job description?"}, class:"btn btn-danger" if @requirement.sent.nil? %> <%= link_to fa_icon("arrow-circle-right", class: "pull-right") + "Add Compulsory Requirements", new_company_requirement_compulsory_requirement_url(@requirement), class:"btn btn-success" if @requirement.compulsory_requirement.nil? && @requirement.sent.nil? %>
             	<%= link_to fa_icon("paper-plane", class: "pull-right") + "Send Job Description", company_send_requirements_url(@requirement), data: { confirm: "Are sure you want to send this information to the recruiter?" }, class:"btn btn-success" if @requirement.sent.nil? %>
             </span>
           </div>
@@ -33,6 +37,109 @@
             </span> </span></div>
           </div>
         </div>
+        <% if @requirement.compulsory_requirement %>
+        <div class="widget-box">
+          <div class="widget-title"> <span class="icon"><i class="icon-ok"></i></span>
+            <h5>Non-Negotiable Requirements</h5><%= link_to fa_icon("pencil") + " Edit", edit_company_requirement_compulsory_requirement_url(@requirement, @compulsory_requirement), class: "btn btn-primary pull-right" if !@requirement.sent? && @requirement.compulsory_requirement %>
+          </div>
+          <div class="widget-content">
+            <div class="todo">
+              <ul>
+                <% if @compulsory_requirement.requirement_1.blank? %>
+                <% else %>
+                <li class="clearfix">
+                  <div class="txt">  
+                  <%= @compulsory_requirement.requirement_1 %></div>
+                  <span class="pull-right by label"><%= @compulsory_requirement.score_1 %> </span>
+                </li>
+                <% end %>
+
+                <% if @compulsory_requirement.requirement_2.blank? %>
+                <% else %>
+                <li class="clearfix">                  
+                  <div class="txt"> 
+                  <%= @compulsory_requirement.requirement_2 %></div>
+                  <div class="pull-right by label"><%= @compulsory_requirement.score_2 %></div>
+                </li>
+                <% end %>
+                <% if @compulsory_requirement.requirement_3.blank? %>
+                <% else %>
+                <li class="clearfix">
+                  <div class="txt">  
+                  <%= @compulsory_requirement.requirement_3 %></div>
+                  <div class="pull-right by label"><%= @compulsory_requirement.score_3 %></div> 
+                </li>
+                <% end %>
+                <% if @compulsory_requirement.requirement_4.blank? %>
+                <% else %>
+                <li class="clearfix">
+                  <div class="txt"> <%= @compulsory_requirement.requirement_4%></div>
+                  <div class="pull-right by label"><%= @compulsory_requirement.score_4 %></div>
+                </li>
+                <% end %>
+                <% if @compulsory_requirement.requirement_5.blank? %>
+                <% else %>
+                <li class="clearfix">
+                  <div class="txt"><%= @compulsory_requirement.requirement_5 %></div>
+                  <div class="pull-right label"><%= @compulsory_requirement.score_5 %></div>
+                </li>
+                <% end %>
+                <% if @compulsory_requirement.requirement_6.blank? %>
+                <% else %>
+                <li class="clearfix">
+                  <div class="txt">  
+                  <%= @compulsory_requirement.requirement_6 %></div>
+                  <div class="pull-right by label"><%= @compulsory_requirement.score_6 %></div> 
+                </li>
+                <% end %>
+                <% if @compulsory_requirement.requirement_7.blank? %>
+                <% else %>
+                <li class="clearfix">
+                  <div class="txt">  
+                  <%= @compulsory_requirement.requirement_7 %></div>
+                  <div class="pull-right by label"><%= @compulsory_requirement.score_7 %></div> 
+                </li>
+                <% end %>
+                <% if @compulsory_requirement.requirement_8.blank? %>
+                <% else %>
+                <li class="clearfix">
+                  <div class="txt">  
+                  <%= @compulsory_requirement.requirement_8 %></div>
+                  <div class="pull-right by label"><%= @compulsory_requirement.score_8 %></div> 
+                </li>
+                <% end %>
+                <% if @compulsory_requirement.requirement_9.blank? %>
+                <% else %>
+                <li class="clearfix">
+                  <div class="txt">  
+                  <%= @compulsory_requirement.requirement_9 %></div>
+                  <div class="pull-right by label"><%= @compulsory_requirement.score_9 %></div> 
+                </li>
+                <% end %>
+                <% if @compulsory_requirement.requirement_10.blank? %>
+                <% else %>
+                <li class="clearfix">
+                  <div class="txt">  
+                  <%= @compulsory_requirement.requirement_10 %></div>
+                  <div class="pull-right by label"><%= @compulsory_requirement.score_10 %></div> 
+                </li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <% else %>
+         <div class="widget-box">
+          <div class="widget-title"> <span class="icon"><i class="icon-ok"></i></span>
+            <h5>No Additional Requirements</h5>
+          </div>
+          <div class="widget-content">
+            <div class="todo">
+            </div>
+          </div>
+        </div>
+
+        <% end %>
 
         <%= javascript_include_tag "company/jquery.min" %>
         <%= javascript_include_tag "company/jquery.ui.custom" %>

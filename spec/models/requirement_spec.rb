@@ -23,7 +23,7 @@ RSpec.describe Requirement, type: :model do
 
   # test presence of attributes
   [:title, :job_type, :location, :experience, :min_salary, :max_salary,
-  		:number_of_vacancies, :company_id, :qualification_ids, :skill_ids]
+  		:number_of_vacancies, :company_id]
 .each do |attribute|
     it { should validate_presence_of attribute }
   end
