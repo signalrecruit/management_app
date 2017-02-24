@@ -11,10 +11,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170222130426) do
+ActiveRecord::Schema.define(version: 20170224025357) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "applicant_details", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "phonenumber"
+    t.string   "location"
+    t.integer  "experience"
+    t.integer  "min_salary"
+    t.integer  "max_salary"
+    t.integer  "requirement_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "applicant_details", ["requirement_id"], name: "index_applicant_details_on_requirement_id", using: :btree
+
+  create_table "applicant_details_qualifications", id: false, force: :cascade do |t|
+    t.integer "applicant_detail_id"
+    t.integer "qualification_id"
+  end
+
+  add_index "applicant_details_qualifications", ["applicant_detail_id", "qualification_id"], name: "applicant_qualification", unique: true, using: :btree
+
+  create_table "applicant_details_skills", id: false, force: :cascade do |t|
+    t.integer "applicant_detail_id"
+    t.integer "skill_id"
+  end
+
+  add_index "applicant_details_skills", ["applicant_detail_id", "skill_id"], name: "applicant_skills", unique: true, using: :btree
 
   create_table "companies", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -80,6 +109,18 @@ ActiveRecord::Schema.define(version: 20170222130426) do
   end
 
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
+
+  create_table "experiences", force: :cascade do |t|
+    t.string   "company_name"
+    t.string   "job_title"
+    t.string   "location"
+    t.text     "description"
+    t.integer  "applicant_detail_id"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  add_index "experiences", ["applicant_detail_id"], name: "index_experiences_on_applicant_detail_id", using: :btree
 
   create_table "qualifications", force: :cascade do |t|
     t.string   "name"
@@ -156,5 +197,7 @@ ActiveRecord::Schema.define(version: 20170222130426) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "applicant_details", "requirements"
+  add_foreign_key "experiences", "applicant_details"
   add_foreign_key "requirements", "companies"
 end

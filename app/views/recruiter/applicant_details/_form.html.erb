@@ -1,0 +1,115 @@
+<div class="span8">
+	<div class="widget-box">
+		<div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+			<h5>Applicant's Details</h5>
+		</div>
+		<div class="widget-content nopadding form-horizontal">
+			<%= simple_form_for([:recruiter, applicant_detail]) do |f| %>
+			<div class="control-group">
+				<label class="control-label">Name :</label>
+				<div class="controls">
+					<%= f.input :name, label: false, placeholder: "name" %>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label">Email :</label>
+				<div class="controls">
+					<%= f.input :email, label: false, placeholder: "email" %>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label">Phonenumber :</label>
+				<div class="controls">
+					<%= f.input :phonenumber, label: false, placeholder: "phonenumber" %>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label">location :</label>
+				<div class="controls">
+					<%= f.input :location, label: false, placeholder: "location" %>
+				</div>
+			</div>
+			
+			<div class="control-group">
+				<label class="control-label">Experience :</label>
+				<div class="controls">
+					<%= f.input :experience, label: false, placeholder: "experience in years" %>
+				</div>
+			</div>
+			
+			<div class="control-group">
+				<label class="control-label">Minimum Salary :</label>
+				<div class="controls">
+					<%= f.input :min_salary, label: false, placeholder: "minimum salary" %>
+				</div>
+			</div>
+			
+			<div class="control-group">
+				<label class="control-label">Maximum Salary :</label>
+				<div class="controls">
+					<%= f.input :max_salary, label: false, placeholder: "maximum salary" %>
+				</div>
+			</div>
+			
+
+			<div class="control-group">
+				<label class="control-label">Skills :</label>
+				<div class="controls">
+					<%= f.association :skills, label: false, placeholder: "select skill candidate possesses" %>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label">Input your own skill :</label>
+				<div class="controls">
+					<%= f.input :skill_names, label: false, placeholder: "accounting, web development, digital design" %>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label">Education Qualifications :</label>
+				<div class="controls">
+					<%= f.association :qualifications, label: false, placeholder: "select appropriate qualification(s)" %>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label">Education Qualifications :</label>
+				<div class="controls">
+					<%= f.input :qualification_names, label: false, placeholder: "PhD, MSc, BSc" %>
+				</div>
+			</div>
+
+			<div class="form-actions">
+				<% if applicant_detail.persisted? %>
+				<%= f.button :submit, "Update Applicant's Details", class: "btn btn-success" %>
+				<% else %>
+				<%= f.button :submit, "Create Applicant's Details", class: "btn btn-success" %>
+				<% end %>
+			</div>
+			<% end %>
+		</div>
+	</div>
+</div>
+
+
+<%= javascript_include_tag "recruiter/jquery.min" %>
+<%= javascript_include_tag "recruiter/jquery.ui.custom" %>
+<%= javascript_include_tag "recruiter/bootstrap.min" %>
+<%= javascript_include_tag "recruiter/bootstrap-colorpicker" %>
+<%= javascript_include_tag "recruiter/bootstrap-datepicker" %>
+<%= javascript_include_tag "recruiter/jquery.toggle.buttons" %>
+<%= javascript_include_tag "recruiter/masked" %>
+<%= javascript_include_tag "recruiter/jquery.uniform" %>
+<%= javascript_include_tag "recruiter/select2.min" %>
+<%= javascript_include_tag "recruiter/matrix" %>
+<%= javascript_include_tag "recruiter/matrix.form_common" %>
+<%= javascript_include_tag "recruiter/wysihtml5-0.3.0" %>
+<%= javascript_include_tag "recruiter/jquery.peity.min" %>
+<%= javascript_include_tag "recruiter/bootstrap-wysihtml5" %>
+<script>
+	$('.textarea_editor').wysihtml5();
+</script>

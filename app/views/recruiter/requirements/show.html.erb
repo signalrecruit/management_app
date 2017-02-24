@@ -4,7 +4,7 @@
 <hr>
 <div class="widget-box">
           <div class="widget-title bg_lo"> <span class="icon"> <i class="icon-briefcase"></i> </span>
-            <h5>Job Type: <%= @requirement.job_type %></h5><span class="pull-right"><%= link_to fa_icon("pencil") + " Edit", [:edit, :recruiter, @requirement], class:"btn btn-primary" %> 
+            <h5>Job Type: <%= @requirement.job_type %></h5><%#= link_to fa_icon("arrow-circle-right", class: "pull-right") + "Upload Candidate's Application Here", new_recruiter_applicant_detail_url, class: "btn btn-primary pull-right"  %>
             </span>
           </div>
           <div class="widget-content nopadding updates collapse in" id="collapseG3">
@@ -142,14 +142,7 @@
         <% end %>
 
 
-
-
-
-
-
-
-
-
+       
 
         <%= javascript_include_tag "company/jquery.min" %>
         <%= javascript_include_tag "company/jquery.ui.custom" %>

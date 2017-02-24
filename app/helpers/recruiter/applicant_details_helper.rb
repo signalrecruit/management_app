@@ -1,0 +1,2 @@
+module Recruiter::ApplicantDetailsHelper
+end

@@ -20,7 +20,13 @@ Rails.application.routes.draw do
 
     resources :requests, only: [:new, :create]
     resources :requirements
+    
+    resources :applicant_details do 
+      resources :experiences
+    end
+    
   end
+
 
   namespace :company do 
     root 'welcome#dashboard', as: :dashboard

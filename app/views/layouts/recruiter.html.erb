@@ -72,8 +72,8 @@
       </li>
       <li class="submenu"> <a href="#"><i class="icon icon-user"></i> <span>Account Management</span> <span class="label label-important">3</span></a>
             <ul>
-          <li><%= link_to "Clients", "#" %></li>
-          <li><%= link_to "Candidates", "#" %></li>
+          <li><%= link_to "Clients", "#", data: {confirm: "this feature is not ready yet"} %></li>
+          <li><%= link_to "Candidates", "#", data: {confirm: "this feature is not ready yet"} %></li>
           <li><%= link_to "Companies", recruiter_list_of_companies_url %></li>
         </ul>
       </li>
@@ -82,11 +82,16 @@
           <li><%= link_to "View All Received Job Descriptions", recruiter_requirements_url %></li>
         </ul>
       </li>
+       <li class="submenu"> <a href="#"><i class="icon icon-briefcase"></i> <span>Manage Applications</span> <span class="label label-important">1</span></a>
+        <ul>
+          <li><%= link_to fa_icon("upload") + " Upload Application Details", new_recruiter_applicant_detail_url %></li>
+        </ul>
+      </li>
       <li class="submenu"> <a href="#"><i class="icon icon-file"></i> <span>Hiring</span> <span class="label label-important">3</span></a>
         <ul>
-          <li><a href="#">Client Requests</a></li>
-          <li><a href="#">Progress of Requests</a></li>
-          <li><a href="#">Schedule Interview & Test</a></li>
+          <li><%= link_to "Client Requests", "#", data: {confirm: "this feature is not ready yet"} %></li>
+          <li><%= link_to "Progress of Requests", "#", data: {confirm: "this feature is not ready yet"} %></li>
+          <li><%= link_to "Schedule Interview & Test", "#", data: {confirm: "this feature is not ready yet"} %></li>
         </ul>
       </li>
       <li> 
@@ -95,7 +100,7 @@
       <% end %>
       </li>
       <li>
-        <%= link_to recruiter_calendar_url do %>
+        <%= link_to "#", data: {confirm: "this feature is not ready yet"} do %>
         <i class="icon icon-calendar"></i> <span>Orientation &amp; Onboarding</span>
         <% end %>  
       <!-- <li class="content"> <span>Monthly Bandwidth Transfer</span>

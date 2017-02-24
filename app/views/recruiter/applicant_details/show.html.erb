@@ -1,0 +1,39 @@
+<div>
+    <h1><span class="date badge badge-success" style="font-size: 28px; padding: 20px;"> <%= @applicant_detail.name %>'s </span> Job Application</h1>
+</div>
+<hr>
+<div class="widget-box">
+          <div class="widget-title bg_lo"> <span class="icon"> <i class="icon-briefcase"></i> </span>
+            <h5>Job Type: <%#= @applicant_detail.job_type %></h5><%#= link_to fa_icon("arrow-circle-right", class: "pull-right") + "Upload Candidate's Application Here", new_recruiter_applicant_detail_url, class: "btn btn-primary pull-right"  %><%= link_to fa_icon("pencil") + " Edit", [:edit, :recruiter, @applicant_detail], class: "btn btn-primary pull-right" %>
+            </span>
+          </div>
+          <div class="widget-content nopadding updates collapse in" id="collapseG3">
+            <div class="new-update clearfix"><i class="icon-ok-sign"></i>
+              <div class="update-done"><a title="" href="#"><strong>Email</strong></a> <span><%= @applicant_detail.email %></span> </div>
+            </div>
+            <div class="new-update clearfix"><i class="icon-ok-sign"></i>
+              <div class="update-done"><a title="" href="#"><strong>Phonenumber</strong></a> <span><%= @applicant_detail.phonenumber %></span> </div>
+            </div>
+            <div class="new-update clearfix"> <i class="icon-ok-sign"></i> <span class="update-notice"> <a title="" href="#"><strong>Location/Address </strong></a> <span><%= @applicant_detail.location %></span> </span> </div>
+            <div class="new-update clearfix"> <i class="icon-ok-sign"></i> <span class="update-alert"> <a title="" href="#"><strong>Experience</strong></a> <span><%= @applicant_detail.experience %> Years</span> </span>  </div>
+            <div class="new-update clearfix"> <i class="icon-ok-sign"></i> <span class="update-done"> <a title="" href="#"><strong>Salary Range</strong></a><span>GHS <%= @applicant_detail.min_salary %> - GHS <%= @applicant_detail.max_salary %></span> </span> </div>
+            <div class="new-update clearfix"> <i class="icon-ok-sign"></i> <span class="update-notice"> <a title="" href="#"><strong>Required Skills</strong></a> <span>
+            	<% @applicant_detail.skills.each do |skill| %>
+            	  <%= skill.name %>, 
+            	<% end %>
+            </span> </span></div>
+            <div class="new-update clearfix"> <i class="icon-ok-sign"></i> <span class="update-notice"> <a title="" href="#"><strong>Education Qualifications</strong></a> <span>
+            	<% @applicant_detail.qualifications.each do |qualification| %>
+            	  <%= qualification.name %>, 
+            	<% end %>
+            </span> </span></div>
+          </div>
+        </div>
+
+ 
+       
+
+        <%= javascript_include_tag "recruiter/jquery.min" %>
+        <%= javascript_include_tag "recruiter/jquery.ui.custom" %>
+        <%= javascript_include_tag "recruiter/bootstrap.min" %>
+        <%= javascript_include_tag "recruiter/matrix" %>
