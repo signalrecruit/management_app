@@ -1,5 +1,35 @@
 <div>
-	<h1>Job Descriptions</h1>
+	<h3>Select Appropriate Role For Applicant: <%= @applicant_detail.name %></h3>
+   <div class="accordion" id="collapse-group">
+          <div class="accordion-group widget-box">
+            <div class="accordion-heading">
+              <div class="widget-title"> <a data-parent="#collapse-group" href="#collapseGOne" data-toggle="collapse"> <span class="icon"><i class="icon-eye-open"></i></span>
+                <h5><%= @applicant_detail.name %>'s application details</h5>
+                </a> </div>
+            </div>
+            <div class="collapse in accordion-body" id="collapseGOne">
+              <div class="widget-content"> 
+              <p>Job Type: <% @applicant_detail.job_types.each do |job_type| %>
+                             <%= job_type.name %>, 
+                           <% end %>
+              </p>
+              <p>Role: <%= @applicant_detail.job_title %></p>
+              <p>Email: <%= @applicant_detail.email %></p>
+              <p>Phonenumber: <%= @applicant_detail.phonenumber %></p>
+              <p>Location: <%= @applicant_detail.location %></p>
+              <p>Experience: <%= @applicant_detail.experience %> years</p>
+              <p>Skills: <% @applicant_detail.skills.each do |skill| %>
+                           <%= skill.name %>, 
+                         <% end %>
+              </p>
+              <p>Education Qualifications: <% @applicant_detail.qualifications.each do |qualification| %>
+                                             <%= qualification.name %>,
+                                           <% end %>
+              </p>
+
+              </div>
+            </div>
+          </div>
 </div>
 <hr>
 <div class="row-fluid">
@@ -8,8 +38,8 @@
   
 <div class="widget-box">
           <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
-            <h5><%= pluralize(@requirements.count, "Job Description") %></h5>
-            <%= link_to fa_icon("plus") + " Create Job Description", new_company_requirement_url, class: "btn btn-primary pull-right" %>                 
+            <h5><%= pluralize(@requirements.count, "Available Role") %> by <%= %></h5>
+            <%#= link_to fa_icon("plus") + " Create Job Description", new_company_requirement_url, class: "btn btn-primary btn-mini pull-right" %>                 
 
           </div>
           <div class="widget-content nopadding">
@@ -17,6 +47,7 @@
             <table class="table table-bordered table-striped table-hover">
               <thead>
                 <tr>
+                  <th>Company Name</th>
                 	<th>Job Type</th>
                 	<th>Job Title</th>
                 	<th>Location</th>
@@ -30,9 +61,18 @@
               <tbody>
               <% @requirements.each do |requirement| %>
                 <tr class="odd gradeX">
+                    <td>
+                    <div class="btn-group">
+                      <button data-toggle="dropdown" class="btn btn-primary btn-mini dropdown-toggle"><%= requirement.company.name %><span class="caret"></span></button>
+                      <ul class="dropdown-menu">
+                        <li><%= link_to "get applicant's assessment for this role", new_recruiter_applicant_detail_score_url(@applicant_detail, requirement_id:requirement.id) %></li>
+                      </ul>
+                    </div>
+
+                    </td>
                     <td><% requirement.job_types.each do |job_type| %>
-                           <%= link_to job_type.name, [:company, requirement] %>,
-                         <% end %>
+                          <%= link_to job_type.name, [:recruiter, requirement] %>,
+                        <% end %>
                     </td>
                 	<td><%= requirement.title %></td>
                 	<td><%= requirement.location %></td>
@@ -49,22 +89,7 @@
                 	  <% end %>	
                 	</td>
                 	<td>
-                		<!-- div class="btn-group">
-                			<button data-toggle="dropdown" class="btn btn-primary btn-mini dropdown-toggle">Contacted?<span class="caret"></span></button>
-                			<ul class="dropdown-menu">
-                				<li><%#= link_to "Yes", recruiter_contact_path(request), method: :patch %></li>
-                				<li><%#= link_to "No", recruiter_no_contact_path(request), method: :patch %></li>
-                			</ul>
-                		</div>
-                    <div class="btn-group">
-                      <button data-toggle="dropdown" class="btn btn-primary btn-mini dropdown-toggle">Accepted Offer?<span class="caret"></span></button>
-                      <ul class="dropdown-menu">
-                        <li><%#= link_to "Yes", recruiter_company_accept_offer_path(request), method: :patch %></li>
-                        <li><%#= link_to "No", recruiter_company_reject_offer_path(request), method: :patch %></li>
-                      </ul>
-                    </div> -->
-                    <%#= link_to "Send Email", recruiter_company_signup_path(request), class: "btn btn-success btn-mini" %>
-                    <%= requirement.number_of_vacancies %>
+                      <%= requirement.number_of_vacancies %>
                 	</td>
                 </tr>
               <% end %>
@@ -75,10 +100,11 @@
         </div>
         </div>
         </div>
-        <%= javascript_include_tag "company/jquery.min" %>
-        <%= javascript_include_tag "company/jquery.ui.custom" %>
-        <%= javascript_include_tag "company/bootstrap.min" %>
-        <%= javascript_include_tag "company/matrix" %>
+        </div>
+        <%= javascript_include_tag "recruiter/jquery.min" %>
+        <%= javascript_include_tag "recruiter/jquery.ui.custom" %>
+        <%= javascript_include_tag "recruiter/bootstrap.min" %>
+        <%= javascript_include_tag "recruiter/matrix" %>
 
      <!--      <script type="text/javascript">
           $(document).ready(

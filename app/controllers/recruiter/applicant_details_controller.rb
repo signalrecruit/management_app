@@ -1,8 +1,9 @@
 class Recruiter::ApplicantDetailsController < Recruiter::ApplicationController
-  before_action :set_applicant_detail, only: [:show, :edit, :update, :destroy]
+  before_action :set_applicant_detail, only: [:show, :edit, :update, :destroy, :match_job_description]
   layout "recruiter"
 
   def index
+  	@applicant_details = ApplicantDetail.all.order(created_at: :asc)
   end
 
   def show
@@ -40,7 +41,11 @@ class Recruiter::ApplicantDetailsController < Recruiter::ApplicationController
   def destroy
   end
 
+  def match_job_description
+  	@requirements = Requirement.all.uniq
+  end
 
+ 
   private 
 
   def set_applicant_detail
@@ -49,6 +54,6 @@ class Recruiter::ApplicantDetailsController < Recruiter::ApplicationController
 
   def applicant_params
   	params.require(:applicant_detail).permit(:name, :email, :phonenumber, :location, :experience, :min_salary,
-  		:max_salary, :requirement_id, :qualification_names, :skill_names, :qualification_ids => [], :skill_ids => [])
+  		:max_salary, :job_title, :requirement_id, :qualification_names, :skill_names, :job_type_names, :job_type_ids => [], :qualification_ids => [], :skill_ids => [])
   end
 end

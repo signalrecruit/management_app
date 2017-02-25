@@ -18,13 +18,15 @@ Rails.application.routes.draw do
 
     get 'manage_companies/list_of_companies', to: 'manage_companies#list_of_companies', as: :list_of_companies
 
+    get 'applicant_details/:id/match_job_description', to: 'applicant_details#match_job_description', as: :match_job_description
+
     resources :requests, only: [:new, :create]
     resources :requirements
     
     resources :applicant_details do 
+      resources :scores, only: [:new, :show, :create, :edit, :update]
       resources :experiences
-    end
-    
+    end    
   end
 
 

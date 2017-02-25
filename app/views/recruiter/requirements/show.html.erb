@@ -4,7 +4,9 @@
 <hr>
 <div class="widget-box">
           <div class="widget-title bg_lo"> <span class="icon"> <i class="icon-briefcase"></i> </span>
-            <h5>Job Type: <%= @requirement.job_type %></h5><%#= link_to fa_icon("arrow-circle-right", class: "pull-right") + "Upload Candidate's Application Here", new_recruiter_applicant_detail_url, class: "btn btn-primary pull-right"  %>
+            <h5>Job Type: <% @requirement.job_types.each do |job_type| %>
+                           <%= job_type.name %>,
+                         <% end %></h5><%#= link_to fa_icon("arrow-circle-right", class: "pull-right") + "Upload Candidate's Application Here", new_recruiter_applicant_detail_url, class: "btn btn-primary pull-right"  %>
             </span>
           </div>
           <div class="widget-content nopadding updates collapse in" id="collapseG3">

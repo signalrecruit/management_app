@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170224025357) do
+ActiveRecord::Schema.define(version: 20170225121534) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,9 +27,17 @@ ActiveRecord::Schema.define(version: 20170224025357) do
     t.integer  "requirement_id"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+    t.string   "job_title"
   end
 
   add_index "applicant_details", ["requirement_id"], name: "index_applicant_details_on_requirement_id", using: :btree
+
+  create_table "applicant_details_job_types", id: false, force: :cascade do |t|
+    t.integer "applicant_detail_id"
+    t.integer "job_type_id"
+  end
+
+  add_index "applicant_details_job_types", ["applicant_detail_id", "job_type_id"], name: "applicant_and_job", unique: true, using: :btree
 
   create_table "applicant_details_qualifications", id: false, force: :cascade do |t|
     t.integer "applicant_detail_id"
@@ -122,6 +130,19 @@ ActiveRecord::Schema.define(version: 20170224025357) do
 
   add_index "experiences", ["applicant_detail_id"], name: "index_experiences_on_applicant_detail_id", using: :btree
 
+  create_table "job_types", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "job_types_requirements", id: false, force: :cascade do |t|
+    t.integer "job_type_id"
+    t.integer "requirement_id"
+  end
+
+  add_index "job_types_requirements", ["job_type_id", "requirement_id"], name: "job_and_requirements", unique: true, using: :btree
+
   create_table "qualifications", force: :cascade do |t|
     t.string   "name"
     t.integer  "score"
@@ -168,7 +189,6 @@ ActiveRecord::Schema.define(version: 20170224025357) do
 
   create_table "requirements", force: :cascade do |t|
     t.string   "title"
-    t.string   "job_type"
     t.string   "location"
     t.integer  "experience"
     t.decimal  "min_salary"
@@ -189,6 +209,21 @@ ActiveRecord::Schema.define(version: 20170224025357) do
   end
 
   add_index "requirements_skills", ["requirement_id", "skill_id"], name: "index_requirements_skills_on_requirement_id_and_skill_id", unique: true, using: :btree
+
+  create_table "scores", force: :cascade do |t|
+    t.boolean  "skills_check",         default: false
+    t.boolean  "qualifications_check", default: false
+    t.string   "skills_note"
+    t.string   "qualifications_note"
+    t.decimal  "skills_score",         default: 0.0
+    t.decimal  "qualifications_score", default: 0.0
+    t.integer  "applicant_detail_id"
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.decimal  "total_score"
+  end
+
+  add_index "scores", ["applicant_detail_id"], name: "index_scores_on_applicant_detail_id", using: :btree
 
   create_table "skills", force: :cascade do |t|
     t.string   "name"

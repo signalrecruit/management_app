@@ -1,6 +1,8 @@
 <div class="widget-box">
           <div class="widget-title bg_lo"> <span class="icon"> <i class="icon-briefcase"></i> </span>
-            <h5>Job Type: <%= @requirement.job_type %>
+            <h5>Job Type: <% @requirement.job_types.each do |job_type| %>
+                            <%= link_to job_type.name, [:company, @requirement] %>,
+                          <% end %>
               <% if @requirement.sent? %>  
              (Note that this job description has been sent to recruiter for review)
               <% end %>
@@ -40,7 +42,7 @@
         <% if @requirement.compulsory_requirement %>
         <div class="widget-box">
           <div class="widget-title"> <span class="icon"><i class="icon-ok"></i></span>
-            <h5>Non-Negotiable Requirements</h5><%= link_to fa_icon("pencil") + " Edit", edit_company_requirement_compulsory_requirement_url(@requirement, @compulsory_requirement), class: "btn btn-primary pull-right" if !@requirement.sent? && @requirement.compulsory_requirement %>
+            <h5>Non-Negotiable Requirements (NOTE: Each requirement carries a score of 1. This will be used in assessing applicants)</h5><%= link_to fa_icon("pencil") + " Edit Non-Negotiable Requirements", edit_company_requirement_compulsory_requirement_url(@requirement, @compulsory_requirement), class: "btn btn-primary pull-right" if !@requirement.sent? && @requirement.compulsory_requirement %>
           </div>
           <div class="widget-content">
             <div class="todo">
@@ -81,7 +83,7 @@
                 <% else %>
                 <li class="clearfix">
                   <div class="txt"><%= @compulsory_requirement.requirement_5 %></div>
-                  <div class="pull-right label"><%= @compulsory_requirement.score_5 %></div>
+                  <div class="pull-right by label"><%= @compulsory_requirement.score_5 %></div>
                 </li>
                 <% end %>
                 <% if @compulsory_requirement.requirement_6.blank? %>

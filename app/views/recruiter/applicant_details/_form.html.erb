@@ -6,6 +6,27 @@
 		<div class="widget-content nopadding form-horizontal">
 			<%= simple_form_for([:recruiter, applicant_detail]) do |f| %>
 			<div class="control-group">
+				<label class="control-label">Job Type :</label>
+				<div class="controls">
+					<%= f.association :job_types, label: false, placeholder: "job type" %>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label">Input Job Type(Optional. If you can't find your job type in above field) :</label>
+				<div class="controls">
+					<%= f.input :job_type_names, label: false, placeholder: "job type" %>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label">Job Title/Role :</label>
+				<div class="controls">
+					<%= f.input :job_title, label: false, placeholder: "role applicant is applying for" %>
+				</div>
+			</div>
+
+			<div class="control-group">
 				<label class="control-label">Name :</label>
 				<div class="controls">
 					<%= f.input :name, label: false, placeholder: "name" %>
@@ -34,7 +55,7 @@
 			</div>
 			
 			<div class="control-group">
-				<label class="control-label">Experience :</label>
+				<label class="control-label"> Work Experience :</label>
 				<div class="controls">
 					<%= f.input :experience, label: false, placeholder: "experience in years" %>
 				</div>
@@ -63,7 +84,7 @@
 			</div>
 
 			<div class="control-group">
-				<label class="control-label">Input your own skill :</label>
+				<label class="control-label">Input your own skill(If you can't find your skill in above field) :</label>
 				<div class="controls">
 					<%= f.input :skill_names, label: false, placeholder: "accounting, web development, digital design" %>
 				</div>
@@ -77,7 +98,7 @@
 			</div>
 
 			<div class="control-group">
-				<label class="control-label">Education Qualifications :</label>
+				<label class="control-label">Input Education Qualifications(If list of qualifications is insufficient in above field) :</label>
 				<div class="controls">
 					<%= f.input :qualification_names, label: false, placeholder: "PhD, MSc, BSc" %>
 				</div>

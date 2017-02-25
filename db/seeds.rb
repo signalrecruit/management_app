@@ -20,3 +20,9 @@ educational_requirements = ["BSc", "MSc", "PhD", "diploma", "MPhil"]
 educational_requirements.each do |educational_requirement|
   Qualification.create(name: educational_requirement, score: 10)
 end
+
+job_types = ["research", "research and diagnositics", "accounting", "software development", "web development",
+"software architecture"]
+job_types.each do |job_type|
+  JobType.create(name: job_type)
+end

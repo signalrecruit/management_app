@@ -1,2 +1,118 @@
-<h1>Recruiter::ApplicantDetails#index</h1>
-<p>Find me in app/views/recruiter/applicant_details/index.html.erb</p>
+<div>
+	<h1>Job Applications</h1>
+</div>
+<hr>
+<div class="row-fluid">
+
+	<div class="span12">
+  
+<div class="widget-box">
+          <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
+            <h5><%= pluralize(@applicant_details.count, "Job Application") %></h5>
+            <%= link_to fa_icon("plus") + " Create Job Application", new_recruiter_applicant_detail_url, class: "btn btn-primary pull-right" %>                 
+
+          </div>
+          <div class="widget-content nopadding">
+          <div class="table-responsive">
+            <table class="table table-bordered table-striped table-hover">
+              <thead>
+                <tr>
+                	<th>Job Type</th>
+                	<th>Name Of Applicant</th>
+                	<th>Location</th>
+                	<th>Require Experience(yrs)</th>
+                	<th>Salary Range(GHS)</th>
+                	<th>Required Skill Set</th>
+                	<th>Educational Qualifications</th>
+                	<th>Score</th>
+                </tr>
+              </thead>
+              <tbody>
+              <% @applicant_details.each do |applicant_detail| %>
+                <tr class="odd gradeX">
+                    <td><% applicant_detail.job_types.each do |job_type| %>
+                           <%= link_to job_type.name, [:recruiter, applicant_detail] %>,
+                         <% end %>
+                    </td>
+                    <td><%= applicant_detail.name %></td>
+                	<td><%= applicant_detail.location %></td>
+                	<td><%= applicant_detail.experience %></td>
+                	<td class="center"><%= applicant_detail.min_salary %> - <%= applicant_detail.max_salary %></td>
+                	<td class="center">
+                	<% applicant_detail.skills.each do |skill| %>
+                	  <%= skill.name %>,
+                	<% end %>	
+                	</td>
+                	<td>
+                	  <% applicant_detail.qualifications.each do |qualification| %>
+                	    <%= qualification.name %>,
+                	  <% end %>	
+                	</td>
+                	<td>
+                	<%#= link_to fa_icon("arrow-circle-right", class: "pull-right") + "Go Get Score", new_recruiter_applicant_detail_score_url(applicant_detail, requirement_id: applicant_detail.requirement.id), class: "btn btn-primary" %>
+                		<%= link_to "match job description", recruiter_match_job_description_url(applicant_detail), class: "btn btn-primary" %>
+                	</td>
+                </tr>
+              <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        </div>
+        </div>
+        </div>
+
+        <%= javascript_include_tag "recruiter/jquery.min" %>
+        <%= javascript_include_tag "recruiter/jquery.ui.custom" %>
+        <%= javascript_include_tag "recruiter/bootstrap.min" %>
+        <%= javascript_include_tag "recruiter/matrix" %>
+
+     <!--      <script type="text/javascript">
+          $(document).ready(
+          $("#new_request").on('submit', function(e){
+            var recruiter = $('#request_recruiter');
+            var fullname = $('#request_fullname');
+            var email = $('#request_email');
+            var phonenumber = $('#request_phonenumber');
+            var job_title = $('#request_job_title');
+
+            if(!recruiter.val()) {
+              recruiter.closest('.control-group').addClass('error');
+              e.preventDefault();
+            }else{
+              recruiter.closest('.control-group').addClass('success');
+            }
+            if(!fullname.val()) {
+              fullname.closest('.control-group').addClass('error');
+              e.preventDefault();
+            }else{
+              fullname.closest('.control-group').addClass('success');
+            }
+            if(!email.val()) {
+              email.closest('.control-group').addClass('error');
+              e.preventDefault();
+            } else {
+              // formvalidator = new Validator('new_request');
+              // formvalidator.addValidation("request[email]", "email");
+              // formvalidator.addValidation("request[email]", "req");
+              // email.closest('.control-group-group').addClass('error');
+              // email.val(email.val()+ ' is invalid!! ');
+              // e.preventDefault();
+            }
+            if(!phonenumber.val()) {
+              phonenumber.closest('.control-group').addClass('error');
+              e.preventDefault();
+            }else{
+              phonenumber.closest('.control-group').addClass('success');
+            }
+            if(!job_title.val()) {
+              job_title.closest('.control-group').addClass('error');
+              e.preventDefault();
+            }else{
+              job_title.closest('.control-group').addClass('success');
+            }
+          }));
+          </script>
+
+        
+        -->

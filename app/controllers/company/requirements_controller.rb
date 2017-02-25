@@ -67,7 +67,7 @@ class Company::RequirementsController < Company::ApplicationController
   end
 
   def requirement_params
-  	params.require(:requirement).permit(:title, :job_type, :location, :experience, :min_salary, :max_salary,
-  		:number_of_vacancies, :note, :company_id, :qualification_names, :skill_names, :qualification_ids => [], :skill_ids => [])
+  	params.require(:requirement).permit(:title, :location, :experience, :min_salary, :max_salary,
+  		:number_of_vacancies, :note, :company_id, :qualification_names, :job_type_names, :skill_names, :job_type_ids => [], :qualification_ids => [], :skill_ids => [])
   end
 end
