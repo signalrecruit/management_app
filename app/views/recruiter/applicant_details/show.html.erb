@@ -7,7 +7,8 @@
             <h5>Job Type: <% @applicant_detail.job_types.each do |job_type| %>
             	             <%= job_type.name %>,
             	           <% end %></h5>
-            	           <%= link_to fa_icon("pencil") + " Edit", [:edit, :recruiter, @applicant_detail], class: "btn btn-primary pull-right" %>
+                           <span class="pull-right">
+            	           <%= link_to fa_icon("pencil") + " Edit", [:edit, :recruiter, @applicant_detail], class: "btn btn-primary" %> <%= link_to "match job description", recruiter_match_job_description_url(@applicant_detail), class: "btn btn-primary" %></span>
             </span>
           </div>
           <div class="widget-content nopadding updates collapse in" id="collapseG3">

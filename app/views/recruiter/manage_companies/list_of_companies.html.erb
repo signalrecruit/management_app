@@ -14,41 +14,30 @@
             <table class="table table-bordered table-striped table-hover">
               <thead>
                 <tr>
-                	<th>Status</th>
                 	<th>Company Name</th>
                 	<th>Email</th>
                 	<th>Phonenumber</th>
-                	<!-- <th>Company</th>
-                	<th>Job Title</th> -->
-                	<th>Actions</th>
+                	<th>Last Sign In At</th>
+                  <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
               <% @companies.each do |company| %>
                 <tr class="odd gradeX">
-                    <td>
-                      
-                    </td>
-                	<td><%= company.name %></td>
+                	<td><span class="badge badge-success"><%= company.name %></span></td>
                 	<td><%= company.email %></td>
                 	<td><%= company.phonenumber %></td>
+                  <td><%= company.last_sign_in_at.strftime("%r, %B %d, %Y") %></td>
                 	<!-- <td class="center"><%#= company.company %></td> -->
                 	<!-- <td class="center"><%#= company.job_title %></td> -->
                 	<td>
                 		<div class="btn-group">
-                			<button data-toggle="dropdown" class="btn btn-primary btn-mini dropdown-toggle">Action?<span class="caret"></span></button>
+                			<button data-toggle="dropdown" class="btn btn-primary btn-mini dropdown-toggle">Company Details<span class="caret"></span></button>
                 			<ul class="dropdown-menu">
-                				<li><%#= link_to "Yes", recruiter_contact_path(company), method: :patch %></li>
-                				<li><%#= link_to "No", recruiter_no_contact_path(company), method: :patch %></li>
+                				<li><%= link_to "Company's Job Descriptions", recruiter_company_job_descriptions_url(company) %></li>
+                				<li><%= link_to "History of Applicants", recruiter_company_history_of_applicants_url(company) %></li>
                 			</ul>
                 		</div>
-                    <div class="btn-group">
-                      <button data-toggle="dropdown" class="btn btn-primary btn-mini dropdown-toggle">Action?<span class="caret"></span></button>
-                      <ul class="dropdown-menu">
-                        <li><%#= link_to "Yes", recruiter_company_accept_offer_path(company), method: :patch %></li>
-                        <li><%#= link_to "No", recruiter_company_reject_offer_path(company), method: :patch %></li>
-                      </ul>
-                    </div>
                     <%#= link_to "Send Email", recruiter_company_signup_path(company), class: "btn btn-success" %>
                 	</td>
                 </tr>

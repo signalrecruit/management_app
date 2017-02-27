@@ -17,6 +17,8 @@ Rails.application.routes.draw do
     patch 'requests/:id/no_contact', to: 'requests#no_contact', as: :no_contact
 
     get 'manage_companies/list_of_companies', to: 'manage_companies#list_of_companies', as: :list_of_companies
+    get 'manage_companies/:id/company_job_descriptions', to: 'manage_companies#company_job_descriptions', as: :company_job_descriptions
+    get 'manage_companies/:id/company_history_of_applicants', to: 'manage_companies#company_history_of_applicants', as: :company_history_of_applicants
 
     get 'applicant_details/:id/match_job_description', to: 'applicant_details#match_job_description', as: :match_job_description
 

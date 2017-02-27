@@ -3,7 +3,7 @@
      <% if @applicant_detail.score.nil? %>   
      ? 
      <% else %>
-     <%= @applicant_detail.score.total_score * 100 %>%
+     <%= number_with_precision @applicant_detail.score.total_score, precision: 2, scale: 2 %>%
      <% end %>
      </span></h1>
 </div>
@@ -15,7 +15,7 @@
             	             <%= job_type.name %>,
             	           <% end %></h5>
             	           <%#= f.button :submit, "Submit Assessment", class: "btn btn-primary pull-right" %>
-                         <%= link_to fa_icon("pencil") + " Edit Score", [:edit, :recruiter, @applicant_detail, @score], class: "btn btn-primary pull-right" %>
+                         <%= link_to fa_icon("pencil") + " Edit Score", edit_recruiter_applicant_detail_score_url(@applicant_detail, @score, requirement_id: @applicant_detail.requirement.id()) , class: "btn btn-primary pull-right" %>
             </span>
           </div>
           <div class="widget-content nopadding updates collapse in" id="collapseG3">

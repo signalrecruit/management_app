@@ -20,7 +20,7 @@
                 	<th>Job Type</th>
                 	<th>Name Of Applicant</th>
                 	<th>Location</th>
-                	<th>Require Experience(yrs)</th>
+                	<th>Required Experience(yrs)</th>
                 	<th>Salary Range(GHS)</th>
                 	<th>Required Skill Set</th>
                 	<th>Educational Qualifications</th>
@@ -49,8 +49,11 @@
                 	  <% end %>	
                 	</td>
                 	<td>
-                	<%#= link_to fa_icon("arrow-circle-right", class: "pull-right") + "Go Get Score", new_recruiter_applicant_detail_score_url(applicant_detail, requirement_id: applicant_detail.requirement.id), class: "btn btn-primary" %>
-                		<%= link_to "match job description", recruiter_match_job_description_url(applicant_detail), class: "btn btn-primary" %>
+                  <% if applicant_detail.score.present? %>
+                		<%= number_with_precision applicant_detail.score.total_score, precision: 2, scale: 2 %>%
+                  <% else %>
+                    <%= link_to "match job description", recruiter_match_job_description_url(applicant_detail), class: "btn btn-primary" %>  
+                  <% end %>  
                 	</td>
                 </tr>
               <% end %>

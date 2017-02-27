@@ -1,10 +1,11 @@
 class Recruiter::ScoresController < Recruiter::ApplicationController
-  before_action :set_requirement, only: [:new]
+  before_action :set_requirement, only: [:new, :edit]
   before_action :set_applicant_detail
   before_action :set_score, only: [:show, :edit, :update]
   layout "recruiter"
 
   def new
+    @applicant_detail.update(requirement_id: @requirement.id) #must associate applicant with requirement by updating requirement_id
   	@score = @applicant_detail.build_score
   end
 
@@ -55,6 +56,10 @@ class Recruiter::ScoresController < Recruiter::ApplicationController
 
   def score_params
     params.require(:score).permit(:skills_check, :qualifications_check, :skills_note, :qualifications_note,
-    	 :skills_score, :qualifications_score, :total_score, :applicant_detail_id)
+    	 :skills_score, :qualifications_score, :total_score, :applicant_detail_id, :requirement_1_check, 
+       :requirement_2_check, :requirement_3_check, :requirement_4_check, :requirement_5_check, :requirement_6_check,
+        :requirement_7_check, :requirement_8_check, :requirement_9_check, :requirement_10_check, :requirement_1_score, 
+        :requirement_2_score, :requirement_3_score, :requirement_4_score, :requirement_5_score, :requirement_6_score,
+         :requirement_7_score, :requirement_8_score, :requirement_9_score, :requirement_10_score, :requirement_total_score)
   end
 end

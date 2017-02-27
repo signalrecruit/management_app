@@ -9,7 +9,8 @@
 <div class="widget-box">
           <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
             <h5><%= pluralize(@requirements.count, "Job Description") %></h5>
-            <%= link_to fa_icon("plus") + " Create Job Description", new_recruiter_requirement_url, class: "btn btn-primary btn-mini pull-right" %>                 
+            <%= link_to fa_icon("plus") + " Create Job Application", new_recruiter_applicant_detail_url, class: "btn btn-primary pull-right" %>                 
+                 
 
           </div>
           <div class="widget-content nopadding">
@@ -17,10 +18,11 @@
             <table class="table table-bordered table-striped table-hover">
               <thead>
                 <tr>
+                  <th>Company</th>
                 	<th>Job Type</th>
                 	<th>Job Title</th>
                 	<th>Location</th>
-                	<th>Require Experience(yrs)</th>
+                	<th>Required Experience(yrs)</th>
                 	<th>Salary Range(GHS)</th>
                 	<th>Required Skill Set</th>
                 	<th>Educational Qualifications</th>
@@ -30,6 +32,7 @@
               <tbody>
               <% @requirements.each do |requirement| %>
                 <tr class="odd gradeX">
+                    <td><span class="badge badge-success" ><%= requirement.company.name %></span></td>
                     <td><% requirement.job_types.each do |job_type| %>
                           <%= link_to job_type.name, [:recruiter, requirement] %>,
                         <% end %>
@@ -75,10 +78,10 @@
         </div>
         </div>
         </div>
-        <%= javascript_include_tag "company/jquery.min" %>
-        <%= javascript_include_tag "company/jquery.ui.custom" %>
-        <%= javascript_include_tag "company/bootstrap.min" %>
-        <%= javascript_include_tag "company/matrix" %>
+        <%= javascript_include_tag "recruiter/jquery.min" %>
+        <%= javascript_include_tag "recruiter/jquery.ui.custom" %>
+        <%= javascript_include_tag "recruiter/bootstrap.min" %>
+        <%= javascript_include_tag "recruiter/matrix" %>
 
      <!--      <script type="text/javascript">
           $(document).ready(

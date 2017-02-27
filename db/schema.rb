@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170225121534) do
+ActiveRecord::Schema.define(version: 20170226201310) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -211,15 +211,36 @@ ActiveRecord::Schema.define(version: 20170225121534) do
   add_index "requirements_skills", ["requirement_id", "skill_id"], name: "index_requirements_skills_on_requirement_id_and_skill_id", unique: true, using: :btree
 
   create_table "scores", force: :cascade do |t|
-    t.boolean  "skills_check",         default: false
-    t.boolean  "qualifications_check", default: false
+    t.boolean  "skills_check",                                    default: false
+    t.boolean  "qualifications_check",                            default: false
     t.string   "skills_note"
     t.string   "qualifications_note"
-    t.decimal  "skills_score",         default: 0.0
-    t.decimal  "qualifications_score", default: 0.0
+    t.decimal  "skills_score",                                    default: 0.0
+    t.decimal  "qualifications_score",                            default: 0.0
     t.integer  "applicant_detail_id"
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
+    t.datetime "created_at",                                                      null: false
+    t.datetime "updated_at",                                                      null: false
+    t.boolean  "requirement_1_check"
+    t.boolean  "requirement_2_check"
+    t.boolean  "requirement_3_check"
+    t.boolean  "requirement_4_check"
+    t.boolean  "requirement_5_check"
+    t.boolean  "requirement_6_check"
+    t.boolean  "requirement_7_check"
+    t.boolean  "requirement_8_check"
+    t.boolean  "requirement_9_check"
+    t.boolean  "requirement_10_check"
+    t.decimal  "requirement_1_score"
+    t.decimal  "requirement_2_score"
+    t.decimal  "requirement_3_score"
+    t.decimal  "requirement_4_score"
+    t.decimal  "requirement_5_score"
+    t.decimal  "requirement_6_score"
+    t.decimal  "requirement_7_score"
+    t.decimal  "requirement_8_score"
+    t.decimal  "requirement_9_score"
+    t.decimal  "requirement_10_score"
+    t.decimal  "requirement_total_score", precision: 4, scale: 2
     t.decimal  "total_score"
   end
 

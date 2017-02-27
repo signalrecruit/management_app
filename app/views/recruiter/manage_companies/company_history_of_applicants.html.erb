@@ -1,5 +1,5 @@
 <div>
-	<h1>Job Descriptions</h1>
+	<h1><span class="badge badge-success" style="font-size: 28px; padding: 20px;"><%= @company.name %>'s</span> History Of Job Applications</h1>
 </div>
 <hr>
 <div class="row-fluid">
@@ -8,63 +8,50 @@
   
 <div class="widget-box">
           <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
-            <h5><%= pluralize(@requirements.count, "Job Description") %></h5>
-            <%= link_to fa_icon("plus") + " Create Job Description", new_company_requirement_url, class: "btn btn-primary pull-right" %>                 
-
+            <h5><%= pluralize(@applicant_details.count, "Job Application") %></h5>
           </div>
           <div class="widget-content nopadding">
           <div class="table-responsive">
             <table class="table table-bordered table-striped table-hover">
               <thead>
                 <tr>
-                	<th>Job Type</th>
-                	<th>Job Title/Role</th>
+                	<th>Name Of Applicant</th>
+                  <th>Job Type</th>
                 	<th>Location</th>
                 	<th>Required Experience(yrs)</th>
                 	<th>Salary Range(GHS)</th>
                 	<th>Required Skill Set</th>
                 	<th>Educational Qualifications</th>
-                	<th>Number of Vacancies</th>
+                	<th>Score</th>
                 </tr>
               </thead>
               <tbody>
-              <% @requirements.each do |requirement| %>
+              <% @applicant_details.each do |applicant_detail| %>
                 <tr class="odd gradeX">
-                    <td><% requirement.job_types.each do |job_type| %>
-                           <%= link_to job_type.name, [:company, requirement] %>,
+                  <td><span class="badge badge-primary"><%= applicant_detail.name %></span></td>
+                	<td><% applicant_detail.job_types.each do |job_type| %>
+                           <%= link_to job_type.name, [:recruiter, applicant_detail] %>,
                          <% end %>
                     </td>
-                	<td><%= requirement.title %></td>
-                	<td><%= requirement.location %></td>
-                	<td><%= requirement.experience %></td>
-                	<td class="center"><%= requirement.min_salary %> - <%= requirement.max_salary %></td>
+                  <td><%= applicant_detail.location %></td>
+                	<td><%= applicant_detail.experience %></td>
+                	<td class="center"><%= applicant_detail.min_salary %> - <%= applicant_detail.max_salary %></td>
                 	<td class="center">
-                	<% requirement.skills.each do |skill| %>
+                	<% applicant_detail.skills.each do |skill| %>
                 	  <%= skill.name %>,
                 	<% end %>	
                 	</td>
                 	<td>
-                	  <% requirement.qualifications.each do |qualification| %>
+                	  <% applicant_detail.qualifications.each do |qualification| %>
                 	    <%= qualification.name %>,
                 	  <% end %>	
                 	</td>
                 	<td>
-                		<!-- div class="btn-group">
-                			<button data-toggle="dropdown" class="btn btn-primary btn-mini dropdown-toggle">Contacted?<span class="caret"></span></button>
-                			<ul class="dropdown-menu">
-                				<li><%#= link_to "Yes", recruiter_contact_path(request), method: :patch %></li>
-                				<li><%#= link_to "No", recruiter_no_contact_path(request), method: :patch %></li>
-                			</ul>
-                		</div>
-                    <div class="btn-group">
-                      <button data-toggle="dropdown" class="btn btn-primary btn-mini dropdown-toggle">Accepted Offer?<span class="caret"></span></button>
-                      <ul class="dropdown-menu">
-                        <li><%#= link_to "Yes", recruiter_company_accept_offer_path(request), method: :patch %></li>
-                        <li><%#= link_to "No", recruiter_company_reject_offer_path(request), method: :patch %></li>
-                      </ul>
-                    </div> -->
-                    <%#= link_to "Send Email", recruiter_company_signup_path(request), class: "btn btn-success btn-mini" %>
-                    <%= requirement.number_of_vacancies %>
+                  <% if applicant_detail.score.present? %>
+                		<%= number_with_precision applicant_detail.score.total_score, precision: 2, scale: 2 %>%
+                  <% else %>
+                    <%= link_to "match job description", recruiter_match_job_description_url(applicant_detail), class: "btn btn-primary" %>  
+                  <% end %>  
                 	</td>
                 </tr>
               <% end %>
@@ -75,25 +62,26 @@
         </div>
         </div>
         </div>
-        <%= javascript_include_tag "company/jquery.min" %>
-        <%= javascript_include_tag "company/jquery.ui.custom" %>
-        <%= javascript_include_tag "company/bootstrap.min" %>
-        <%= javascript_include_tag "company/matrix" %>
+
+        <%= javascript_include_tag "recruiter/jquery.min" %>
+        <%= javascript_include_tag "recruiter/jquery.ui.custom" %>
+        <%= javascript_include_tag "recruiter/bootstrap.min" %>
+        <%= javascript_include_tag "recruiter/matrix" %>
 
      <!--      <script type="text/javascript">
           $(document).ready(
           $("#new_request").on('submit', function(e){
-            var company = $('#request_company');
+            var recruiter = $('#request_recruiter');
             var fullname = $('#request_fullname');
             var email = $('#request_email');
             var phonenumber = $('#request_phonenumber');
             var job_title = $('#request_job_title');
 
-            if(!company.val()) {
-              company.closest('.control-group').addClass('error');
+            if(!recruiter.val()) {
+              recruiter.closest('.control-group').addClass('error');
               e.preventDefault();
             }else{
-              company.closest('.control-group').addClass('success');
+              recruiter.closest('.control-group').addClass('success');
             }
             if(!fullname.val()) {
               fullname.closest('.control-group').addClass('error');

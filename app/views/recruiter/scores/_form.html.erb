@@ -3,7 +3,7 @@
      <% if @applicant_detail.score.nil? %>   
      ? 
      <% else %>
-     <%= @applicant_detail.score.total_score * 100 %>%
+     <%= number_with_precision @applicant_detail.score.total_score, precision: 2, scale: 2 %>%
      <% end %>
      </span></h1>
 </div>
@@ -42,6 +42,120 @@
             </span> </span><div class="pull-right"><%= f.input :qualifications_check, label: false, :collection => [["does not meet requirements", false], ["meets requirements", true]], :as => :radio_buttons, :item_wrapper_class => false, :selected => score.qualifications_check %></div></div>
           </div>
         </div>
+        
+
+
+        <% if @requirement.compulsory_requirement %>
+        <div class="widget-box">
+          <div class="widget-title"> <span class="icon"><i class="icon-ok"></i></span>
+            <h5>Non-Negotiable Requirements (NOTE: Each requirement carries a score of 1. This will be used in assessing applicants)</h5><%#= link_to fa_icon("pencil") + " Edit Non-Negotiable Requirements", edit_company_requirement_url(@requirement, @requirement.compulsory_requirement), class: "btn btn-primary pull-right" if !@requirement.sent? && @requirement.requirement.compulsory_requirement %>
+          </div>
+          <div class="widget-content">
+            <div class="todo">
+              <ul>
+                <% if @requirement.compulsory_requirement.requirement_1.blank? %>
+                <% else %>
+                <li class="clearfix">
+                  <div class="txt">  
+                  <%= @requirement.compulsory_requirement.requirement_1 %></div>
+                  <div class="pull-right"><%= f.input :requirement_1_check, label: false, :collection => [["doesn't meet requirements", false], ["meets requirements", true]], :as => :radio_buttons, :item_wrapper_class => "inline", :selected => score.requirement_1_check %> </div>
+                </li>
+                <% end %>
+
+                <% if @requirement.compulsory_requirement.requirement_2.blank? %>
+                <% else %>
+                <li class="clearfix">                  
+                  <div class="txt"> 
+                  <%= @requirement.compulsory_requirement.requirement_2 %></div>
+                  <div class="pull-right"><%= f.input :requirement_2_check, label: false, :collection => [["doesn't meet requirements", false], ["meets requirements", true]], :as => :radio_buttons, :item_wrapper_class => "inline", :selected => score.requirement_2_check %></div>
+                </li>
+                <% end %>
+                <% if @requirement.compulsory_requirement.requirement_3.blank? %>
+                <% else %>
+                <li class="clearfix">
+                  <div class="txt">  
+                  <%= @requirement.compulsory_requirement.requirement_3 %></div>
+                  <div class="pull-right"><%= f.input :requirement_3_check, label: false, :collection => [["doesn't meet requirements", false], ["meets requirements", true]], :as => :radio_buttons, :item_wrapper_class => "inline", :selected => score.requirement_3_check %></div>
+ 
+                </li>
+                <% end %>
+                <% if @requirement.compulsory_requirement.requirement_4.blank? %>
+                <% else %>
+                <li class="clearfix">
+                  <div class="txt"> <%= @requirement.compulsory_requirement.requirement_4%></div>
+                  <div class="pull-right"><%= f.input :requirement_4_check, label: false, :collection => [["doesn't meet requirements", false], ["meets requirements", true]], :as => :radio_buttons, :item_wrapper_class => "inline", :selected => score.requirement_4_check %></div>
+
+                </li>
+                <% end %>
+                <% if @requirement.compulsory_requirement.requirement_5.blank? %>
+                <% else %>
+                <li class="clearfix">
+                  <div class="txt"><%= @requirement.compulsory_requirement.requirement_5 %></div>
+                  <div class="pull-right"><%= f.input :requirement_5_check, label: false, :collection => [["doesn't meet requirements", false], ["meets requirements", true]], :as => :radio_buttons, :item_wrapper_class => "inline", :selected => score.requirement_5_check %></div>
+
+                </li>
+                <% end %>
+                <% if @requirement.compulsory_requirement.requirement_6.blank? %>
+                <% else %>
+                <li class="clearfix">
+                  <div class="txt">  
+                  <%= @requirement.compulsory_requirement.requirement_6 %></div>
+                  <div class="pull-right"><%= f.input :requirement_6_check, label: false, :collection => [["doesn't meet requirements", false], ["meets requirements", true]], :as => :radio_buttons, :item_wrapper_class => "inline", :selected => score.requirement_6_check %></div>
+ 
+                </li>
+                <% end %>
+                <% if @requirement.compulsory_requirement.requirement_7.blank? %>
+                <% else %>
+                <li class="clearfix">
+                  <div class="txt">  
+                  <%= @requirement.compulsory_requirement.requirement_7 %></div>
+                  <div class="pull-right"><%= f.input :requirement_7_check, label: false, :collection => [["doesn't meet requirements", false], ["meets requirements", true]], :as => :radio_buttons, :item_wrapper_class => "inline", :selected => score.requirement_7_check %></div>
+ 
+                </li>
+                <% end %>
+                <% if @requirement.compulsory_requirement.requirement_8.blank? %>
+                <% else %>
+                <li class="clearfix">
+                  <div class="txt">  
+                  <%= @requirement.compulsory_requirement.requirement_8 %></div>
+                  <div class="pull-right"><%= f.input :requirement_8_check, label: false, :collection => [["doesn't meet requirements", false], ["meets requirements", true]], :as => :radio_buttons, :item_wrapper_class => "inline", :selected => score.requirement_8_check %></div>
+ 
+                </li>
+                <% end %>
+                <% if @requirement.compulsory_requirement.requirement_9.blank? %>
+                <% else %>
+                <li class="clearfix">
+                  <div class="txt">  
+                  <%= @requirement.compulsory_requirement.requirement_9 %></div>
+                  <div class="pull-right"><%= f.input :requirement_9_check, label: false, :collection => [["doesn't meet requirements", false], ["meets requirements", true]], :as => :radio_buttons, :item_wrapper_class => "inline", :selected => score.requirement_9_check %></div>
+ 
+                </li>
+                <% end %>
+                <% if @requirement.compulsory_requirement.requirement_10.blank? %>
+                <% else %>
+                <li class="clearfix">
+                  <div class="txt">  
+                  <%= @requirement.compulsory_requirement.requirement_10 %></div>
+                  <div class="pull-right"><%= f.input :requirement_10_check, label: false, :collection => [["doesn't meet requirements", false], ["meets requirements", true]], :as => :radio_buttons, :item_wrapper_class => "inline", :selected => score.requirement_10_check %></div>
+ 
+                </li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <% else %>
+         <div class="widget-box">
+          <div class="widget-title"> <span class="icon"><i class="icon-ok"></i></span>
+            <h5>No Additional Requirements</h5>
+          </div>
+          <div class="widget-content">
+            <div class="todo">
+            </div>
+          </div>
+        </div>
+
+        <% end %>
         <% end %>
  
        

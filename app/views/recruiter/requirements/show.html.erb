@@ -11,10 +11,10 @@
           </div>
           <div class="widget-content nopadding updates collapse in" id="collapseG3">
             <div class="new-update clearfix"><i class="icon-ok-sign"></i>
-              <div class="update-done"><a title="" href="#"><strong>Job Title</strong></a> <span><%= @requirement.title %></span> </div>
+              <div class="update-done"><a title="" href="#"><strong>Job Title/Role</strong></a> <span><%= @requirement.title %></span> </div>
             </div>
             <div class="new-update clearfix"> <i class="icon-ok-sign"></i> <span class="update-notice"> <a title="" href="#"><strong>Location/Address </strong></a> <span><%= @requirement.location %></span> </span> </div>
-            <div class="new-update clearfix"> <i class="icon-ok-sign"></i> <span class="update-alert"> <a title="" href="#"><strong>Experience</strong></a> <span><%= @requirement.experience %> Years</span> </span>  </div>
+            <div class="new-update clearfix"> <i class="icon-ok-sign"></i> <span class="update-alert"> <a title="" href="#"><strong>Work Experience</strong></a> <span><%= @requirement.experience %> Years</span> </span>  </div>
             <div class="new-update clearfix"> <i class="icon-ok-sign"></i> <span class="update-done"> <a title="" href="#"><strong>Salary Range</strong></a><span>GHS <%= @requirement.min_salary %> - GHS <%= @requirement.max_salary %></span> </span> </div>
             <div class="new-update clearfix"> <i class="icon-ok-sign"></i> <span class="update-notice"> <a title="" href="#"><strong>Required Skills</strong></a> <span>
             	<% @requirement.skills.each do |skill| %>
@@ -83,7 +83,7 @@
                 <% else %>
                 <li class="clearfix">
                   <div class="txt"><%= @compulsory_requirement.requirement_5 %></div>
-                  <div class="pull-right label"><%= @compulsory_requirement.score_5 %></div>
+                  <div class="pull-right by label"><%= @compulsory_requirement.score_5 %></div>
                 </li>
                 <% end %>
                 <% if @compulsory_requirement.requirement_6.blank? %>
