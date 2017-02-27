@@ -31,7 +31,7 @@ class Score < ActiveRecord::Base
 
     if self.requirement_2_check == true
       self.update(requirement_2_score: 1)
-    elsif self.requirement_2_check == true
+    elsif self.requirement_2_check == false
       self.update(requirement_2_score: 0)
     end
 
