@@ -1,8 +1,8 @@
-require 'rails_helper'
+# require 'rails_helper'
 
-RSpec.describe Recruiter::ExperiencesController, type: :controller do
+# RSpec.describe Recruiter::ExperiencesController, type: :controller do
 
-  describe "GET #index" do
+  # describe "GET #index" do
   #   it "returns http success" do
   #     get :index
   #     expect(response).to have_http_status(:success)
@@ -28,6 +28,6 @@ RSpec.describe Recruiter::ExperiencesController, type: :controller do
   #     get :edit
   #     expect(response).to have_http_status(:success)
   #   end
-  end
+  # end
 
-end
+# end
