@@ -1,7 +1,7 @@
 class Score < ActiveRecord::Base
   belongs_to :applicant_detail
   
-  # special validation for job description's compulsory requirements
+  # special validation for job description's compulsory requirements.
 
   def score_applicant
   	#reset score attributes
