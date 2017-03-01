@@ -9,9 +9,6 @@ class Score < ActiveRecord::Base
     	 requirement_5_score: nil, requirement_6_score: nil, requirement_7_score: nil, requirement_8_score: nil, 
     	 requirement_9_score: nil, requirement_10_score: nil, requirement_total_score: nil)
 
-    # self.skills_check? ? self.update(skills_score: 1) : self.update(skills_score: 0)
-    # self.qualifications_check? ? self.update(qualifications_score: 1) : self.update(qualifications_score: 0)
-
     if self.skills_check == true
       self.update(skills_score: 1)
     elsif self.skills_check == false
