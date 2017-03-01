@@ -11,11 +11,7 @@ class Recruiter::RequirementsController < Recruiter::ApplicationController
     @compulsory_requirement = @requirement.compulsory_requirement
   end
 
-  def new
-  end
-
-  def edit
-  end
+  
 
 
   private

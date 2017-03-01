@@ -6,15 +6,16 @@ RSpec.describe Requirement, type: :model do
   	q2 = FactoryGirl.create :qualification
   	s1 = FactoryGirl.create :skill
   	s2 = FactoryGirl.create :skill
-    @requirement = FactoryGirl.build :requirement, :qualification_ids => [q1.id, q2.id], :skill_ids => [s1.id, s2.id] 
+    j1 = FactoryGirl.create :job_type
+    @requirement = FactoryGirl.build :requirement, :job_type_ids => [j1.id], :qualification_ids => [q1.id, q2.id], :skill_ids => [s1.id, s2.id] 
   end
 
   subject { @requirement }
 
   it { should be_valid }
 
-  @requirement_attributes = [:title, :job_type, :location, :experience, :min_salary, :max_salary,
-  		:number_of_vacancies, :note, :company_id, :qualifications, :skills]
+  @requirement_attributes = [:title, :location, :experience, :min_salary, :max_salary,
+  		:number_of_vacancies, :note, :company_id, :job_types, :qualifications, :skills]
 
   # model should respond to attributes
   @requirement_attributes.each do |attribute|
@@ -22,7 +23,7 @@ RSpec.describe Requirement, type: :model do
   end
 
   # test presence of attributes
-  [:title, :job_type, :location, :experience, :min_salary, :max_salary,
+  [:title, :location, :experience, :min_salary, :max_salary,
   		:number_of_vacancies, :company_id]
 .each do |attribute|
     it { should validate_presence_of attribute }
@@ -31,6 +32,7 @@ RSpec.describe Requirement, type: :model do
   # test HABTM associations
   it { should have_and_belong_to_many :qualifications }
   it { should have_and_belong_to_many :skills }
+  it { should have_and_belong_to_many :job_types }
 
   # test has_one and belongs_to association
   it { should have_one :compulsory_requirement }

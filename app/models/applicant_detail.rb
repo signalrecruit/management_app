@@ -5,7 +5,10 @@ class ApplicantDetail < ActiveRecord::Base
   has_and_belongs_to_many :skills
   has_and_belongs_to_many :qualifications
   has_and_belongs_to_many :job_types
-
+  
+  validates :name, :email, :phonenumber, :location, :experience, :min_salary,
+  :max_salary, :job_title, presence: true
+  
   attr_accessor :qualification_names, :skill_names, :job_type_names
   
   def qualification_names=(names)

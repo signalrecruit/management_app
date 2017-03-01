@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170226201310) do
+ActiveRecord::Schema.define(version: 20170227144628) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,28 +76,18 @@ ActiveRecord::Schema.define(version: 20170226201310) do
 
   create_table "compulsory_requirements", force: :cascade do |t|
     t.text     "requirement_1"
-    t.integer  "score_1",        default: 1
     t.text     "requirement_2"
-    t.integer  "score_2",        default: 1
     t.text     "requirement_3"
-    t.integer  "score_3",        default: 1
     t.text     "requirement_4"
-    t.integer  "score_4",        default: 1
     t.text     "requirement_5"
-    t.integer  "score_5",        default: 1
     t.text     "requirement_6"
-    t.integer  "score_6",        default: 1
     t.text     "requirement_7"
-    t.integer  "score_7",        default: 1
     t.text     "requirement_8"
-    t.integer  "score_8",        default: 1
     t.text     "requirement_9"
-    t.integer  "score_9",        default: 1
     t.text     "requirement_10"
-    t.integer  "score_10",       default: 1
     t.integer  "requirement_id"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   add_index "compulsory_requirements", ["requirement_id"], name: "index_compulsory_requirements_on_requirement_id", using: :btree

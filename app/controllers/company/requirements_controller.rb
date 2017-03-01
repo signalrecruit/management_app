@@ -1,10 +1,10 @@
 class Company::RequirementsController < Company::ApplicationController
    before_action :set_requirement, only: [:show, :edit, :update, :destroy, :send_requirements]
-   before_action :set_company, only: [:create]
+   before_action :set_company, only: [:index, :create]
    layout "company"
 
   def index
-  	@requirements = Requirement.all.order(created_at: :asc)
+  	@requirements = @company.requirements.all.order(created_at: :asc)
   end
 
   def new

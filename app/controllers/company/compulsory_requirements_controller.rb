@@ -24,7 +24,7 @@ class Company::CompulsoryRequirementsController < Company::ApplicationController
   
   def update
     if @compulsory_requirement.update(compulsory_requirement_params)
-      flash[:notice] = "update successful"
+      flash[:success] = "update successful"
       redirect_to [:company, @requirement]
     else
       flash[:alert] = "something went wrong. update failed"
@@ -45,9 +45,9 @@ class Company::CompulsoryRequirementsController < Company::ApplicationController
   end
 
   def compulsory_requirement_params
-    params.require(:compulsory_requirement).permit(:requirement_id, :requirement_1, :score_1,
-     :requirement_2, :score_2, :requirement_3, :score_3, :requirement_4, :score_4, :requirement_5, :score_5,
-      :requirement_6, :score_6, :requirement_7, :score_7, :requirement_8, :score_8, :requirement_9, :score_9,
-       :requirement_10, :score_10)	
+    params.require(:compulsory_requirement).permit(:requirement_id, :requirement_1,
+     :requirement_2, :requirement_3, :requirement_4, :requirement_5,
+      :requirement_6, :requirement_7, :requirement_8, :requirement_9,
+       :requirement_10)	
   end
 end

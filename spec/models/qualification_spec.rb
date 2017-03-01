@@ -15,4 +15,5 @@ RSpec.describe Qualification, type: :model do
   end
 
   it { should have_and_belong_to_many :requirements }
+  it { should have_and_belong_to_many :applicant_details }
 end

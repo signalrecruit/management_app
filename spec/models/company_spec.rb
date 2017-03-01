@@ -37,4 +37,7 @@ RSpec.describe Company, type: :model do
     end
   end
 
+  # test has_many association 
+  it { should have_many :requirements }
+
 end
