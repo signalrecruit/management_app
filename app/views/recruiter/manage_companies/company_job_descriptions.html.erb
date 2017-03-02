@@ -8,7 +8,7 @@
   
 <div class="widget-box">
           <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
-            <h5><%= pluralize(@requirements.count, "Job Description") %></h5>
+            <h5><%= pluralize(@requirements.count, "Job Description") %></h5><%= link_to fa_icon("arrow-circle-right", class: "pull-right") + "Go To History of Applicants for #{@company.name}", recruiter_company_history_of_applicants_url(@company), class: "btn btn-primary pull-right" %>
           </div>
           <div class="widget-content nopadding">
           <div class="table-responsive">

@@ -1,6 +1,9 @@
 class Recruiter::ManageCompaniesController < Recruiter::ApplicationController
   before_action :set_company, only: [:company_job_descriptions, :company_history_of_applicants]
   layout "recruiter"
+  
+  def show
+  end
 
   def list_of_companies
   	@companies = Company.all.order(created_at: :asc)

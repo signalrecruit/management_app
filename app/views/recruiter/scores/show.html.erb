@@ -1,5 +1,20 @@
 <div>
-    <h1><span class="date badge badge-success" style="font-size: 28px; padding: 20px;"> <%= @applicant_detail.name %>'s </span> Job Assessement <span class="date badge badge-info pull-right" style="font-size: 28px; padding: 20px;">Score:
+    <h1><span class="date badge badge-success" style="font-size: 28px; padding: 20px;"> <%= @applicant_detail.name %>'s </span> Job Assessement 
+
+    <% if @applicant_detail.score.total_score < 50.00 %>  
+    <span class="date badge badge-important pull-right" style="font-size: 28px; padding: 20px;">
+    <% elsif @applicant_detail.score.total_score == 50.00 %>
+      <span class="date badge badge-warning pull-right" style="font-size: 28px; padding: 20px;">
+    <% elsif @applicant_detail.score.total_score > 50.00 && @applicant_detail.score.total_score < 90.00 %>
+      <span class="date badge badge-info pull-right" style="font-size: 28px; padding: 20px;">
+    <% elsif @applicant_detail.score.total_score == 90.00 || @applicant_detail.score.total_score > 90.00 %>
+      <span class="date badge badge-success pull-right" style="font-size: 28px; padding: 20px;">
+    <% elsif @applicant_detail.score.total_score == nil %>
+    <span class="date badge badge-danger pull-right" style="font-size: 28px; padding: 20px;">
+            
+    <% end %>
+
+    Score:
      <% if @applicant_detail.score.nil? %>   
      ? 
      <% else %>
@@ -15,7 +30,7 @@
             	             <%= job_type.name %>,
             	           <% end %></h5>
             	           <%#= f.button :submit, "Submit Assessment", class: "btn btn-primary pull-right" %>
-                         <%= link_to fa_icon("pencil") + " Edit Score", edit_recruiter_applicant_detail_score_url(@applicant_detail, @score, requirement_id: @applicant_detail.requirement.id()) , class: "btn btn-primary pull-right" %>
+                         <%= link_to "send applicant's details to #{@applicant_detail.requirement.company.name}", "#", data: { confirm: "Do you want to send #{@applicant_detail.name}'s application details to #{@applicant_detail.requirement.company.name}?"}, class: "btn btn-primary pull-right" %>
             </span>
           </div>
           <div class="widget-content nopadding updates collapse in" id="collapseG3">

@@ -9,6 +9,7 @@ class ApplicantDetail < ActiveRecord::Base
   validates :name, :email, :phonenumber, :location, :experience, :min_salary,
   :max_salary, :job_title, presence: true
   
+  
   attr_accessor :qualification_names, :skill_names, :job_type_names
   
   def qualification_names=(names)

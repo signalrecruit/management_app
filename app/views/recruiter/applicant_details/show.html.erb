@@ -8,7 +8,13 @@
             	             <%= job_type.name %>,
             	           <% end %></h5>
                            <span class="pull-right">
-            	           <%= link_to fa_icon("pencil") + " Edit", [:edit, :recruiter, @applicant_detail], class: "btn btn-primary" %> <%= link_to "match job description", recruiter_match_job_description_url(@applicant_detail), class: "btn btn-primary" %></span>
+                         <% if @applicant_detail.score.nil? %>  
+            	           <%= link_to "match job description", recruiter_match_job_description_url(@applicant_detail), class: "btn btn-primary" %>
+                         <% else %>
+                         <%= link_to fa_icon("repeat") + " re-assess candidate", edit_recruiter_applicant_detail_score_url(@applicant_detail, @applicant_detail.score, requirement_id: @applicant_detail.requirement), class: "btn btn-primary" %>
+                         <%= link_to "send applicant's details to #{@applicant_detail.requirement.company.name}", "#", data: { confirm: "Do you want to send #{@applicant_detail.name}'s application details to #{@applicant_detail.requirement.company.name}?"}, class: "btn btn-primary" %>
+                          <% end %> 
+                         </span>
             </span>
           </div>
           <div class="widget-content nopadding updates collapse in" id="collapseG3">

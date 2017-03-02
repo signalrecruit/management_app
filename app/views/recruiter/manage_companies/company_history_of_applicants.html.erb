@@ -8,7 +8,7 @@
   
 <div class="widget-box">
           <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
-            <h5><%= pluralize(@applicant_details.count, "Job Application") %></h5>
+            <h5><%= pluralize(@applicant_details.count, "Job Application") %></h5><%= link_to fa_icon("arrow-circle-right", class: "pull-right") + "Go To Company's Job Descriptions for #{@company.name}", recruiter_company_job_descriptions_url(@company), class: "btn btn-primary pull-right" %>
           </div>
           <div class="widget-content nopadding">
           <div class="table-responsive">
@@ -47,11 +47,22 @@
                 	  <% end %>	
                 	</td>
                 	<td>
+                  <% if applicant_detail.score.total_score < 50.00 %>  
+                    <span class="date badge badge-important">
+                  <% elsif applicant_detail.score.total_score == 50.00 %>
+                    <span class="date badge badge-warning">
+                  <% elsif applicant_detail.score.total_score > 50.00 && applicant_detail.score.total_score < 90.00 %>
+                    <span class="date badge badge-info">
+                  <% elsif applicant_detail.score.total_score == 90.00 || applicant_detail.score.total_score > 90.00 %>
+                     <span class="date badge badge-success">     
+                  <% end %>
+
                   <% if applicant_detail.score.present? %>
                 		<%= number_with_precision applicant_detail.score.total_score, precision: 2, scale: 2 %>%
                   <% else %>
                     <%= link_to "match job description", recruiter_match_job_description_url(applicant_detail), class: "btn btn-primary" %>  
                   <% end %>  
+                  </span>
                 	</td>
                 </tr>
               <% end %>
