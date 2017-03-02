@@ -1,18 +1,39 @@
 <div>
-    <h1><span class="date badge badge-success" style="font-size: 28px; padding: 20px;"> <%= @applicant_detail.name %>'s </span> Job Application</h1>
+    <h1><span class="date badge badge-success" style="font-size: 28px; padding: 20px;"> <%= @applicant_detail.name %>'s </span> Job Application
+    <% if @applicant_detail.score.total_score < 50.00 %>  
+    <span class="date badge badge-important pull-right" style="font-size: 28px; padding: 20px;">
+    <% elsif @applicant_detail.score.total_score == 50.00 %>
+      <span class="date badge badge-warning pull-right" style="font-size: 28px; padding: 20px;">
+    <% elsif @applicant_detail.score.total_score > 50.00 && @applicant_detail.score.total_score < 90.00 %>
+      <span class="date badge badge-info pull-right" style="font-size: 28px; padding: 20px;">
+    <% elsif @applicant_detail.score.total_score == 90.00 || @applicant_detail.score.total_score > 90.00 %>
+      <span class="date badge badge-success pull-right" style="font-size: 28px; padding: 20px;">
+    <% elsif @applicant_detail.score.total_score == nil %>
+    <span class="date badge badge-danger pull-right" style="font-size: 28px; padding: 20px;">
+            
+    <% end %>
+
+    Score:
+     <% if @applicant_detail.score.nil? %>   
+     ? 
+     <% else %>
+     <%= number_with_precision @applicant_detail.score.total_score, precision: 2, scale: 2 %>%
+     <% end %>
+     </span>  
+    </h1>
 </div>
 <hr>
 <div class="widget-box">
           <div class="widget-title bg_lo"> <span class="icon"> <i class="icon-briefcase"></i> </span>
             <h5>Job Type: <% @applicant_detail.job_types.each do |job_type| %>
-            	             <%= job_type.name %>,
-            	           <% end %></h5>
+            	             <%= job_type.name %>, 
+            	           <% end %> <span class="pull-right"> (NOTE: <%= @applicant_detail.name %>'s details have been sent to <%= @applicant_detail.requirement.company.name   if @applicant_detail.sent? %>)</span> </h5>
                            <span class="pull-right">
                          <% if @applicant_detail.score.nil? %>  
             	           <%= link_to "match job description", recruiter_match_job_description_url(@applicant_detail), class: "btn btn-primary" %>
                          <% else %>
-                         <%= link_to fa_icon("repeat") + " re-assess candidate", edit_recruiter_applicant_detail_score_url(@applicant_detail, @applicant_detail.score, requirement_id: @applicant_detail.requirement), class: "btn btn-primary" %>
-                         <%= link_to "send applicant's details to #{@applicant_detail.requirement.company.name}", "#", data: { confirm: "Do you want to send #{@applicant_detail.name}'s application details to #{@applicant_detail.requirement.company.name}?"}, class: "btn btn-primary" %>
+                         <%= link_to fa_icon("repeat") + " re-assess candidate", edit_recruiter_applicant_detail_score_url(@applicant_detail, @applicant_detail.score, requirement_id: @applicant_detail.requirement), class: "btn btn-primary"  if @applicant_detail.sent == false %>
+                         <%= link_to "send applicant's details to #{@applicant_detail.requirement.company.name}", recruiter_send_company_applicant_details_url(@applicant_detail), method: :patch, data: { confirm: "Do you want to send #{@applicant_detail.name}'s application details to #{@applicant_detail.requirement.company.name}?"}, class: "btn btn-primary" if @applicant_detail.sent == false %>
                           <% end %> 
                          </span>
             </span>

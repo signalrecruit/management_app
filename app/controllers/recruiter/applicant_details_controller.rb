@@ -1,5 +1,5 @@
 class Recruiter::ApplicantDetailsController < Recruiter::ApplicationController
-  before_action :set_applicant_detail, only: [:show, :edit, :update, :destroy, :match_job_description]
+  before_action :set_applicant_detail, only: [:show, :edit, :update, :destroy, :match_job_description, :send_company_applicant_details]
   layout "recruiter"
 
   def index
@@ -45,6 +45,12 @@ class Recruiter::ApplicantDetailsController < Recruiter::ApplicationController
   	@requirements = Requirement.all.uniq
   end
 
+  def send_company_applicant_details
+    @applicant_detail.update(sent: true)
+    flash[:success] = "you have successfully sent #{@applicant_detail.name}'s application details to #{@applicant_detail.requirement.company.name}"
+    redirect_to :back
+  end
+
  
   private 
 
@@ -54,6 +60,6 @@ class Recruiter::ApplicantDetailsController < Recruiter::ApplicationController
 
   def applicant_params
   	params.require(:applicant_detail).permit(:name, :email, :phonenumber, :location, :experience, :min_salary,
-  		:max_salary, :job_title, :requirement_id, :qualification_names, :skill_names, :job_type_names, :job_type_ids => [], :qualification_ids => [], :skill_ids => [])
+  		:max_salary, :job_title, :sent, :requirement_id, :qualification_names, :skill_names, :job_type_names, :job_type_ids => [], :qualification_ids => [], :skill_ids => [])
   end
 end

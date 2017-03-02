@@ -21,7 +21,7 @@ Rails.application.routes.draw do
     get 'manage_companies/:id/company_history_of_applicants', to: 'manage_companies#company_history_of_applicants', as: :company_history_of_applicants
 
     get 'applicant_details/:id/match_job_description', to: 'applicant_details#match_job_description', as: :match_job_description
-
+    patch 'applicant_details/:id/send_company_applicant_details', to: 'applicant_details#send_company_applicant_details', as: :send_company_applicant_details
     resources :requests, only: [:new, :create]
     resources :requirements
     

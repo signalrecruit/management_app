@@ -5,7 +5,7 @@
 <div class="row-fluid">
 
 	<div class="span12">
-  
+<h6><span class="label label-success" ><i class="fa fa-paper-plane-o" aria-hidden="true"></i></span> sent </h6>
 <div class="widget-box">
           <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
             <h5><%= pluralize(@applicant_details.count, "Job Application") %></h5>
@@ -30,7 +30,11 @@
               <tbody>
               <% @applicant_details.each do |applicant_detail| %>
                 <tr class="odd gradeX">
-                    <td><% applicant_detail.job_types.each do |job_type| %>
+                    <td>
+                    <% if applicant_detail.sent? %>  
+                    <span class="label label-success" ><i class="fa fa-paper-plane-o" aria-hidden="true"></i></span>
+                    <% end %>
+                    <% applicant_detail.job_types.each do |job_type| %>
                            <%= link_to job_type.name, [:recruiter, applicant_detail] %>,
                          <% end %>
                     </td>
@@ -49,11 +53,21 @@
                 	  <% end %>	
                 	</td>
                 	<td>
+                  <% if applicant_detail.score.total_score < 50.00 %>  
+                    <span class="date badge badge-important">
+                  <% elsif applicant_detail.score.total_score == 50.00 %>
+                    <span class="date badge badge-warning">
+                  <% elsif applicant_detail.score.total_score > 50.00 && applicant_detail.score.total_score < 90.00 %>
+                    <span class="date badge badge-info">
+                  <% elsif applicant_detail.score.total_score == 90.00 || applicant_detail.score.total_score > 90.00 %>
+                     <span class="date badge badge-success">     
+                  <% end %>
                   <% if applicant_detail.score.present? %>
                 		<%= number_with_precision applicant_detail.score.total_score, precision: 2, scale: 2 %>%
                   <% else %>
                     <%= link_to "match job description", recruiter_match_job_description_url(applicant_detail), class: "btn btn-primary" %>  
-                  <% end %>  
+                  <% end %>
+                  </span>  
                 	</td>
                 </tr>
               <% end %>

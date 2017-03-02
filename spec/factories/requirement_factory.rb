@@ -106,6 +106,7 @@ FactoryGirl.define do
     experience { rand(0..60) }
     min_salary { rand(500..1000).to_f }
     max_salary { rand(1000..5000).to_f }
+    sent true
     qualification_ids [1, 2]
     skill_ids [1, 2] 
   
