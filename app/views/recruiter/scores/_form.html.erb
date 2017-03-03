@@ -1,5 +1,24 @@
 <div>
-    <h1><span class="date badge badge-success" style="font-size: 28px; padding: 20px;"> <%= @applicant_detail.name %>'s </span> Job Assessement <span class="date badge badge-info pull-right" style="font-size: 28px; padding: 20px;">Score:
+    <h1>
+    <% if @applicant_detail.accept? %>
+      <i class="fa fa-check-circle" aria-hidden="true"></i>
+    <% else %>
+      <i class="fa fa-hand-paper-o" aria-hidden="true"></i>
+    <% end %>
+    <span class="date badge badge-success" style="font-size: 28px; padding: 20px;"> <%= @applicant_detail.name %>'s </span> Job Assessement 
+    <% if @applicant_detail.score.total_score < 50.00 %>  
+    <span class="date badge badge-important pull-right" style="font-size: 28px; padding: 20px;">
+    <% elsif @applicant_detail.score.total_score == 50.00 %>
+      <span class="date badge badge-warning pull-right" style="font-size: 28px; padding: 20px;">
+    <% elsif @applicant_detail.score.total_score > 50.00 && @applicant_detail.score.total_score < 90.00 %>
+      <span class="date badge badge-info pull-right" style="font-size: 28px; padding: 20px;">
+    <% elsif @applicant_detail.score.total_score == 90.00 || @applicant_detail.score.total_score > 90.00 %>
+      <span class="date badge badge-success pull-right" style="font-size: 28px; padding: 20px;">
+    <% elsif @applicant_detail.score.total_score == nil %>
+    <span class="date badge badge-danger pull-right" style="font-size: 28px; padding: 20px;">
+            
+    <% end %>
+    Score:
      <% if @applicant_detail.score.nil? %>   
      ? 
      <% else %>

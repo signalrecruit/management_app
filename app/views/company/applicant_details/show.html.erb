@@ -4,9 +4,8 @@
       <i class="fa fa-check-circle" aria-hidden="true"></i>
     <% else %>
       <i class="fa fa-hand-paper-o" aria-hidden="true"></i>
-    <% end %>  
-    <span class="date badge badge-success" style="font-size: 28px; padding: 20px;"> <%= @applicant_detail.name %>'s </span> Job Assessement 
-
+    <% end %>	
+    <span class="date badge badge-success" style="font-size: 28px; padding: 20px;"> <%= @applicant_detail.name %>'s </span> Job Application
     <% if @applicant_detail.score.total_score < 50.00 %>  
     <span class="date badge badge-important pull-right" style="font-size: 28px; padding: 20px;">
     <% elsif @applicant_detail.score.total_score == 50.00 %>
@@ -26,22 +25,24 @@
      <% else %>
      <%= number_with_precision @applicant_detail.score.total_score, precision: 2, scale: 2 %>%
      <% end %>
-     </span></h1>
+     </span>
+    </h1>
 </div>
 <hr>
-<%#= simple_form_for([:recruiter, applicant_detail, score]) do |f| %>
 <div class="widget-box">
           <div class="widget-title bg_lo"> <span class="icon"> <i class="icon-briefcase"></i> </span>
             <h5>Job Type: <% @applicant_detail.job_types.each do |job_type| %>
-            	             <%= job_type.name %>,
-            	           <% end %></h5>
-            	           <%#= f.button :submit, "Submit Assessment", class: "btn btn-primary pull-right" %>
-                         <%= link_to "send applicant's details to #{@applicant_detail.requirement.company.name}", recruiter_send_company_applicant_details_url(@applicant_detail), method: :patch, data: { confirm: "Do you want to send #{@applicant_detail.name}'s application details to #{@applicant_detail.requirement.company.name}?"}, class: "btn btn-primary pull-right" if !@applicant_detail.sent? %>
-            </span>
+            	             <%= job_type.name %>, 
+            	           <% end %></h5><span class="pull-right" >
+            	           <% if @applicant_detail.sent? %> 
+            	           <%= link_to fa_icon("check-circle") + " accept", company_accept_applicant_url(@applicant_detail), method: :patch, class: "btn btn-success" %> <%= link_to fa_icon("hand-paper-o") + " reject", company_reject_applicant_url(@applicant_detail), method: :patch, class: "btn btn-danger" %> <%= link_to fa_icon("paper-plane-o") + " send application to recruiter", company_send_recruiter_applicant_details_url(@applicant_detail), method: :patch, data: { confirm: "Are you sure you want to send #{@applicant_detail.name}'s application to recruiter?" }, class: "btn btn-primary" %>
+            	           <% else %>
+            	           <% end %>          	           	
+            	           </span>
           </div>
           <div class="widget-content nopadding updates collapse in" id="collapseG3">
             <div class="new-update clearfix"><i class="icon-ok-sign"></i>
-              <div class="update-done"><a title="" href="#"><strong><%= @applicant_detail.name %> applied for </strong></a> <span><%= @applicant_detail.job_title %></span> </div>
+              <div class="update-done"><a title="" href="#"><strong><%= @applicant_detail.name %> applied for </strong></a> <span><%= @applicant_detail.job_title %> </span> </div>
             </div>
             <div class="new-update clearfix"><i class="icon-ok-sign"></i>
               <div class="update-done"><a title="" href="#"><strong>Email</strong></a> <span><%= @applicant_detail.email %></span> </div>
@@ -56,19 +57,19 @@
             	<% @applicant_detail.skills.each do |skill| %>
             	  <%= skill.name %>, 
             	<% end %>
-            </span> </span><div class="pull-right"><%#= f.input :skills_check, label: false, :collection => [["does not meet requirements", false], ["meets requirements", true]], :as => :radio_buttons, :item_wrapper_class => false, :selected => score.skills_check %></div></div>
+            </span> </span></div>
             <div class="new-update clearfix"> <i class="icon-ok-sign"></i> <span class="update-notice"> <a title="" href="#"><strong>Education Qualifications</strong></a> <span>
             	<% @applicant_detail.qualifications.each do |qualification| %>
             	  <%= qualification.name %>, 
             	<% end %>
-            </span> </span><div class="pull-right"><%#= f.input :qualifications_check, label: false, :collection => [["does not meet requirements", false], ["meets requirements", true]], :as => :radio_buttons, :item_wrapper_class => false, :selected => score.qualifications_check %></div></div>
+            </span> </span></div>
           </div>
         </div>
-        <%# end %>
+
  
        
 
-        <%= javascript_include_tag "recruiter/jquery.min" %>
-        <%= javascript_include_tag "recruiter/jquery.ui.custom" %>
-        <%= javascript_include_tag "recruiter/bootstrap.min" %>
-        <%= javascript_include_tag "recruiter/matrix" %>
+        <%= javascript_include_tag "company/jquery.min" %>
+        <%= javascript_include_tag "company/jquery.ui.custom" %>
+        <%= javascript_include_tag "company/bootstrap.min" %>
+        <%= javascript_include_tag "company/matrix" %>

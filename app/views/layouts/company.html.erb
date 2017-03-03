@@ -82,7 +82,7 @@
        </li>
         </ul>
       </li>
-     <li><%= link_to fa_icon("users") + " Prospective Applicants", "#", data: { confirm: "feature not yet done"} %></li> 
+     <li><%= link_to fa_icon("users") + " Prospective Applicants", company_applicant_details_url(id: current_company.id) %></li> 
     <%= link_to "" do %>
     <li class="content"> <span>Progress of Applicants</span>
         <div class="progress progress-mini active progress-striped">

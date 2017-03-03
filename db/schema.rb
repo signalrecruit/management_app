@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170302155658) do
+ActiveRecord::Schema.define(version: 20170303020131) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20170302155658) do
     t.datetime "updated_at",                     null: false
     t.string   "job_title"
     t.boolean  "sent",           default: false
+    t.boolean  "accept",         default: false
   end
 
   add_index "applicant_details", ["requirement_id"], name: "index_applicant_details_on_requirement_id", using: :btree

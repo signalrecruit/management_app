@@ -42,6 +42,12 @@ Rails.application.routes.draw do
     resources :requirements, only: [] do
       resources :compulsory_requirements, only: [:show, :new, :create, :edit, :update, :destroy  ]
     end
+    
+    patch 'applicant_details/:id/accept_applicant', to: 'applicant_details#accept_applicant', as: :accept_applicant
+    patch 'applicant_details/:id/reject_applicant', to: 'applicant_details#reject_applicant', as: :reject_applicant
+    patch 'applicant_details/:id/send_recruiter_applicant_details', to: 'applicant_details#send_recruiter_applicant_details', as: :send_recruiter_applicant_details
+
+    resources :applicant_details, only: [:index, :show]
   end
 
   root 'welcome#landing_page'
