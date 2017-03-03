@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170303020131) do
+ActiveRecord::Schema.define(version: 20170303094817) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,11 +25,12 @@ ActiveRecord::Schema.define(version: 20170303020131) do
     t.integer  "min_salary"
     t.integer  "max_salary"
     t.integer  "requirement_id"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
     t.string   "job_title"
-    t.boolean  "sent",           default: false
-    t.boolean  "accept",         default: false
+    t.boolean  "sent",                 default: false
+    t.boolean  "accept",               default: false
+    t.text     "reason_for_rejection"
   end
 
   add_index "applicant_details", ["requirement_id"], name: "index_applicant_details_on_requirement_id", using: :btree

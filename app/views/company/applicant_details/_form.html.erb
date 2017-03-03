@@ -1,0 +1,8 @@
+<%= simple_form_for([:company, applicant_detail]) do |f| %>
+<div class="form-group">
+<div class="col-md-12">
+  <%= f.input :reason_for_rejection, label: false %>
+ </div>
+  <%= f.button :submit, "send to recruiter", class: "btn btn-primary" %>
+ </div> 
+<% end %>

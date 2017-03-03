@@ -47,7 +47,7 @@ Rails.application.routes.draw do
     patch 'applicant_details/:id/reject_applicant', to: 'applicant_details#reject_applicant', as: :reject_applicant
     patch 'applicant_details/:id/send_recruiter_applicant_details', to: 'applicant_details#send_recruiter_applicant_details', as: :send_recruiter_applicant_details
 
-    resources :applicant_details, only: [:index, :show]
+    resources :applicant_details, only: [:index, :show, :update]
   end
 
   root 'welcome#landing_page'

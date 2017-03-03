@@ -1,6 +1,6 @@
 class Company::ApplicantDetailsController < Company::ApplicationController
   before_action :set_company, only: [:index]
-  before_action :set_applicant_detail, only: [:show, :accept_applicant, :reject_applicant, :send_recruiter_applicant_details]
+  before_action :set_applicant_detail, only: [:show, :edit, :update, :accept_applicant, :reject_applicant, :send_recruiter_applicant_details]
 
   layout 'company'
 
@@ -16,6 +16,20 @@ class Company::ApplicantDetailsController < Company::ApplicationController
   end
 
   def show
+  end
+
+  def edit
+  end
+
+  def update
+  	if @applicant_detail.update(applicant_params)
+  	  send_recruiter_applicant_details
+  	  # flash[:success] = "update of #{@applicant_detail.name}'s application successful"
+  	  # redirect_to :back
+  	else 
+  	  flash[:alert] = "ooops! something went wrong."
+  	  render "edit"
+  	end
   end
 
   def accept_applicant
@@ -46,5 +60,9 @@ class Company::ApplicantDetailsController < Company::ApplicationController
 
   def set_applicant_detail
   	@applicant_detail = ApplicantDetail.find(params[:id])
+  end
+
+  def applicant_params
+  	params.require(:applicant_detail).permit(:reason_for_rejection)
   end
 end
