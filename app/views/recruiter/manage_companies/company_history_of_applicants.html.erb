@@ -5,7 +5,10 @@
 <div class="row-fluid">
 
 	<div class="span12">
-  
+ <h6> 
+<span class="date badge badge-success"><i class="fa fa-check-circle" aria-hidden="true"></i></span> accept 
+<span class="date badge badge-important"><i class="fa fa-hand-paper-o" aria-hidden="true"></i></span> reject
+</h6> 
 <div class="widget-box">
           <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
             <h5><%= pluralize(@applicant_details.count, "Job Application") %></h5><%= link_to fa_icon("arrow-circle-right", class: "pull-right") + "Go To Company's Job Descriptions for #{@company.name}", recruiter_company_job_descriptions_url(@company), class: "btn btn-primary pull-right" %>
@@ -30,9 +33,9 @@
                 <tr class="odd gradeX">
                   <td>
                       <% if applicant_detail.accept? %>
-                      <i class="fa fa-check-circle" aria-hidden="true"></i>
+                      <span class="date badge badge-success"><i class="fa fa-check-circle" aria-hidden="true"></i></span>
                       <% else %>
-                      <i class="fa fa-hand-paper-o" aria-hidden="true"></i>
+                      <span class="date badge badge-important"><i class="fa fa-hand-paper-o" aria-hidden="true"></i></span>
                       <% end %>  
                   <span class="badge badge-primary"><%= applicant_detail.name %></span></td>
                 	<td><% applicant_detail.job_types.each do |job_type| %>

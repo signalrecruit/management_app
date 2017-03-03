@@ -5,9 +5,9 @@
 <div class="row-fluid">
 
 	<div class="span12">
-<h6><span class="label label-success" ><i class="fa fa-paper-plane-o" aria-hidden="true"></i></span> sent to company <br>
-<i class="fa fa-check-circle" aria-hidden="true"></i> accept <br>
-<i class="fa fa-hand-paper-o" aria-hidden="true"></i> reject
+<h6><i class="fa fa-paper-plane-o" aria-hidden="true"></i> sent to company 
+<span class="date badge badge-success"><i class="fa fa-check-circle" aria-hidden="true"></i></span> accept
+<span class="date badge badge-important"><i class="fa fa-hand-paper-o" aria-hidden="true"></i></span> reject
 </h6>
 <div class="widget-box">
           <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
@@ -35,12 +35,11 @@
                 <tr class="odd gradeX">
                     <td>
                     <% if applicant_detail.sent? %>  
-                    <span class="label label-success" ><i class="fa fa-paper-plane-o" aria-hidden="true"></i></span>
-                    <% end %>
+                    <i class="fa fa-paper-plane-o" aria-hidden="true"></i><% end %>
                     <% if applicant_detail.accept? %>
-                      <i class="fa fa-check-circle" aria-hidden="true"></i>
+                      <span class="date badge badge-success"><i class="fa fa-check-circle" aria-hidden="true"></i></span>
                       <% else %>
-                      <i class="fa fa-hand-paper-o" aria-hidden="true"></i>
+                      <span class="date badge badge-important"><i class="fa fa-hand-paper-o" aria-hidden="true"></i></span>
                       <% end %>
                     <% applicant_detail.job_types.each do |job_type| %>
                            <%= link_to job_type.name, [:recruiter, applicant_detail] %>,
