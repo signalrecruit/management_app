@@ -38,7 +38,7 @@
             	           <%#= f.button :submit, "Submit Assessment", class: "btn btn-primary pull-right" %>
                          <%= link_to "send applicant's details to #{@applicant_detail.requirement.company.name}", recruiter_send_company_applicant_details_url(@applicant_detail), method: :patch, data: { confirm: "Do you want to send #{@applicant_detail.name}'s application details to #{@applicant_detail.requirement.company.name}?"}, class: "btn btn-primary pull-right" if !@applicant_detail.sent? %>
                          <% if !@applicant_detail.accept? && @applicant_detail.reason_for_rejection %>
-                          <button data-toggle="modal" data-target="#demoRequest" class="btn btn-danger center-block">click to view reason for rejection</button>
+                          <button data-toggle="modal" data-target="#demoRequest" class="btn btn-danger center-block pull-right">click to view reason for rejection</button>
                           <% end %>
             </span>
           </div>
