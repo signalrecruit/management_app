@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170303094817) do
+ActiveRecord::Schema.define(version: 20170303163920) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -234,7 +234,7 @@ ActiveRecord::Schema.define(version: 20170303094817) do
     t.decimal  "requirement_9_score"
     t.decimal  "requirement_10_score"
     t.decimal  "requirement_total_score", precision: 4, scale: 2
-    t.decimal  "total_score"
+    t.decimal  "total_score",                                     default: 0.0
   end
 
   add_index "scores", ["applicant_detail_id"], name: "index_scores_on_applicant_detail_id", using: :btree
