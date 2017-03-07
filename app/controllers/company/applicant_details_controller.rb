@@ -12,6 +12,7 @@ class Company::ApplicantDetailsController < Company::ApplicationController
       	@applicant_details << applicant_detail
       end	
     end	
+    @applicant_details = @applicant_details.uniq
     @applicant_details
   end
 
