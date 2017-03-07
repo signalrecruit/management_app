@@ -5,7 +5,7 @@ class Company::ApplicantDetailsController < Company::ApplicationController
   layout 'company'
 
   def index
-    @requirements = Requirement.where(id: @company)
+    @requirements = @company.requirements
     @applicant_details = []
     @requirements.each do |requirement|
       requirement.applicant_details.each do |applicant_detail|
