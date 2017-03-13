@@ -7,6 +7,8 @@ class Recruiter::ApplicantDetailsController < Recruiter::ApplicationController
   end
 
   def show
+    @requirement = @applicant_detail.requirement
+    @score = @applicant_detail.score
   end
 
   def new

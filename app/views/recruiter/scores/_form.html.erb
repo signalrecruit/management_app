@@ -68,6 +68,8 @@
         <div class="widget-box">
           <div class="widget-title"> <span class="icon"><i class="icon-ok"></i></span>
             <h5>Non-Negotiable Requirements (NOTE: Each requirement carries a score of 1. This will be used in assessing applicants)</h5><%#= link_to fa_icon("pencil") + " Edit Non-Negotiable Requirements", edit_company_requirement_url(@requirement, @requirement.compulsory_requirement), class: "btn btn-primary pull-right" if !@requirement.sent? && @requirement.requirement.compulsory_requirement %>
+            <%= f.button :submit, "Submit Assessment", class: "btn btn-primary pull-right" %>
+
           </div>
           <div class="widget-content">
             <div class="todo">

@@ -17,6 +17,8 @@ class Company::ApplicantDetailsController < Company::ApplicationController
   end
 
   def show
+    @requirement = @applicant_detail.requirement
+    @score = @applicant_detail.score
   end
 
   def edit

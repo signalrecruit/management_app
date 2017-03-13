@@ -12,6 +12,7 @@ class Recruiter::ScoresController < Recruiter::ApplicationController
   end
 
   def show
+    @requirement = @applicant_detail.requirement
   end
 
   def create

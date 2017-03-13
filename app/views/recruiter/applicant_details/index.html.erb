@@ -1,5 +1,5 @@
 <div>
-	<h1>Job Applications</h1>
+	<h1>Job Applicants</h1>
 </div>
 <hr>
 <div class="row-fluid">
@@ -11,7 +11,7 @@
 </h6>
 <div class="widget-box">
           <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
-            <h5><%= pluralize(@applicant_details.count, "Job Application") %></h5>
+            <h5><%= pluralize(@applicant_details.count, "Job Applicant") %></h5>
             <%= link_to fa_icon("plus") + " Create Job Application", new_recruiter_applicant_detail_url, class: "btn btn-primary pull-right" %>                 
 
           </div>

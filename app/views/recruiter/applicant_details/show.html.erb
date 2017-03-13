@@ -2,10 +2,13 @@
     <h1>
     <% if @applicant_detail.accept? %>
       <i class="fa fa-check-circle" aria-hidden="true"></i>
-    <% else %>
-      <i class="fa fa-hand-paper-o" aria-hidden="true"></i>
+    <% elsif !@applicant_detail.accept? && @applicant_detail.requirement.nil? %>
+      <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+    <% elsif !@applicant_detail.accept? %>
+      <i class="fa fa-hand-paper-o" aria-hidden="true"></i>  
     <% end %>   
     <span class="date badge badge-success" style="font-size: 28px; padding: 20px;"> <%= @applicant_detail.name %>'s </span> Job Application
+    |
     <% if @applicant_detail.score %>
     <% if @applicant_detail.score.total_score < 50.00 %>  
     <span class="date badge badge-important pull-right" style="font-size: 28px; padding: 20px;">
@@ -72,14 +75,208 @@
             	<% @applicant_detail.skills.each do |skill| %>
             	  <%= skill.name %>, 
             	<% end %>
-            </span> </span></div>
+            </span> </span>
+            <% if @applicant_detail.score.present? %>
+            <div class="pull-right">
+              <% if @applicant_detail.score.skills_check? %>
+                met requirements
+              <% else %>
+                did not meet requirements
+              <% end %>
+            </div>
+            <% end %>
+            </div>
             <div class="new-update clearfix"> <i class="icon-ok-sign"></i> <span class="update-notice"> <a title="" href="#"><strong>Education Qualifications</strong></a> <span>
             	<% @applicant_detail.qualifications.each do |qualification| %>
             	  <%= qualification.name %>, 
             	<% end %>
-            </span> </span></div>
+            </span> </span>
+            <% if @applicant_detail.score.present? %>
+            <div class="pull-right">
+              <% if @applicant_detail.score.qualifications_check? %>
+                met requirements
+              <% else %>
+                did not meet requirements
+              <% end %>
+            </div>
+            <% end %>
+            </div>
           </div>
         </div>
+         <% if !@requirement.nil? %>
+         <% if @requirement.compulsory_requirement %>
+        <div class="widget-box">
+          <div class="widget-title"> <span class="icon"><i class="icon-ok"></i></span>
+          <h5>Non-Negotiable Requirements</h5>
+          <span class="pull-right">
+                         <% if @applicant_detail.score.nil? %>  
+                         <%= link_to "match job description", recruiter_match_job_description_url(@applicant_detail), class: "btn btn-primary" %>
+                         <% else %>
+                         <%= link_to fa_icon("repeat") + " re-assess candidate", edit_recruiter_applicant_detail_score_url(@applicant_detail, @applicant_detail.score, requirement_id: @applicant_detail.requirement), class: "btn btn-primary"  if !@applicant_detail.sent? %>
+                         <%= link_to "send applicant's details to #{@applicant_detail.requirement.company.name}", recruiter_send_company_applicant_details_url(@applicant_detail), method: :patch, data: { confirm: "Do you want to send #{@applicant_detail.name}'s application details to #{@applicant_detail.requirement.company.name}?"}, class: "btn btn-primary" if !@applicant_detail.sent? %>
+                          <% end %> 
+                          <% if !@applicant_detail.accept? && @applicant_detail.reason_for_rejection %>
+                          <button data-toggle="modal" data-target="#demoRequest" class="btn btn-danger center-block">click to view reason for rejection</button>
+                          <% end %>
+                         </span>
+          </div>
+
+        <div class="widget-content">
+            <div class="todo">
+              <ul>
+                <% if @requirement.compulsory_requirement.requirement_1.blank? %>
+                <% else %>
+                <li class="clearfix">
+                  <div class="txt">  
+                  <%= @requirement.compulsory_requirement.requirement_1 %></div>
+                  <div class="pull-right">
+                  <% if @score.requirement_1_check? %>
+                    met requirements
+                  <% else %>
+                    did not meet requirements
+                  <% end %>
+                  </div>
+                </li>
+                <% end %>
+
+                <% if @requirement.compulsory_requirement.requirement_2.blank? %>
+                <% else %>
+                <li class="clearfix">                  
+                  <div class="txt"> 
+                  <%= @requirement.compulsory_requirement.requirement_2 %></div>
+                  <div class="pull-right">
+                  <% if @score.requirement_2_check? %>
+                    met requirements
+                  <% else %>
+                    did not meet requirements
+                  <% end %>
+                  </div>
+                </li>
+                <% end %>
+                <% if @requirement.compulsory_requirement.requirement_3.blank? %>
+                <% else %>
+                <li class="clearfix">
+                  <div class="txt">  
+                  <%= @requirement.compulsory_requirement.requirement_3 %></div>
+                  <div class="pull-right">
+                    <% if @score.requirement_3_check? %>
+                    met requirements
+                    <% else %>
+                    did not meet requirements
+                    <% end %>
+                  </div>
+ 
+                </li>
+                <% end %>
+                <% if @requirement.compulsory_requirement.requirement_4.blank? %>
+                <% else %>
+                <li class="clearfix">
+                  <div class="txt"> <%= @requirement.compulsory_requirement.requirement_4%></div>
+                  <div class="pull-right">
+                    <% if @score.requirement_4_check? %>
+                    met requirements
+                  <% else %>
+                    did not meet requirements
+                  <% end %>
+                  </div>
+
+                </li>
+                <% end %>
+                <% if @requirement.compulsory_requirement.requirement_5.blank? %>
+                <% else %>
+                <li class="clearfix">
+                  <div class="txt"><%= @requirement.compulsory_requirement.requirement_5 %></div>
+                  <div class="pull-right">
+                  <% if @score.requirement_5_check? %>
+                    met requirements
+                  <% else %>
+                    did not meet requirements
+                  <% end %>
+                  </div>
+
+                </li>
+                <% end %>
+                <% if @requirement.compulsory_requirement.requirement_6.blank? %>
+                <% else %>
+                <li class="clearfix">
+                  <div class="txt">  
+                  <%= @requirement.compulsory_requirement.requirement_6 %></div>
+                  <div class="pull-right">
+                  <% if @score.requirement_6_check? %>
+                    met requirements
+                  <% else %>
+                    did not meet requirements
+                  <% end %>
+                  </div>
+ 
+                </li>
+                <% end %>
+                <% if @requirement.compulsory_requirement.requirement_7.blank? %>
+                <% else %>
+                <li class="clearfix">
+                  <div class="txt">  
+                  <%= @requirement.compulsory_requirement.requirement_7 %></div>
+                  <div class="pull-right">
+                  <% if @score.requirement_7_check? %>
+                    met requirements
+                  <% else %>
+                    did not meet requirements
+                  <% end %>
+                  </div>
+ 
+                </li>
+                <% end %>
+                <% if @requirement.compulsory_requirement.requirement_8.blank? %>
+                <% else %>
+                <li class="clearfix">
+                  <div class="txt">  
+                  <%= @requirement.compulsory_requirement.requirement_8 %></div>
+                  <div class="pull-right">
+                  <% if @score.requirement_8_check? %>
+                    met requirements
+                  <% else %>
+                    did not meet requirements
+                  <% end %>
+                  </div>
+ 
+                </li>
+                <% end %>
+                <% if @requirement.compulsory_requirement.requirement_9.blank? %>
+                <% else %>
+                <li class="clearfix">
+                  <div class="txt">  
+                  <%= @requirement.compulsory_requirement.requirement_9 %></div>
+                  <div class="pull-right">
+                  <% if @score.requirement_9_check? %>
+                    met requirements
+                  <% else %>
+                    did not meet requirements
+                  <% end %>
+                  </div>
+ 
+                </li>
+                <% end %>
+                <% if @requirement.compulsory_requirement.requirement_10.blank? %>
+                <% else %>
+                <li class="clearfix">
+                  <div class="txt">  
+                  <%= @requirement.compulsory_requirement.requirement_10 %></div>
+                  <div class="pull-right">
+                  <% if @score.requirement_10_check? %>
+                    met requirements
+                  <% else %>
+                    did not meet requirements
+                  <% end %>
+                  </div>
+ 
+                </li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+          </div>
+          <% end %>
+          <% end %>
 
          <!-- line modal -->
                     <div class="modal fade" id="demoRequest" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
