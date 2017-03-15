@@ -27,7 +27,7 @@
                 	<td><span class="badge badge-success"><%= company.name %></span></td>
                 	<td><%= company.email %></td>
                 	<td><%= company.phonenumber %></td>
-                  <td><%= company.last_sign_in_at.strftime("%r, %B %d, %Y") %></td>
+                  <td><%= company.last_sign_in_at.strftime("%r, %B %d, %Y") if company.last_sign_in_at.present? %></td>
                 	<!-- <td class="center"><%#= company.company %></td> -->
                 	<!-- <td class="center"><%#= company.job_title %></td> -->
                 	<td>

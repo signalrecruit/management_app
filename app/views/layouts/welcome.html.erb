@@ -55,7 +55,7 @@
                               <div class="form-group">
                                 <%= f.input :fullname, class: "form-control", placeholder: "fullname", require: true %>
                                 <%= f.input :email, class: "form-control", placeholder: "email" %> 
-                                <%= f.input :phonenumber, class: "form-control", placeholder: "phonenumber" %>
+                                <%= f.input :phonenumber, maxlength: "10", class: "form-control", placeholder: "phonenumber" %>
                                 <%= f.input :job_title, class: "form-control", placeholder: "job title" %>
                               </div>
 

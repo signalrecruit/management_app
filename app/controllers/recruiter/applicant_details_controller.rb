@@ -44,7 +44,7 @@ class Recruiter::ApplicantDetailsController < Recruiter::ApplicationController
   end
 
   def match_job_description
-  	@requirements = Requirement.all.uniq
+  	@requirements = Requirement.all.where.not(vacancies_left: 0).uniq
   end
 
   def send_company_applicant_details

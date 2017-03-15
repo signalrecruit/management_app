@@ -7,9 +7,17 @@ class Requirement < ActiveRecord::Base
   has_many :applicant_details, dependent: :destroy
   
   validates :title, :location, :experience, :min_salary, :max_salary,
-  		:number_of_vacancies, :company_id, presence: true 
+  		:number_of_vacancies, :vacancies_left, :company_id, presence: true 
   
   attr_accessor :qualification_names, :skill_names, :job_type_names
+
+  after_create :update_vacancies_left 
+    
+
+  def update_vacancies_left
+    self.update(vacancies_left: (self.number_of_vacancies - self.applicant_details.count))
+  end
+
   
   def qualification_names=(names)
     @qualification_names = names

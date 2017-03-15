@@ -2,23 +2,26 @@
     <h1>
     <% if @applicant_detail.accept? %>
       <i class="fa fa-check-circle" aria-hidden="true"></i>
-    <% else %>
-      <i class="fa fa-hand-paper-o" aria-hidden="true"></i>
-    <% end %>	
+    <% elsif !@applicant_detail.accept? && (@applicant_detail.requirement.nil? || @applicant_detail.score.nil?) %>
+      <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+    <% elsif !@applicant_detail.accept? %>
+      <i class="fa fa-hand-paper-o" aria-hidden="true"></i>      <% end %>	
     <span class="date badge badge-success" style="font-size: 28px; padding: 20px;"> <%= @applicant_detail.name %>'s </span> Job Application
-    <% if @applicant_detail.score.total_score < 50.00 %>  
-    <span class="date badge badge-important pull-right" style="font-size: 28px; padding: 20px;">
-    <% elsif @applicant_detail.score.total_score == 50.00 %>
+    <% if @applicant_detail.score.present? %>
+      <% if @applicant_detail.score.total_score < 50.00 %>  
+      <span class="date badge badge-important pull-right" style="font-size: 28px; padding: 20px;">
+      <% elsif @applicant_detail.score.total_score == 50.00 %>
       <span class="date badge badge-warning pull-right" style="font-size: 28px; padding: 20px;">
-    <% elsif @applicant_detail.score.total_score > 50.00 && @applicant_detail.score.total_score < 90.00 %>
+      <% elsif @applicant_detail.score.total_score > 50.00 && @applicant_detail.score.total_score < 90.00 %>
       <span class="date badge badge-info pull-right" style="font-size: 28px; padding: 20px;">
-    <% elsif @applicant_detail.score.total_score == 90.00 || @applicant_detail.score.total_score > 90.00 %>
+      <% elsif @applicant_detail.score.total_score == 90.00 || @applicant_detail.score.total_score > 90.00 %>
       <span class="date badge badge-success pull-right" style="font-size: 28px; padding: 20px;">
-    <% elsif @applicant_detail.score.total_score == nil %>
-    <span class="date badge badge-danger pull-right" style="font-size: 28px; padding: 20px;">
+      <% elsif @applicant_detail.score.total_score == nil %>
+      <span class="date badge badge-danger pull-right" style="font-size: 28px; padding: 20px;">
             
+      <% end %>
     <% end %>
-
+      
     Score:
      <% if @applicant_detail.score.nil? %>   
      ? 
@@ -96,12 +99,17 @@
         <% if @requirement.compulsory_requirement %>
         <div class="widget-box">
           <div class="widget-title"> <span class="icon"><i class="icon-ok"></i></span>
-          <h5>Non-Negotiable Requirements</h5>
+          <% if @score.present? %>
+            <h5>Non-Negotiable Requirements</h5>
+          <% else %>
+            <h5>NOTE: This Candidate has not been assessed yet.</h5>
+          <% end %>
           </div>
 
         <div class="widget-content">
             <div class="todo">
               <ul>
+              <% if @score.present? %>
                 <% if @requirement.compulsory_requirement.requirement_1.blank? %>
                 <% else %>
                 <li class="clearfix">
@@ -249,6 +257,7 @@
  
                 </li>
                 <% end %>
+              <% end %>  
               </ul>
             </div>
           </div>

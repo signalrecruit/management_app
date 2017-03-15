@@ -49,22 +49,7 @@
                 	  <% end %>	
                 	</td>
                 	<td>
-                		<!-- div class="btn-group">
-                			<button data-toggle="dropdown" class="btn btn-primary btn-mini dropdown-toggle">Contacted?<span class="caret"></span></button>
-                			<ul class="dropdown-menu">
-                				<li><%#= link_to "Yes", recruiter_contact_path(request), method: :patch %></li>
-                				<li><%#= link_to "No", recruiter_no_contact_path(request), method: :patch %></li>
-                			</ul>
-                		</div>
-                    <div class="btn-group">
-                      <button data-toggle="dropdown" class="btn btn-primary btn-mini dropdown-toggle">Accepted Offer?<span class="caret"></span></button>
-                      <ul class="dropdown-menu">
-                        <li><%#= link_to "Yes", recruiter_company_accept_offer_path(request), method: :patch %></li>
-                        <li><%#= link_to "No", recruiter_company_reject_offer_path(request), method: :patch %></li>
-                      </ul>
-                    </div> -->
-                    <%#= link_to "Send Email", recruiter_company_signup_path(request), class: "btn btn-success btn-mini" %>
-                    <%= requirement.number_of_vacancies %>
+                    <%= requirement.vacancies_left %>
                 	</td>
                 </tr>
               <% end %>

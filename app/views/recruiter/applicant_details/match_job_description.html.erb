@@ -66,7 +66,7 @@
                       <button data-toggle="dropdown" class="btn btn-primary btn-mini dropdown-toggle"><%= requirement.company.name %><span class="caret"></span></button>
                       <ul class="dropdown-menu">
                         <li>
-                        <% if requirement.number_of_vacancies == 0 %> 
+                        <% if requirement.vacancies_left == 0 %> 
                         no vacancies available for this job
                         <% else %> 
                         <%= link_to "get applicant's assessment for this role", new_recruiter_applicant_detail_score_url(@applicant_detail, requirement_id: requirement.id) %>
@@ -95,7 +95,7 @@
                 	  <% end %>	
                 	</td>
                 	<td>
-                      <%= requirement.number_of_vacancies %>
+                      <%= requirement.vacancies_left %>
                 	</td>
                 </tr>
               <% end %>

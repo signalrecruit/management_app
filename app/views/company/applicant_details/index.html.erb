@@ -60,19 +60,22 @@
                 	  <% end %>	
                 	</td>
                 	<td>
-                  <% if applicant_detail.score.total_score < 50.00 %>  
-                    <span class="date badge badge-important">
-                  <% elsif applicant_detail.score.total_score == 50.00 %>
-                    <span class="date badge badge-warning">
-                  <% elsif applicant_detail.score.total_score > 50.00 && applicant_detail.score.total_score < 90.00 %>
-                    <span class="date badge badge-info">
-                  <% elsif applicant_detail.score.total_score == 90.00 || applicant_detail.score.total_score > 90.00 %>
+                  <% if applicant_detail.score.present? %>
+                    <% if applicant_detail.score.total_score < 50.00 %>  
+                      <span class="date badge badge-important">
+                    <% elsif applicant_detail.score.total_score == 50.00 %>
+                      <span class="date badge badge-warning">
+                    <% elsif applicant_detail.score.total_score > 50.00 && applicant_detail.score.total_score < 90.00 %>
+                      <span class="date badge badge-info">
+                    <% elsif applicant_detail.score.total_score == 90.00 || applicant_detail.score.total_score > 90.00 %>
                      <span class="date badge badge-success">     
+                    <% end %>
                   <% end %>
+
                   <% if applicant_detail.score.present? %>
                 		<%= number_with_precision applicant_detail.score.total_score, precision: 2, scale: 2 %>%
                   <% else %>
-                    <%= link_to "match job description", recruiter_match_job_description_url(applicant_detail), class: "btn btn-primary" %>  
+                    no score
                   <% end %>
                   </span>  
                 	</td>
