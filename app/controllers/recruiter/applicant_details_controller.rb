@@ -62,6 +62,6 @@ class Recruiter::ApplicantDetailsController < Recruiter::ApplicationController
 
   def applicant_params
   	params.require(:applicant_detail).permit(:name, :email, :phonenumber, :location, :experience, :min_salary,
-  		:max_salary, :job_title, :sent, :requirement_id, :qualification_names, :skill_names, :job_type_names, :job_type_ids => [], :qualification_ids => [], :skill_ids => [])
+  		:max_salary, :job_title, :sent, :requirement_id, :qualification_names, :skill_names, :attachment, :attachment_cache, :job_type_names, :job_type_ids => [], :qualification_ids => [], :skill_ids => [])
   end
 end

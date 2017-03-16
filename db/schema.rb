@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170315150001) do
+ActiveRecord::Schema.define(version: 20170316005623) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20170315150001) do
     t.boolean  "sent",                 default: false
     t.boolean  "accept",               default: false
     t.text     "reason_for_rejection"
+    t.string   "attachment"
   end
 
   add_index "applicant_details", ["requirement_id"], name: "index_applicant_details_on_requirement_id", using: :btree

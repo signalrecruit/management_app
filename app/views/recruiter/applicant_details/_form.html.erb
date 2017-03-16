@@ -104,6 +104,16 @@
 				</div>
 			</div>
 
+			<div class="control-group">
+				<label class="control-label">Upload Applicant's Resume</label>
+				<div class="controls">
+					<%= f.input :attachment, as: :file, label: false %>
+					<%= f.input :attachment_cache, as: :hidden %>
+				</div>
+			</div>
+
+
+
 			<div class="form-actions">
 				<% if applicant_detail.persisted? %>
 				<%= f.button :submit, "Update Applicant's Details", class: "btn btn-success" %>
