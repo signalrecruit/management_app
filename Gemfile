@@ -65,6 +65,7 @@ gem 'fog'
 gem 'fog-aws'
 gem 'figaro'
 gem 'aws-sdk', '< 2.0'
+gem 'mini_magick', '~> 3.4'
 gem 'rails_12factor'
 
 
