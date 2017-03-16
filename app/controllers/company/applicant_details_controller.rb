@@ -8,7 +8,7 @@ class Company::ApplicantDetailsController < Company::ApplicationController
     @requirements = @company.requirements
     @applicant_details = []
     @requirements.each do |requirement|
-      requirement.applicant_details.where(sent: true).each do |applicant_detail|
+      requirement.applicant_details.each do |applicant_detail|
       	@applicant_details << applicant_detail
       end	
     end	

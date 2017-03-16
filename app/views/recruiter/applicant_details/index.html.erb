@@ -20,14 +20,15 @@
             <table class="table table-bordered table-striped table-hover">
               <thead>
                 <tr>
+                  <th>Name Of Applicant</th>
                 	<th>Job Type</th>
-                	<th>Name Of Applicant</th>
                 	<th>Location</th>
                 	<th>Required Experience(yrs)</th>
                 	<th>Salary Range(GHS)</th>
                 	<th>Required Skill Set</th>
                 	<th>Educational Qualifications</th>
                 	<th>Score</th>
+                  <th>Schedule</th>
                 </tr>
               </thead>
               <tbody>
@@ -41,11 +42,13 @@
                       <% else %>
                       <span class="date badge badge-important"><i class="fa fa-hand-paper-o" aria-hidden="true"></i></span>
                       <% end %>
-                    <% applicant_detail.job_types.each do |job_type| %>
-                           <%= link_to job_type.name, [:recruiter, applicant_detail] %>,
-                         <% end %>
+                      <%= link_to applicant_detail.name, [:recruiter, applicant_detail] %>
                     </td>
-                    <td><%= applicant_detail.name %></td>
+                    <td>
+                      <% applicant_detail.job_types.each do |job_type| %>
+                           <%= job_type.name %>,
+                      <% end %>
+                    </td>
                 	<td><%= applicant_detail.location %></td>
                 	<td><%= applicant_detail.experience %></td>
                 	<td class="center"><%= applicant_detail.min_salary %> - <%= applicant_detail.max_salary %></td>
@@ -79,6 +82,8 @@
                   <% end %>
                   </span>  
                 	</td>
+                  <td><span class="date badge badge-info"><i class="fa fa-calendar" aria-hidden="true"></i>
+</span><%= link_to "interview/test", recruiter_calendar_url %></td> 
                 </tr>
               <% end %>
               </tbody>

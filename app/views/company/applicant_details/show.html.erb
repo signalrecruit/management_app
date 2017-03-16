@@ -92,7 +92,9 @@
             </div>
             <% end %>
             </div>
-            <div class="new-update clearfix"> <i class="icon-ok-sign"></i> <span class="update-done"> <a title="" href="#"><strong>Attachment</strong></a><span><%= link_to File.basename(@applicant_detail.attachment.url), @applicant_detail.attachment.url %>(<%= number_to_human_size @applicant_detail.attachment.size %>))</span> </span> </div>
+            <% if @applicant_detail.attachment.present? %>
+            <div class="new-update clearfix"> <i class="icon-ok-sign"></i> <span class="update-done"> <a title="" href="#"><strong>Attachment</strong></a><span><%= link_to File.basename(@applicant_detail.attachment.url), @applicant_detail.attachment.url %>(<%= number_to_human_size @applicant_detail.attachment.size %>)</span> </span> </div>
+            <% end %>
           </div>
         </div>
 
