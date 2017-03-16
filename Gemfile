@@ -61,4 +61,10 @@ gem "font-awesome-rails"
 gem 'devise'
 gem 'delayed_job_active_record'
 gem 'carrierwave', '~> 0.10.0'
+gem 'fog'
+gem 'fog-aws'
+gem 'figaro'
+gem 'aws-sdk', '< 2.0'
+gem 'rails_12factor'
+
 
