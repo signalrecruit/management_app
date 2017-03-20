@@ -11,15 +11,12 @@
                   <button type="button" class="close" data-dismiss="modal">×</button>
                   <h3>Add a new event</h3>
                 </div>
-                <%= simple_form_for([:recruiter, applicant_detail, event]) do |f| %>
                 <div class="modal-body">
-                  <p><%= f.input :name %></p>
+                  <p>Enter event name:</p>
+                  <p>
+                    <input id="event-name" type="text" />
+                  </p>
                 </div>
-                <%#= f.input :brief_description %>
-                <div class="modal-footer"> 
-                 <%= f.button :submit, "schedule an event", class: "btn btn-primary" %>
-               </div>
-               <% end %>
                 <div class="modal-footer"> <a href="#" class="btn" data-dismiss="modal">Cancel</a> <a href="#" id="add-event-submit" class="btn btn-primary">Add event</a> </div>
               </div>
             </div>
@@ -56,4 +53,4 @@
   <%= javascript_include_tag "recruiter/matrix.calendar" %>   
   
   
- 
+  

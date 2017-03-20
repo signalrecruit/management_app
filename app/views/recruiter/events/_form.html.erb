@@ -2,7 +2,10 @@
   <div class="modal-body">
   <p><%= f.input :name %></p>
   <p> <%= f.input :brief_description, label: "brief description(optional)" %></p>
-  <p><%= f.input :interview_date, label: "set det for interview" %></p>
+  <div class="col-md-12">
+    <%= f.input :interview_date, as: :date, label: "set date for interview" %>	
+  </div>
+  <p><%= f.input :test_date, as: :date, label: "set date for test" %></p>
   </div>
    <div class="modal-footer"> 
    <%= f.button :submit, "schedule an event", class: "btn btn-primary" %>

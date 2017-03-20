@@ -12,6 +12,7 @@ class Recruiter::EventsController < ApplicationController
   def new
     @event = Event.new
     @scheduled_event = @applicant_detail.event
+    @all_events = Event.all
   end
 
   def create
@@ -21,6 +22,9 @@ class Recruiter::EventsController < ApplicationController
     if @event.save
       flash[:success] = "successfully created an event"
       redirect_to :back
+    else
+      flash[:alert] = "could not create an event"
+      render :new
     end
   end
 
@@ -45,6 +49,6 @@ class Recruiter::EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:name, :brief_description, :interview_date, :test_date)
+    params.require(:event).permit(:name, :brief_description, :interview_date, :test_date, :confirm)
   end
 end
