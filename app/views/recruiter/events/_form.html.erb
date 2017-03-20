@@ -1,13 +1,43 @@
+<div class="span12">
+<div class="widget-box">
+        <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+          <h5>Schedule Event for <%= @applicant_detail.name %></h5>
+        </div>
+        <div class="widget-content nopadding form-horizontal">
 <%= simple_form_for([:recruiter, applicant_detail, event]) do |f| %>
-  <div class="modal-body">
-  <p><%= f.input :name %></p>
-  <p> <%= f.input :brief_description, label: "brief description(optional)" %></p>
-  <div class="col-md-12">
-    <%= f.input :interview_date, as: :date, label: "set date for interview" %>	
-  </div>
-  <p><%= f.input :test_date, as: :date, label: "set date for test" %></p>
-  </div>
+
+<div class="control-group">
+	<label class="control-label">Event Name :</label>
+	<div class="controls">
+		<%= f.input :name, label: false %>
+	</div>
+</div>
+
+<div class="control-group">
+	<label class="control-label">Brief Description :</label>
+	<div class="controls">
+		<%= f.input :brief_description, label: false %>
+	</div>
+</div>
+
+<div class="control-group">
+	<label class="control-label">set date for interview:</label>
+	<div class="controls">
+		<%= f.input :interview_date, as: :date, label: false %>
+	</div>
+</div>
+
+<div class="control-group">
+	<label class="control-label">set date for test:</label>
+	<div class="controls">
+		<%= f.input :test_date, as: :date, label: false %>
+	</div>
+</div>
+
    <div class="modal-footer"> 
    <%= f.button :submit, "schedule an event", class: "btn btn-primary" %>
    </div>
 <% end %>
+</div>
+</div>
+</div>

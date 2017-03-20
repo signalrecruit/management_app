@@ -29,8 +29,9 @@ Rails.application.routes.draw do
     resources :applicant_details do 
       resources :scores, only: [:new, :show, :create, :edit, :update]
       resources :experiences
-      resources :events
+      resources :events, except: [:index]
     end    
+    resources :events, only: [:index]
   end
 
 

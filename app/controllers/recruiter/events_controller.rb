@@ -1,27 +1,28 @@
 class Recruiter::EventsController < ApplicationController
-  before_action :set_applicant_detail
+  before_action :set_applicant_detail, except: [:index]
   before_action :set_event, only: [:show, :edit, :update, :destroy]
   layout "recruiter"
 
   def index
+    @events = Event.all
   end
 
   def show
+    index
   end
 
   def new
-    @event = Event.new
+    @event = @applicant_detail.build_event
     @scheduled_event = @applicant_detail.event
-    @all_events = Event.all
   end
 
   def create
-    @event = Event.new(event_params)
-    @event.applicant_detail_id = @applicant_detail.id 
+    @event = @applicant_detail.build_event(event_params)
+    # @event.applicant_detail_id = @applicant_detail.id 
 
     if @event.save
       flash[:success] = "successfully created an event"
-      redirect_to :back
+      redirect_to [:recruiter, @applicant_detail, @event]
     else
       flash[:alert] = "could not create an event"
       render :new
@@ -32,10 +33,18 @@ class Recruiter::EventsController < ApplicationController
   end
 
   def update
+    if @event.update(event_params)
+      flash[:success] = "successfully updated event"
+      redirect_to [:recruiter, @applicant_detail, @event]
+    else
+      flash[:alert] = "could not update event"
+      render :edit
+    end
   end
 
   def destroy
   end
+  
 
 
   private
@@ -49,6 +58,6 @@ class Recruiter::EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:name, :brief_description, :interview_date, :test_date, :confirm)
+    params.require(:event).permit(:name, :brief_description, :interview_date, :test_date, :confirm, :applicant_detail_id)
   end
 end

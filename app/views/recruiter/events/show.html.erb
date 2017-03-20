@@ -1,2 +1,62 @@
-<h1>Recruiter::Events#show</h1>
-<p>Find me in app/views/recruiter/events/show.html.erb</p>
+<h3>View <%= @applicant_detail.name %>'s Schedule</h3>
+<div class="accordion" id="collapse-group">
+	<div class="accordion-group widget-box">
+		<div class="accordion-heading">
+			<div class="widget-title"> <a data-parent="#collapse-group" href="#collapseGOne" data-toggle="collapse"> <span class="icon"><i class="icon-eye-open"></i></span>
+				<h5><%= @applicant_detail.name %>'s schedule</h5><%= link_to fa_icon("pencil") + " Edit", [:edit, :recruiter, @applicant_detail, @applicant_detail.event] , class: "btn btn-primary pull-right" %>   
+			</a> </div>
+		</div>
+		<div class="collapse in accordion-body" id="collapseGOne">
+			<div class="widget-content"> 
+				<p>Event Name: <%= @applicant_detail.event.name %>
+				</p>
+				<p>Event Description:  <%= @applicant_detail.event.brief_description %></p>
+				<p>Email: <%= @applicant_detail.email %></p>
+				<p>Interview Date: <%= @applicant_detail.event.interview_date.strftime("%B %d, %Y") %></p>
+				<p>Test Date: <%= @applicant_detail.event.test_date.strftime("%B %d, %Y") %></p>
+				<p>Confirm Status: <% if @applicant_detail.event.confirm? %>
+					Confirmed
+					<% else %>
+					Not Confirmed 
+					<% end %> 
+				</p>
+			</div>
+		</div>
+	</div>
+</div>
+<hr>
+<div class="widget-box">
+<div class="widget-title"> <span class="icon"> <i class="icon-calendar"></i> </span>
+		<h5><%= pluralize(@events.count, "Scheduled Event") %></h5>
+	</div>
+
+	<div class="widget-content nopadding">
+		<table class="table table-bordered table-striped">
+			<thead>
+				<tr>
+					<th>Applicant Name</th>
+					<th>Event Type/Name</th>
+					<th>Interview Date</th>
+					<th>Test Date</th>
+					<th>Confirm Status</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @events.each do |event| %>
+				<tr class="odd gradeX">
+					<td><%= event.applicant_detail.name %></td>
+					<td><%= event.name %></td>
+					<td><%= event.interview_date.strftime("%B %d, %Y")%></td>
+					<td><%= event.test_date.strftime("%B %d, %Y") %></td>
+					<td class="center"><%= event.confirm %></td>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<%= javascript_include_tag "recruiter/jquery.min" %>
+<%= javascript_include_tag "recruiter/jquery.ui.custom" %>
+<%= javascript_include_tag "recruiter/bootstrap.min" %>
+<%= javascript_include_tag "recruiter/matrix" %>

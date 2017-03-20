@@ -82,8 +82,14 @@
                   <% end %>
                   </span>  
                 	</td>
-                  <td><span class="date badge badge-info"><i class="fa fa-calendar" aria-hidden="true"></i>
-</span><%= link_to "interview/test", new_recruiter_applicant_detail_event_url(applicant_detail) %></td> 
+                  <td>
+                  <% if applicant_detail.event.present? %>
+                  <%= link_to "view schedule", recruiter_applicant_detail_event_url(applicant_detail, applicant_detail.event) %>
+                  <% else %>  
+                  <span class="date badge badge-info"><i class="fa fa-calendar" aria-hidden="true"></i>
+</span><%= link_to "interview/test", new_recruiter_applicant_detail_event_url(applicant_detail) %>
+                  <% end %>
+                  </td> 
                 </tr>
               <% end %>
               </tbody>
