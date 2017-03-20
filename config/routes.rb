@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+ 
   get 'identifier/identify', to: 'identifier#identify', as: :identifier
   post 'identifier/authenticate', to: 'identifier#authenticate'
   devise_for :recruiters, controllers: { registrations: "recruiter/registrations", sessions: "recruiter/sessions" }
@@ -29,6 +30,8 @@ Rails.application.routes.draw do
       resources :scores, only: [:new, :show, :create, :edit, :update]
       resources :experiences
     end    
+    
+    resources :events
   end
 
 
@@ -40,7 +43,7 @@ Rails.application.routes.draw do
     get 'requirements/:id/send_requirements',to: 'requirements#send_requirements', as: :send_requirements
     resources :requirements
     resources :requirements, only: [] do
-      resources :compulsory_requirements, only: [:show, :new, :create, :edit, :update, :destroy  ]
+      resources :compulsory_requirements, only: [:show, :new, :create, :edit, :update, :destroy]
     end
     
     patch 'applicant_details/:id/accept_applicant', to: 'applicant_details#accept_applicant', as: :accept_applicant

@@ -5,6 +5,7 @@ class ApplicantDetail < ActiveRecord::Base
   has_and_belongs_to_many :skills
   has_and_belongs_to_many :qualifications
   has_and_belongs_to_many :job_types
+  has_one :event, dependent: :destroy
 
   mount_uploader :attachment, AttachmentUploader
   
