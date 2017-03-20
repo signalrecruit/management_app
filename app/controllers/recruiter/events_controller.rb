@@ -45,6 +45,6 @@ class Recruiter::EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:name, :brief_description, :start_date)
+    params.require(:event).permit(:name, :brief_description, :interview_date, :test_date)
   end
 end

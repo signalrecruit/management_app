@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170320000855) do
+ActiveRecord::Schema.define(version: 20170320033543) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -116,8 +116,10 @@ ActiveRecord::Schema.define(version: 20170320000855) do
     t.string   "name"
     t.text     "brief_description"
     t.integer  "applicant_detail_id"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at",                                          null: false
+    t.datetime "updated_at",                                          null: false
+    t.datetime "interview_date",      default: '2017-03-20 03:38:43'
+    t.datetime "test_date",           default: '2017-03-20 03:38:43'
   end
 
   add_index "events", ["applicant_detail_id"], name: "index_events_on_applicant_detail_id", using: :btree
