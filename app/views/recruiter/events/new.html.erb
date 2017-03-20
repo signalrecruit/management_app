@@ -1,2 +1,44 @@
-<h1>Recruiter::Events#new</h1>
-<p>Find me in app/views/recruiter/events/new.html.erb</p>
+<div class="container-fluid">
+    <hr>
+    <div class="row-fluid">
+      <div class="span12">
+        <div class="widget-box widget-calendar">
+          <div class="widget-title"> <span class="icon"><i class="icon-calendar"></i></span>
+            <h5>Schedule Event For <%= @applicant_detail.name %></h5>
+            <div class="buttons"> <a id="add-event" data-toggle="modal" href="#modal-add-event" class="btn btn-inverse btn-mini"><i class="icon-plus icon-white"></i> Add new event</a>
+              <div class="modal hide" id="modal-add-event">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">×</button>
+                  <h3>Add a new event</h3>
+                </div>
+               <%= render "form", applicant_detail: @applicant_detail, event: @event %>
+              </div>
+            </div>
+          </div>
+          <div class="widget-content">
+            <div class="panel-left">
+              <div id="fullcalendar"></div>
+            </div>
+            <div id="external-events" class="panel-right">
+              <div class="panel-title">
+                <h5>Drag Events to the calander</h5>
+              </div>
+              <div class="panel-content">
+                <div class="external-event ui-draggable label label-inverse"><%= @scheduled_event.name || "" %></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+  <%= javascript_include_tag "recruiter/jquery.min" %>
+  <%= javascript_include_tag "recruiter/jquery.ui.custom" %>
+  <%= javascript_include_tag "recruiter/bootstrap.min" %>
+  <%= javascript_include_tag "recruiter/fullcalendar.min" %>
+  <%= javascript_include_tag "recruiter/matrix" %>
+  <%= javascript_include_tag "recruiter/matrix.calendar" %>   
+  
+  

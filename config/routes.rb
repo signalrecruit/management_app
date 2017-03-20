@@ -29,9 +29,8 @@ Rails.application.routes.draw do
     resources :applicant_details do 
       resources :scores, only: [:new, :show, :create, :edit, :update]
       resources :experiences
+      resources :events
     end    
-    
-    resources :events
   end
 
 
