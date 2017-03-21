@@ -1,7 +1,7 @@
-class Recruiter::EventsController <  Recruiter::ApplicationController
-  before_action :set_applicant_detail, except: [:index, :send_schedule]
-  before_action :set_event, only: [:show, :edit, :update, :destroy, :send_schedule]
-  layout "recruiter"
+class Company::EventsController < Company::ApplicationController
+  before_action :set_applicant_detail, except: [:index, :send_schedule, :show, :edit, :update, :confirm_schedule]
+  before_action :set_event, only: [:show, :edit, :update, :destroy, :confirm_schedule]
+  layout 'company' 
 
   def index
     @events = Event.all
@@ -21,7 +21,7 @@ class Recruiter::EventsController <  Recruiter::ApplicationController
 
     if @event.save
       flash[:success] = "successfully created an event"
-      redirect_to [:recruiter, @applicant_detail, @event]
+      redirect_to [:company, @applicant_detail, @event]
     else
       flash[:alert] = "could not create an event"
       render :new
@@ -34,7 +34,7 @@ class Recruiter::EventsController <  Recruiter::ApplicationController
   def update
     if @event.update(event_params)
       flash[:success] = "successfully updated event"
-      redirect_to [:recruiter, @applicant_detail, @event]
+      redirect_to [:company, @event]
     else
       flash[:alert] = "could not update event"
       render :edit
@@ -44,8 +44,8 @@ class Recruiter::EventsController <  Recruiter::ApplicationController
   def destroy
   end
 
-  def send_schedule
-    @event.update(sent: true)
+  def confirm_schedule
+    @event.update(confirm: true)
     flash[:success] = "#{@event.applicant_detail.name}'s sent successfully"
     redirect_to :back
   end

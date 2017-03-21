@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170320042757) do
+ActiveRecord::Schema.define(version: 20170320224210) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -121,6 +121,7 @@ ActiveRecord::Schema.define(version: 20170320042757) do
     t.datetime "interview_date",      default: '2017-03-20 04:27:39'
     t.datetime "test_date",           default: '2017-03-20 04:27:39'
     t.boolean  "confirm",             default: false
+    t.boolean  "sent",                default: false
   end
 
   add_index "events", ["applicant_detail_id"], name: "index_events_on_applicant_detail_id", using: :btree

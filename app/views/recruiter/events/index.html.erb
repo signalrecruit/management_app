@@ -1,60 +1,44 @@
 <div class="container-fluid">
 	<hr>
-
-
-
 	<div class="widget-box">
-		<div class="widget-title"> <span class="icon"><i class="icon-calendar"></i></span>
-			<h5>Schedule Event For <%= @applicant_detail.name %></h5>
-			<div class="buttons"> <a id="add-event" data-toggle="modal" href="#modal-add-event" class="btn btn-inverse btn-mini"><i class="icon-plus icon-white"></i> Add new event</a>
-				<div class="modal hide" style="width:700px;" id="modal-add-event">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal">×</button>
-						<h3>Add a new event</h3>
-					</div>
-					<%= render "recruiter/events/form", applicant_detail: @applicant_detail, event: @event %>
-				</div>
-			</div>
+		<div class="widget-title"> <span class="icon"> <i class="icon-calendar"></i> </span>
+			<h5><%= pluralize(@events.count, "Scheduled Event") %></h5>
 		</div>
+
 		<div class="widget-content nopadding">
 			<table class="table table-bordered table-striped">
 				<thead>
 					<tr>
 						<th>Applicant Name</th>
 						<th>Event Type/Name</th>
-						<th>Event Date</th>
+						<th>Interview Date</th>
+						<th>Test Date</th>
 						<th>Confirm Status</th>
 					</tr>
 				</thead>
 				<tbody>
-				<% @events.each do |event| %>
+					<% @events.each do |event| %>
 					<tr class="odd gradeX">
-						<td>a<%= event.applicant_detail.name %></td>
-						<td>
-						  Interview/Test	
-						</td>
-							<td>
-							  <% if event.interview_date.present? %>
-							    Interview
-							  <% elsif event.test_date.present? %>
-							   Test  
-							  <% end %>	
-							</td>
-							<td class="center"><%= event.confirm %></td>
-						</tr>
-				<% end %>
-					</tbody>
-				</table>
-			</div>
+						<td><%= event.applicant_detail.name %></td>
+						<td><%= event.name %></td>
+						<td><%= event.interview_date.strftime("%B %d, %Y")%></td>
+						<td><%= event.test_date.strftime("%B %d, %Y") %></td>
+						<td class="center"><%= event.confirm %></td>
+					</tr>
+					<% end %>
+				</tbody>
+			</table>
 		</div>
 	</div>
 
+</div>
 
-	<%= javascript_include_tag "recruiter/jquery.min" %>
-	<%= javascript_include_tag "recruiter/jquery.ui.custom" %>
-	<%= javascript_include_tag "recruiter/bootstrap.min" %>
-	<%#= javascript_include_tag "recruiter/fullcalendar.min" %>
-	<%= javascript_include_tag "recruiter/matrix" %>
-	<%= javascript_include_tag "recruiter/matrix.calendar" %>   
+
+<%= javascript_include_tag "recruiter/jquery.min" %>
+<%= javascript_include_tag "recruiter/jquery.ui.custom" %>
+<%= javascript_include_tag "recruiter/bootstrap.min" %>
+<%#= javascript_include_tag "recruiter/fullcalendar.min" %>
+<%= javascript_include_tag "recruiter/matrix" %>
+<%= javascript_include_tag "recruiter/matrix.calendar" %>   
 
 

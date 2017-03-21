@@ -1,20 +1,21 @@
-<h3>View <%= @applicant_detail.name %>'s Schedule</h3>
+<h3>View <%= @event.applicant_detail.name %>'s Schedule</h3>
 <div class="accordion" id="collapse-group">
 	<div class="accordion-group widget-box">
 		<div class="accordion-heading">
 			<div class="widget-title"> <a data-parent="#collapse-group" href="#collapseGOne" data-toggle="collapse"> <span class="icon"><i class="icon-eye-open"></i></span>
-				<h5><%= @applicant_detail.name %>'s schedule</h5><%= link_to fa_icon("pencil") + " Edit", [:edit, :recruiter, @applicant_detail, @applicant_detail.event] , class: "btn btn-primary pull-right" %> <%= link_to fa_icon("paper-plane-o") + " send", recruiter_send_schedule_url(@event), method: :patch, class: "btn btn-primary pull-right" %>     
+				<h5>
+				<%= @event.applicant_detail.name %>'s schedule</h5><%= link_to fa_icon("pencil") + " Edit", [:edit, :company, @event] , class: "btn btn-primary pull-right" if !@event.confirm? %> <%= link_to fa_icon("thumbs-o-up") + " confirm schedule", company_confirm_schedule_url(@event), method: :patch, class: "btn btn-primary pull-right", data: { confirm: "Click Ok to confirm #{@event.applicant_detail.name}'s schedule"} if !@event.confirm? %>
 			</a> </div>
 		</div>
 		<div class="collapse in accordion-body" id="collapseGOne">
 			<div class="widget-content"> 
-				<p>Event Name: <%= @applicant_detail.event.name %>
+				<p>Event Name: <%= @event.name %>
 				</p>
-				<p>Event Description:  <%= @applicant_detail.event.brief_description %></p>
-				<p>Email: <%= @applicant_detail.email %></p>
-				<p>Interview Date: <%= @applicant_detail.event.interview_date.strftime("%B %d, %Y") %></p>
-				<p>Test Date: <%= @applicant_detail.event.test_date.strftime("%B %d, %Y") %></p>
-				<p>Confirm Status: <% if @applicant_detail.event.confirm? %>
+				<p>Event Description:  <%= @event.brief_description %></p>
+				<p>Email: <%= @event.applicant_detail.email %></p>
+				<p>Interview Date: <%= @event.interview_date.strftime("%B %d, %Y") %></p>
+				<p>Test Date: <%= @event.test_date.strftime("%B %d, %Y") %></p>
+				<p>Confirm Status: <% if @event.confirm? %>
 					Confirmed
 					<% else %>
 					Not Confirmed 
@@ -50,7 +51,7 @@
 					<td><%= event.interview_date.strftime("%B %d, %Y")%></td>
 					<td><%= event.test_date.strftime("%B %d, %Y") %></td>
 					<td class="center"><%= event.confirm %></td>
-					<td><%= link_to fa_icon("eye") + " schedule", [:recruiter, event.applicant_detail, event] %></td>
+					<td><%= link_to fa_icon("eye") + " schedule", [:company, event] %></td>
 				</tr>
 				<% end %>
 			</tbody>
@@ -58,7 +59,7 @@
 	</div>
 </div>
 
-<%= javascript_include_tag "recruiter/jquery.min" %>
-<%= javascript_include_tag "recruiter/jquery.ui.custom" %>
-<%= javascript_include_tag "recruiter/bootstrap.min" %>
-<%= javascript_include_tag "recruiter/matrix" %>
+<%= javascript_include_tag "company/jquery.min" %>
+<%= javascript_include_tag "company/jquery.ui.custom" %>
+<%= javascript_include_tag "company/bootstrap.min" %>
+<%= javascript_include_tag "company/matrix" %>

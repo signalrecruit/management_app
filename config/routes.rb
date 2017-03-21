@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
- 
   get 'identifier/identify', to: 'identifier#identify', as: :identifier
   post 'identifier/authenticate', to: 'identifier#authenticate'
   devise_for :recruiters, controllers: { registrations: "recruiter/registrations", sessions: "recruiter/sessions" }
@@ -23,6 +22,8 @@ Rails.application.routes.draw do
 
     get 'applicant_details/:id/match_job_description', to: 'applicant_details#match_job_description', as: :match_job_description
     patch 'applicant_details/:id/send_company_applicant_details', to: 'applicant_details#send_company_applicant_details', as: :send_company_applicant_details
+    patch 'events/:id/send_schedule', to: 'events#send_schedule', as: :send_schedule
+
     resources :requests, only: [:new, :create]
     resources :requirements
     
@@ -51,6 +52,11 @@ Rails.application.routes.draw do
     patch 'applicant_details/:id/send_recruiter_applicant_details', to: 'applicant_details#send_recruiter_applicant_details', as: :send_recruiter_applicant_details
 
     resources :applicant_details, only: [:index, :show, :update]
+    # resources :applicant_details, only: [] do 
+    #   resources :events, except: [:index]
+    # end
+    resources :events
+    patch 'events/:id/confirm_schedule', to: 'events#confirm_schedule', as: :confirm_schedule
   end
 
   root 'welcome#landing_page'
