@@ -54,6 +54,9 @@ class Recruiter::ScoresController < Recruiter::ApplicationController
 
   def set_score
   	@score = Score.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    flash[:error] = "oopss something went wrong"
+    redirect_to recruiter_dashboard_url  
   end
 
   def score_params

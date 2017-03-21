@@ -38,10 +38,16 @@ class Company::CompulsoryRequirementsController < Company::ApplicationController
 
   def set_requirement
   	@requirement = Requirement.find(params[:requirement_id])
+  rescue ActiveRecord::RecordNotFound
+    flash[:error] = "oopss something went wrong"
+    redirect_to company_dashboard_url
   end
 
   def set_compulsory_requirement
   	@compulsory_requirement = CompulsoryRequirement.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    flash[:error] = "oopss something went wrong"
+    redirect_to company_dashboard_url
   end
 
   def compulsory_requirement_params

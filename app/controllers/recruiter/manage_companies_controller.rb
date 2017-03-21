@@ -37,5 +37,8 @@ class Recruiter::ManageCompaniesController < Recruiter::ApplicationController
 
   def set_company
     @company = Company.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    flash[:error] = "oopss something went wrong"
+    redirect_to recruiter_dashboard_url  
   end
 end

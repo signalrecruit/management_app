@@ -84,6 +84,9 @@ class Recruiter::RequestsController < Recruiter::ApplicationController
 
   def set_request
     @request = Request.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    flash[:error] = "oopss something went wrong"
+    redirect_to recruiter_dashboard_url  
   end
 
   def create_company_account(request)

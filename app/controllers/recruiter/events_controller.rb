@@ -56,10 +56,16 @@ class Recruiter::EventsController <  Recruiter::ApplicationController
 
   def set_applicant_detail
     @applicant_detail = ApplicantDetail.find(params[:applicant_detail_id])
+  rescue ActiveRecord::RecordNotFound
+    flash[:error] = "oopss something went wrong"
+    redirect_to recruiter_dashboard_url  
   end
 
   def set_event
     @event = Event.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    flash[:error] = "oopss something went wrong"
+    redirect_to recruiter_dashboard_url  
   end
 
   def event_params

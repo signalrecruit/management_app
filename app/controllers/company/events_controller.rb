@@ -60,6 +60,9 @@ class Company::EventsController < Company::ApplicationController
 
   def set_event
     @event = Event.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    flash[:error] = "could not find the resource you were looking for"
+    redirect_to company_dashboard_url
   end
 
   def event_params

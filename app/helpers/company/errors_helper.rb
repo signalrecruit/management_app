@@ -1,0 +1,2 @@
+module Company::ErrorsHelper
+end

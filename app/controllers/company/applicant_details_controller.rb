@@ -59,10 +59,16 @@ class Company::ApplicantDetailsController < Company::ApplicationController
   
   def set_company
   	@company = current_company
+  rescue ActiveRecord::RecordNotFound
+    flash[:error] = "oopss something went wrong"
+    redirect_to company_dashboard_url
   end
 
   def set_applicant_detail
   	@applicant_detail = ApplicantDetail.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    flash[:error] = "oopss something went wrong"
+    redirect_to company_dashboard_url
   end
 
   def applicant_params

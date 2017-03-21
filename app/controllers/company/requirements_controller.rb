@@ -60,10 +60,16 @@ class Company::RequirementsController < Company::ApplicationController
 
   def set_requirement
   	@requirement = Requirement.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    flash[:error] = "oopss something went wrong"
+    redirect_to company_dashboard_url
   end
 
   def set_company
   	@company = Company.find(current_company.id)
+  rescue ActiveRecord::RecordNotFound
+    flash[:error] = "oopss something went wrong"
+    redirect_to company_dashboard_url  
   end
 
   def requirement_params
