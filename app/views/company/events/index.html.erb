@@ -1,4 +1,4 @@
-<h5>Scheduled Events</h5>
+<h1>Scheduled Events</h1>
 <div class="widget-box">
 <div class="widget-title"> <span class="icon"> <i class="icon-calendar"></i> </span>
 		<h5><%= pluralize(@events.count, "Scheduled Event") %></h5>
@@ -23,7 +23,18 @@
 					<td><%= event.name %></td>
 					<td><%= event.interview_date.strftime("%B %d, %Y")%></td>
 					<td><%= event.test_date.strftime("%B %d, %Y") %></td>
-					<td class="center"><%= event.confirm %></td>
+					<td class="center">
+				    <% if event.confirm? %>
+				    <span class="badge badge-success">Confirmed</span> 
+					<% else %>
+					<span class="badge badge-important">Not Confirmed </span><div class="btn-group">
+                			<button data-toggle="dropdown" class="btn btn-primary btn-mini dropdown-toggle">confirm?<span class="caret"></span></button>
+                			<ul class="dropdown-menu">
+                				<li><%= link_to fa_icon("thumbs-o-up") + " confirm schedule", company_confirm_schedule_url(event), method: :patch, data: { confirm: "Click Ok to confirm #{event.applicant_detail.name}'s schedule"} if !event.confirm? %></li>
+                			</ul>
+                		</div>
+					<% end %>		
+					</td>
 					<td><%= link_to fa_icon("eye") + " schedule", [:company, event] %></td>
 				</tr>
 				<% end %>

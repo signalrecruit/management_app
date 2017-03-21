@@ -4,7 +4,7 @@ class Company::EventsController < Company::ApplicationController
   layout 'company' 
 
   def index
-    @events = Event.all
+    @events = Event.all.where(sent: true)
   end
 
   def show

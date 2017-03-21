@@ -13,13 +13,24 @@
 				</p>
 				<p>Event Description:  <%= @event.brief_description %></p>
 				<p>Email: <%= @event.applicant_detail.email %></p>
-				<p>Interview Date: <%= @event.interview_date.strftime("%B %d, %Y") %></p>
-				<p>Test Date: <%= @event.test_date.strftime("%B %d, %Y") %></p>
-				<p>Confirm Status: <% if @event.confirm? %>
-					Confirmed
+				<p>Interview Date: 
+				<% if @event.interview_date.nil? %>
+				<span class="badge badge-primary">Not Set</span>
+				<% else %>	
+				 <%= @event.interview_date.strftime("%B %d, %Y") %>
+				<% end %>		
+				<p>Test Date: 
+				<% if @event.interview_date.nil? %>	
+				<span class="badge badge-primary">Not Set</span>
+				<% else %>
+				<%= @event.test_date.strftime("%B %d, %Y") %></p>
+				<% end %>
+				<p>Confirm Status: 
+				    <% if @event.confirm? %>
+				    <span class="badge badge-success">Confirmed</span> 
 					<% else %>
-					Not Confirmed 
-					<% end %> 
+					<span class="badge badge-important">Not Confirmed</span> 
+					<% end %>
 				</p>
 			</div>
 		</div>
@@ -48,9 +59,27 @@
 				<tr class="odd gradeX">
 					<td><%= event.applicant_detail.name %></td>
 					<td><%= event.name %></td>
-					<td><%= event.interview_date.strftime("%B %d, %Y")%></td>
-					<td><%= event.test_date.strftime("%B %d, %Y") %></td>
-					<td class="center"><%= event.confirm %></td>
+					<td>
+					<% if event.interview_date.nil? %>
+					<span class="badge badge-primary">Not Set</span>
+					<% else %>	
+					<%= event.interview_date.strftime("%B %d, %Y")%>
+					<% end %>	
+					</td>
+					<td>
+					<% if event.test_date.nil? %>
+				    <span class="badge badge-primary">Not Set</span>
+				    <% else %>		
+					<%= event.test_date.strftime("%B %d, %Y") %>
+					<% end %>	
+					</td>
+					<td class="center">
+					<% if event.confirm? %>
+				    <span class="badge badge-success">Confirmed</span> 
+					<% else %>
+					<span class="badge badge-important">Not Confirmed</span> 
+					<% end %> 	
+					</td>
 					<td><%= link_to fa_icon("eye") + " schedule", [:company, event] %></td>
 				</tr>
 				<% end %>
