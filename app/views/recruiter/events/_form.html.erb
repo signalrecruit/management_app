@@ -1,8 +1,9 @@
 <div class="span12">
 <div class="widget-box">
         <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
-          <h5>Schedule Event for <%= @applicant_detail.name %></h5>
+          <h5>Schedule Event for <span class="badge badge-success"><%= @applicant_detail.name %></span></h5>
         </div>
+        <br>
         <div class="widget-content nopadding form-horizontal">
 <%= simple_form_for([:recruiter, applicant_detail, event]) do |f| %>
 
