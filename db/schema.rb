@@ -116,10 +116,10 @@ ActiveRecord::Schema.define(version: 20170320224210) do
     t.string   "name"
     t.text     "brief_description"
     t.integer  "applicant_detail_id"
-    t.datetime "created_at",                                          null: false
-    t.datetime "updated_at",                                          null: false
-    t.datetime "interview_date",      default: '2017-03-20 04:27:39'
-    t.datetime "test_date",           default: '2017-03-20 04:27:39'
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.datetime "interview_date"
+    t.datetime "test_date"
     t.boolean  "confirm",             default: false
     t.boolean  "sent",                default: false
   end
