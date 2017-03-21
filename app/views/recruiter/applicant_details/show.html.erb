@@ -49,7 +49,7 @@
                          <% if @applicant_detail.score.nil? %>  
             	           <%= link_to "match job description", recruiter_match_job_description_url(@applicant_detail), class: "btn btn-primary" %>
                          <% else %>
-                         <%= link_to fa_icon("calendar") + " schedule interview/test", recruiter_calendar_url, class: "btn btn-primary" if !@applicant_detail.sent? %>
+                         <%= link_to fa_icon("calendar") + " schedule interview/test", new_recruiter_applicant_detail_event_url(@applicant_detail), class: "btn btn-primary" if ( @applicant_detail.event.nil?) %>
                          <%= link_to fa_icon("repeat") + " re-assess candidate", edit_recruiter_applicant_detail_score_url(@applicant_detail, @applicant_detail.score, requirement_id: @applicant_detail.requirement), class: "btn btn-primary"  if !@applicant_detail.sent? %>
                          <%= link_to "send applicant's details to #{@applicant_detail.requirement.company.name}", recruiter_send_company_applicant_details_url(@applicant_detail), method: :patch, data: { confirm: "Do you want to send #{@applicant_detail.name}'s application details to #{@applicant_detail.requirement.company.name}?"}, class: "btn btn-primary" if !@applicant_detail.sent? %>
                           <% end %> 

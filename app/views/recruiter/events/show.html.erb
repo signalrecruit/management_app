@@ -20,14 +20,14 @@
 				<% if @applicant_detail.event.interview_date.nil? %>
 				<span class="badge badge-primary">Not Set</span>
 				<% else %>	
-				 <%= @applicant_detail.event.interview_date.strftime("%B %d, %Y") %>
+				 <span class="badge badge-info"><%= @applicant_detail.event.interview_date.strftime("%B %d, %Y") %></span>
 				<% end %>	
 				</p>
 				<p>Test Date: 
 				<% if @applicant_detail.event.test_date.nil? %>
 				<span class="badge badge-primary">Not Set</span>
 				<% else %>	
-				<%= @applicant_detail.event.test_date.strftime("%B %d, %Y") %>
+				<span class="badge badge-info"><%= @applicant_detail.event.test_date.strftime("%B %d, %Y") %></span>
 				<% end %>
 				</p>
 				<p>Confirm Status: 
@@ -68,14 +68,14 @@
 					<% if event.interview_date.nil? %>
 					<span class="badge badge-primary">Not Set</span>
 					<% else %>	
-					<%= event.interview_date.strftime("%B %d, %Y")%>
+					<span class="badge badge-info"><%= event.interview_date.strftime("%B %d, %Y")%></span>
 					<% end %>
 					</td>
 					<td>
 				    <% if event.test_date.nil? %>
 				    <span class="badge badge-primary">Not Set</span>
 				    <% else %>		
-					<%= event.test_date.strftime("%B %d, %Y") %>
+					<span class="badge badge-info"><%= event.test_date.strftime("%B %d, %Y") %></span>
 					<% end %>
 					</td>
 					<td class="center">

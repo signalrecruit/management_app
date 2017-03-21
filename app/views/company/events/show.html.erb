@@ -17,13 +17,13 @@
 				<% if @event.interview_date.nil? %>
 				<span class="badge badge-primary">Not Set</span>
 				<% else %>	
-				 <%= @event.interview_date.strftime("%B %d, %Y") %>
+				 <span class="badge badge-info"><%= @event.interview_date.strftime("%B %d, %Y") %></span>
 				<% end %>		
 				<p>Test Date: 
 				<% if @event.interview_date.nil? %>	
 				<span class="badge badge-primary">Not Set</span>
 				<% else %>
-				<%= @event.test_date.strftime("%B %d, %Y") %></p>
+				<span class="badge badge-info"><%= @event.test_date.strftime("%B %d, %Y") %></span></p>
 				<% end %>
 				<p>Confirm Status: 
 				    <% if @event.confirm? %>
@@ -63,21 +63,26 @@
 					<% if event.interview_date.nil? %>
 					<span class="badge badge-primary">Not Set</span>
 					<% else %>	
-					<%= event.interview_date.strftime("%B %d, %Y")%>
+					<span class="badge badge-info"><%= event.interview_date.strftime("%B %d, %Y")%></span>
 					<% end %>	
 					</td>
 					<td>
 					<% if event.test_date.nil? %>
 				    <span class="badge badge-primary">Not Set</span>
 				    <% else %>		
-					<%= event.test_date.strftime("%B %d, %Y") %>
+					<span class="badge badge-info"><%= event.test_date.strftime("%B %d, %Y") %></span>
 					<% end %>	
 					</td>
 					<td class="center">
 					<% if event.confirm? %>
 				    <span class="badge badge-success">Confirmed</span> 
 					<% else %>
-					<span class="badge badge-important">Not Confirmed</span> 
+					<span class="badge badge-important">Not Confirmed</span> <div class="btn-group">
+                			<button data-toggle="dropdown" class="btn btn-primary btn-mini dropdown-toggle">confirm?<span class="caret"></span></button>
+                			<ul class="dropdown-menu">
+                				<li><%= link_to fa_icon("thumbs-o-up") + " confirm schedule", company_confirm_schedule_url(event), method: :patch, data: { confirm: "Click Ok to confirm #{event.applicant_detail.name}'s schedule"} if !event.confirm? %></li>
+                			</ul>
+                		</div>
 					<% end %> 	
 					</td>
 					<td><%= link_to fa_icon("eye") + " schedule", [:company, event] %></td>
