@@ -1,15 +1,16 @@
 <div>
-    <h1>Job Description from <span class="date badge badge-success" style="font-size: 28px; padding: 20px;"> <%= @requirement.company.name %> </span></h1>
+    <h2>Job Description from <span class="date badge badge-success" style="font-size: 28px; padding: 20px;"> <%= @requirement.company.name %> </span></h2>
 </div>
 <hr>
 <div class="widget-box">
           <div class="widget-title bg_lo"> <span class="icon"> <i class="icon-briefcase"></i> </span>
             <h5>Job Type: <% @requirement.job_types.each do |job_type| %>
                            <%= job_type.name %>,
-                         <% end %></h5><%#= link_to fa_icon("arrow-circle-right", class: "pull-right") + "Upload Candidate's Application Here", new_recruiter_applicant_detail_url, class: "btn btn-primary pull-right"  %>
+                         <% end %></h5>
             </span>
           </div>
           <div class="widget-content nopadding updates collapse in" id="collapseG3">
+          <h5>
             <div class="new-update clearfix"><i class="icon-ok-sign"></i>
               <div class="update-done"><a title="" href="#"><strong>Job Title/Role</strong></a> <span><%= @requirement.title %></span> </div>
             </div>
@@ -36,6 +37,7 @@
 
             	<% end %>
             </span> </span></div>
+            </h5>
           </div>
         </div>
 
@@ -47,6 +49,7 @@
           <div class="widget-content">
             <div class="todo">
               <ul>
+              <h5>
                 <% if @compulsory_requirement.requirement_1.blank? %>
                 <% else %>
                 <li class="clearfix">
@@ -126,6 +129,7 @@
                   <div class="pull-right by label"></div> 
                 </li>
                 <% end %>
+                </h5>
               </ul>
             </div>
           </div>

@@ -58,6 +58,9 @@ class Recruiter::ApplicantDetailsController < Recruiter::ApplicationController
 
   def set_applicant_detail
   	@applicant_detail = ApplicantDetail.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    flash[:error] = "oopss something went wrong"
+    redirect_to recruiter_dashboard_url
   end
 
   def applicant_params

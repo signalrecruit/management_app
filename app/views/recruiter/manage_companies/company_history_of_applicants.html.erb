@@ -18,6 +18,7 @@
             <table class="table table-bordered table-striped table-hover">
               <thead>
                 <tr>
+                  <th></th>
                 	<th>Name Of Applicant</th>
                   <th>Job Type</th>
                 	<th>Location</th>
@@ -30,13 +31,15 @@
               </thead>
               <tbody>
               <% @applicant_details.each do |applicant_detail| %>
-                <tr class="odd gradeX">
+                <tr class="odd gradeX" style="font-size: 14px;">
                   <td>
-                      <% if applicant_detail.accept? %>
+                    <% if applicant_detail.accept? %>
                       <span class="date badge badge-success"><i class="fa fa-check-circle" aria-hidden="true"></i></span>
                       <% else %>
                       <span class="date badge badge-important"><i class="fa fa-hand-paper-o" aria-hidden="true"></i></span>
                       <% end %>  
+                  </td>
+                  <td>                      
                   <span class="badge badge-primary"><%= applicant_detail.name %></span></td>
                 	<td><% applicant_detail.job_types.each do |job_type| %>
                            <%= link_to job_type.name, [:recruiter, applicant_detail] %>,

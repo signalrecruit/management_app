@@ -28,7 +28,8 @@
               </thead>
               <tbody>
               <% @requirements.each do |requirement| %>
-                <tr class="odd gradeX">
+              <% if requirement.sent? %>
+                <tr class="odd gradeX" style="font-size: 14px;">
                     <td><span class="badge badge-success" ><%= requirement.company.name %></span></td>
                     <td><% requirement.job_types.each do |job_type| %>
                           <%= link_to job_type.name, [:recruiter, requirement] %>,
@@ -52,6 +53,7 @@
                     <%= requirement.vacancies_left %>
                 	</td>
                 </tr>
+                <% end %>
               <% end %>
               </tbody>
             </table>

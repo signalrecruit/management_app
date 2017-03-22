@@ -20,6 +20,7 @@
             <table class="table table-bordered table-striped table-hover">
               <thead>
                 <tr>
+                  <th></th>
                   <th>Name Of Applicant</th>
                 	<th>Job Type</th>
                 	<th>Location</th>
@@ -33,7 +34,7 @@
               </thead>
               <tbody>
               <% @applicant_details.each do |applicant_detail| %>
-                <tr class="odd gradeX">
+                <tr class="odd gradeX" style="font-size: 14px;">
                     <td>
                     <% if applicant_detail.sent? %>  
                     <i class="fa fa-paper-plane-o" aria-hidden="true"></i><% end %>
@@ -42,6 +43,8 @@
                       <% else %>
                       <span class="date badge badge-important"><i class="fa fa-hand-paper-o" aria-hidden="true"></i></span>
                       <% end %>
+                    </td>
+                    <td>                   
                       <%= link_to applicant_detail.name, [:recruiter, applicant_detail] %>
                     </td>
                     <td>
@@ -83,9 +86,11 @@
                   </span>  
                 	</td>
                   <td>
-                  <% if applicant_detail.event.present? %>
+                  <% if applicant_detail.requirement.nil? %>
+                  <span class="date badge badge-default">Not Applicable</span>
+                  <% elsif applicant_detail.event.present? %>
                   <%= link_to fa_icon("eye") + " view schedule", recruiter_applicant_detail_event_url(applicant_detail, applicant_detail.event) %>
-                  <% else %>  
+                  <% elsif applicant_detail.event.nil? %>  
                   <span class="date badge badge-info"><i class="fa fa-calendar" aria-hidden="true"></i>
 </span><%= link_to "interview/test", new_recruiter_applicant_detail_event_url(applicant_detail) %>
                   <% end %>

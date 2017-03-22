@@ -18,7 +18,7 @@
 			</thead>
 			<tbody>
 				<% @events.each do |event| %>
-				<tr class="odd gradeX">
+				<tr class="odd gradeX" style="font-size: 14px;">
 					<td><%= event.applicant_detail.name %></td>
 					<td><%= event.name %></td>
 					<td><span class="badge badge-info"><%= event.interview_date.strftime("%B %d, %Y")%></span></td>

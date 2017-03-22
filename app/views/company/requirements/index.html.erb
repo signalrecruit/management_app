@@ -29,7 +29,7 @@
               </thead>
               <tbody>
               <% @requirements.each do |requirement| %>
-                <tr class="odd gradeX">
+                <tr class="odd gradeX" style="font-size: 14px;">
                     <td>
                     <% if requirement.sent? %>
                     <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
@@ -54,21 +54,6 @@
                 	  <% end %>	
                 	</td>
                 	<td>
-                		<!-- div class="btn-group">
-                			<button data-toggle="dropdown" class="btn btn-primary btn-mini dropdown-toggle">Contacted?<span class="caret"></span></button>
-                			<ul class="dropdown-menu">
-                				<li><%#= link_to "Yes", recruiter_contact_path(request), method: :patch %></li>
-                				<li><%#= link_to "No", recruiter_no_contact_path(request), method: :patch %></li>
-                			</ul>
-                		</div>
-                    <div class="btn-group">
-                      <button data-toggle="dropdown" class="btn btn-primary btn-mini dropdown-toggle">Accepted Offer?<span class="caret"></span></button>
-                      <ul class="dropdown-menu">
-                        <li><%#= link_to "Yes", recruiter_company_accept_offer_path(request), method: :patch %></li>
-                        <li><%#= link_to "No", recruiter_company_reject_offer_path(request), method: :patch %></li>
-                      </ul>
-                    </div> -->
-                    <%#= link_to "Send Email", recruiter_company_signup_path(request), class: "btn btn-success btn-mini" %>
                     <%= requirement.vacancies_left %>
                 	</td>
                 </tr>
@@ -84,53 +69,3 @@
         <%= javascript_include_tag "company/jquery.ui.custom" %>
         <%= javascript_include_tag "company/bootstrap.min" %>
         <%= javascript_include_tag "company/matrix" %>
-
-     <!--      <script type="text/javascript">
-          $(document).ready(
-          $("#new_request").on('submit', function(e){
-            var company = $('#request_company');
-            var fullname = $('#request_fullname');
-            var email = $('#request_email');
-            var phonenumber = $('#request_phonenumber');
-            var job_title = $('#request_job_title');
-
-            if(!company.val()) {
-              company.closest('.control-group').addClass('error');
-              e.preventDefault();
-            }else{
-              company.closest('.control-group').addClass('success');
-            }
-            if(!fullname.val()) {
-              fullname.closest('.control-group').addClass('error');
-              e.preventDefault();
-            }else{
-              fullname.closest('.control-group').addClass('success');
-            }
-            if(!email.val()) {
-              email.closest('.control-group').addClass('error');
-              e.preventDefault();
-            } else {
-              // formvalidator = new Validator('new_request');
-              // formvalidator.addValidation("request[email]", "email");
-              // formvalidator.addValidation("request[email]", "req");
-              // email.closest('.control-group-group').addClass('error');
-              // email.val(email.val()+ ' is invalid!! ');
-              // e.preventDefault();
-            }
-            if(!phonenumber.val()) {
-              phonenumber.closest('.control-group').addClass('error');
-              e.preventDefault();
-            }else{
-              phonenumber.closest('.control-group').addClass('success');
-            }
-            if(!job_title.val()) {
-              job_title.closest('.control-group').addClass('error');
-              e.preventDefault();
-            }else{
-              job_title.closest('.control-group').addClass('success');
-            }
-          }));
-          </script>
-
-        
-        -->

@@ -11,7 +11,7 @@ Recruiter.create(email: "user@recruiter.com", password: "password", password_con
 Company.create(email: "user@company.com", password: "password", password_confirmation: "password",
  phonenumber: "0204704427", name: "BioGen", auth_code: Devise.friendly_token)
 
-array_of_skills = ["management", "accounting", "programming"]
+array_of_skills = ["management", "accounting", "programming", "research", "analysis", "management", "book/record keeping", "technical drawing"]
 array_of_skills.each do |skill|
   Skill.create(name: skill, score: 10)
 end
@@ -22,7 +22,7 @@ educational_requirements.each do |educational_requirement|
 end
 
 job_types = ["research", "research and diagnositics", "accounting", "software development", "web development",
-"software architecture"]
+"software architecture", "secretary"]
 job_types.each do |job_type|
   JobType.create(name: job_type)
 end

@@ -8,7 +8,7 @@
 			</a> </div>
 		</div>
 		<div class="collapse in accordion-body" id="collapseGOne">
-			<div class="widget-content"> 
+			<div class="widget-content" style="font-size: 14px;"> 
 				<p>Event Name: <%= @event.name %>
 				</p>
 				<p>Event Description:  <%= @event.brief_description %></p>
@@ -56,7 +56,7 @@
 			</thead>
 			<tbody>
 				<% @events.each do |event| %>
-				<tr class="odd gradeX">
+				<tr class="odd gradeX" style="font-size: 14px;">
 					<td><%= event.applicant_detail.name %></td>
 					<td><%= event.name %></td>
 					<td>
