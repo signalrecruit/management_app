@@ -1,36 +1,57 @@
 <div class="container-fluid">
-	<hr>
-	<div class="widget-box">
-		<div class="widget-title"> <span class="icon"> <i class="icon-calendar"></i> </span>
-			<h5><%= pluralize(@events.count, "Scheduled Event") %></h5>
-		</div>
-
-		<div class="widget-content nopadding">
-			<table class="table table-bordered table-striped">
-				<thead>
-					<tr>
-						<th>Applicant Name</th>
-						<th>Event Type/Name</th>
-						<th>Interview Date</th>
-						<th>Test Date</th>
-						<th>Confirm Status</th>
-					</tr>
-				</thead>
-				<tbody>
-					<% @events.each do |event| %>
-					<tr class="odd gradeX">
-						<td><%= event.applicant_detail.name %></td>
-						<td><%= event.name %></td>
-						<td><%= event.interview_date.strftime("%B %d, %Y")%></td>
-						<td><%= event.test_date.strftime("%B %d, %Y") %></td>
-						<td class="center"><%= event.confirm %></td>
-					</tr>
-					<% end %>
-				</tbody>
-			</table>
-		</div>
+<div>
+	<h1>Manage Schedule</h1>
+</div>
+<hr>
+<div class="widget-box">
+<div class="widget-title"> <span class="icon"> <i class="icon-calendar"></i> </span>
+		<h5><%= pluralize(@events.count, "Scheduled Event") %></h5>
 	</div>
 
+	<div class="widget-content nopadding">
+		<table class="table table-bordered table-striped">
+			<thead>
+				<tr>
+					<th>Applicant Name</th>
+					<th>Event Type/Name</th>
+					<th>Interview Date</th>
+					<th>Test Date</th>
+					<th>Confirm Status</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @events.each do |event| %>
+				<tr class="odd gradeX">
+					<td><%= event.applicant_detail.name %></td>
+					<td><%= event.name %></td>
+					<td>
+					<% if event.interview_date.nil? %>
+					<span class="badge badge-primary">Not Set</span>
+					<% else %>	
+					<span class="badge badge-info"><%= event.interview_date.strftime("%B %d, %Y")%></span>
+					<% end %>
+					</td>
+					<td>
+				    <% if event.test_date.nil? %>
+				    <span class="badge badge-primary">Not Set</span>
+				    <% else %>		
+					<span class="badge badge-info"><%= event.test_date.strftime("%B %d, %Y") %></span>
+					<% end %>
+					</td>
+					<td class="center">
+					<% if event.confirm? %>
+				    <span class="badge badge-success">Confirmed</span> 
+					<% else %>
+					<span class="badge badge-important">Not Confirmed</span> 
+					<% end %> </td>
+					<td><%= link_to fa_icon("eye") + " schedule", [:recruiter, event.applicant_detail, event] %></td>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+</div>
 </div>
 
 

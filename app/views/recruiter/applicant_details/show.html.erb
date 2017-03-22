@@ -45,10 +45,12 @@
                          <% end %>
                          </span> </h5>
                            <span class="pull-right">
+                         <% if @applicant_detail.sent? && @applicant_detail.accept? %>
+                         <%= link_to fa_icon("calendar") + " schedule interview/test", new_recruiter_applicant_detail_event_url(@applicant_detail), class: "btn btn-primary" if (@applicant_detail.event.nil?) %>
+                         <% end %>
                          <% if @applicant_detail.score.nil? %>  
             	           <%= link_to "match job description", recruiter_match_job_description_url(@applicant_detail), class: "btn btn-primary" %>
                          <% else %>
-                         <%= link_to fa_icon("calendar") + " schedule interview/test", new_recruiter_applicant_detail_event_url(@applicant_detail), class: "btn btn-primary" if ( @applicant_detail.event.nil?) %>
                          <%= link_to fa_icon("repeat") + " re-assess candidate", edit_recruiter_applicant_detail_score_url(@applicant_detail, @applicant_detail.score, requirement_id: @applicant_detail.requirement), class: "btn btn-primary"  if !@applicant_detail.sent? %>
                          <%= link_to "send applicant's details to #{@applicant_detail.requirement.company.name}", recruiter_send_company_applicant_details_url(@applicant_detail), method: :patch, data: { confirm: "Do you want to send #{@applicant_detail.name}'s application details to #{@applicant_detail.requirement.company.name}?"}, class: "btn btn-primary" if !@applicant_detail.sent? %>
                           <% end %> 
@@ -102,7 +104,13 @@
             </div>
             <% end %>
             </div>
-            <div class="new-update clearfix"> <i class="icon-ok-sign"></i> <span class="update-done"> <a title="" href="#"><strong>Attachment</strong></a><span><%= link_to File.basename(@applicant_detail.attachment.url), @applicant_detail.attachment.url %>(<%= number_to_human_size @applicant_detail.attachment.size %>)</span> </span> </div>
+            <div class="new-update clearfix"> <i class="icon-ok-sign"></i> <span class="update-done"> <a title="" href="#"><strong>Attachment</strong></a><span>
+              <% if @applicant_detail.attachment.blank? %>  
+              no attachment
+              <% else %>
+              <%= link_to File.basename(@applicant_detail.attachment.url), @applicant_detail.attachment.url %>(<%= number_to_human_size @applicant_detail.attachment.size %>)
+              <% end %>  
+              </span></span></div>
             </h5>
           </div>
         </div>

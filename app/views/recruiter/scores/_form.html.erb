@@ -37,6 +37,7 @@
             </span>
           </div>
           <div class="widget-content nopadding updates collapse in" id="collapseG3">
+          <h5>
             <div class="new-update clearfix"><i class="icon-ok-sign"></i>
               <div class="update-done"><a title="" href="#"><strong><%= @applicant_detail.name %> applied for </strong></a> <span><%= @applicant_detail.job_title %></span> </div>
             </div>
@@ -59,6 +60,7 @@
             	  <%= qualification.name %>, 
             	<% end %>
             </span> </span><div class="pull-right"><%= f.input :qualifications_check, label: false, :collection => [["does not meet requirements", false], ["meets requirements", true]], :as => :radio_buttons, :item_wrapper_class => false, :selected => score.qualifications_check %></div></div>
+            </h5>
           </div>
         </div>
         
@@ -74,6 +76,7 @@
           <div class="widget-content">
             <div class="todo">
               <ul>
+              <h5>
                 <% if @requirement.compulsory_requirement.requirement_1.blank? %>
                 <% else %>
                 <li class="clearfix">
@@ -161,6 +164,7 @@
  
                 </li>
                 <% end %>
+                </h5>
               </ul>
             </div>
           </div>

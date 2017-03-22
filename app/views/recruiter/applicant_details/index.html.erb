@@ -86,7 +86,7 @@
                   </span>  
                 	</td>
                   <td>
-                  <% if applicant_detail.requirement.nil? %>
+                  <% if applicant_detail.requirement.nil? || !applicant_detail.sent? %>
                   <span class="date badge badge-default">Not Applicable</span>
                   <% elsif applicant_detail.event.present? %>
                   <%= link_to fa_icon("eye") + " view schedule", recruiter_applicant_detail_event_url(applicant_detail, applicant_detail.event) %>

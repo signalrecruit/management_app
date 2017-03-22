@@ -8,7 +8,8 @@
                 </a> </div>
             </div>
             <div class="collapse in accordion-body" id="collapseGOne">
-              <div class="widget-content"> 
+              <div class="widget-content">
+              <h5> 
               <p>Job Type: <% @applicant_detail.job_types.each do |job_type| %>
                              <%= job_type.name %>, 
                            <% end %>
@@ -26,7 +27,14 @@
                                              <%= qualification.name %>,
                                            <% end %>
               </p>
-              <p>Resume: <%= link_to File.basename(@applicant_detail.attachment.url), @applicant_detail.attachment.url %>(<%= number_to_human_size @applicant_detail.attachment.size %>)</p>
+              <p>Resume: 
+              <% if @applicant_detail.attachment.blank? %> 
+                no attachment 
+              <% else %>
+              <%= link_to File.basename(@applicant_detail.attachment.url), @applicant_detail.attachment.url %>(<%= number_to_human_size @applicant_detail.attachment.size %>)
+              <% end %>
+              </p>
+              </h5>
 
               </div>
             </div>
@@ -61,7 +69,7 @@
               </thead>
               <tbody>
               <% @requirements.each do |requirement| %>
-                <tr class="odd gradeX">
+                <tr class="odd gradeX" style="font-size: 14px;">
                     <td>
                     <div class="btn-group">
                       <button data-toggle="dropdown" class="btn btn-primary btn-mini dropdown-toggle"><%= requirement.company.name %><span class="caret"></span></button>
@@ -113,52 +121,4 @@
         <%= javascript_include_tag "recruiter/bootstrap.min" %>
         <%= javascript_include_tag "recruiter/matrix" %>
 
-     <!--      <script type="text/javascript">
-          $(document).ready(
-          $("#new_request").on('submit', function(e){
-            var company = $('#request_company');
-            var fullname = $('#request_fullname');
-            var email = $('#request_email');
-            var phonenumber = $('#request_phonenumber');
-            var job_title = $('#request_job_title');
-
-            if(!company.val()) {
-              company.closest('.control-group').addClass('error');
-              e.preventDefault();
-            }else{
-              company.closest('.control-group').addClass('success');
-            }
-            if(!fullname.val()) {
-              fullname.closest('.control-group').addClass('error');
-              e.preventDefault();
-            }else{
-              fullname.closest('.control-group').addClass('success');
-            }
-            if(!email.val()) {
-              email.closest('.control-group').addClass('error');
-              e.preventDefault();
-            } else {
-              // formvalidator = new Validator('new_request');
-              // formvalidator.addValidation("request[email]", "email");
-              // formvalidator.addValidation("request[email]", "req");
-              // email.closest('.control-group-group').addClass('error');
-              // email.val(email.val()+ ' is invalid!! ');
-              // e.preventDefault();
-            }
-            if(!phonenumber.val()) {
-              phonenumber.closest('.control-group').addClass('error');
-              e.preventDefault();
-            }else{
-              phonenumber.closest('.control-group').addClass('success');
-            }
-            if(!job_title.val()) {
-              job_title.closest('.control-group').addClass('error');
-              e.preventDefault();
-            }else{
-              job_title.closest('.control-group').addClass('success');
-            }
-          }));
-          </script>
-
-        
-        -->
+    
