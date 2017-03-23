@@ -116,14 +116,14 @@ ActiveRecord::Schema.define(version: 20170323002835) do
     t.string   "name"
     t.text     "brief_description"
     t.integer  "applicant_detail_id"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
     t.datetime "interview_date"
     t.datetime "test_date"
     t.boolean  "confirm",             default: false
     t.boolean  "sent",                default: false
     t.string   "scheduler"
-    t.string   "interview_results"
+    t.string   "interview_results",   default: "PENDING"
   end
 
   add_index "events", ["applicant_detail_id"], name: "index_events_on_applicant_detail_id", using: :btree
