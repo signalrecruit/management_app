@@ -24,6 +24,11 @@ Rails.application.routes.draw do
     patch 'applicant_details/:id/send_company_applicant_details', to: 'applicant_details#send_company_applicant_details', as: :send_company_applicant_details
     patch 'events/:id/send_schedule', to: 'events#send_schedule', as: :send_schedule
 
+    patch 'events/:id/pass_interview', to: 'events#pass_interview', as: :pass_interview
+    patch 'events/:id/fail_interview', to: 'events#fail_interview', as: :fail_interview
+    patch 'events/:id/interview_pending', to: 'events#interview_pending', as: :interview_pending
+
+
     resources :requests, only: [:new, :create]
     resources :requirements
     
@@ -42,21 +47,31 @@ Rails.application.routes.draw do
     get 'welcome/calendar', to: 'welcome#calendar', as: :calendar
     
     get 'requirements/:id/send_requirements',to: 'requirements#send_requirements', as: :send_requirements
+
+    patch 'applicant_details/:id/accept_applicant', to: 'applicant_details#accept_applicant', as: :accept_applicant
+    patch 'applicant_details/:id/reject_applicant', to: 'applicant_details#reject_applicant', as: :reject_applicant
+    patch 'applicant_details/:id/send_recruiter_applicant_details', to: 'applicant_details#send_recruiter_applicant_details', as: :send_recruiter_applicant_details
+
+    patch 'events/:id/confirm_schedule', to: 'events#confirm_schedule', as: :confirm_schedule
+    
+    patch 'events/:id/choose_recruiter', to: 'events#choose_recruiter', as: :choose_recruiter
+    patch 'events/:id/choose_company', to: 'events#choose_company', as: :choose_company
+    patch 'events/:id/pass_interview', to: 'events#pass_interview', as: :pass_interview
+    patch 'events/:id/fail_interview', to: 'events#fail_interview', as: :fail_interview
+    patch 'events/:id/interview_pending', to: 'events#interview_pending', as: :interview_pending
+
     resources :requirements
     resources :requirements, only: [] do
       resources :compulsory_requirements, only: [:show, :new, :create, :edit, :update, :destroy]
     end
     
-    patch 'applicant_details/:id/accept_applicant', to: 'applicant_details#accept_applicant', as: :accept_applicant
-    patch 'applicant_details/:id/reject_applicant', to: 'applicant_details#reject_applicant', as: :reject_applicant
-    patch 'applicant_details/:id/send_recruiter_applicant_details', to: 'applicant_details#send_recruiter_applicant_details', as: :send_recruiter_applicant_details
-
+   
     resources :applicant_details, only: [:index, :show, :update]
     # resources :applicant_details, only: [] do 
     #   resources :events, except: [:index]
     # end
     resources :events
-    patch 'events/:id/confirm_schedule', to: 'events#confirm_schedule', as: :confirm_schedule
+    
   end
 
   root 'welcome#landing_page'

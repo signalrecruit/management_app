@@ -1,6 +1,8 @@
 class Company::EventsController < Company::ApplicationController
-  before_action :set_applicant_detail, except: [:index, :send_schedule, :show, :edit, :update, :confirm_schedule]
-  before_action :set_event, only: [:show, :edit, :update, :destroy, :confirm_schedule]
+  # before_action :set_applicant_detail, except: [:index, :send_schedule, :show, :edit, :update, :confirm_schedule]
+  before_action :set_applicant_detail, only: [:new]
+  before_action :set_event, only: [:show, :edit, :update, :destroy, :confirm_schedule, :choose_recruiter,
+    :choose_company, :pass_interview, :fail_interview, :interview_pending]
   layout 'company' 
 
   def index
@@ -44,9 +46,40 @@ class Company::EventsController < Company::ApplicationController
   def destroy
   end
 
+  # move these methods into it's own controller
   def confirm_schedule
     @event.update(confirm: true)
     flash[:success] = "#{@event.applicant_detail.name}'s sent successfully"
+    redirect_to :back
+  end
+
+  def choose_recruiter
+    @event.update(scheduler: "Recruiter")
+    flash[:success] = "recruiter will be notified to set up the interview"
+    redirect_to :back
+  end
+
+  def choose_company
+    @event.update(scheduler: "#{current_company.name}")
+    flash[:success] = "please set up the interview/test and communicate results back to recruiter"
+    redirect_to :back
+  end
+
+  def pass_interview
+    @event.update(interview_results: "PASSED")
+    flash[:success] = "#{@event.applicant_detail.name} passed the interview/test"
+    redirect_to :back
+  end
+
+  def fail_interview
+    @event.update(interview_results: "FAILED")
+    flash[:success] = "#{@event.applicant_detail.name} failed the interview/test"
+    redirect_to :back
+  end
+
+  def interview_pending
+    @event.update(interview_results: "PENDING")
+    flash[:success] = "#{@event.applicant_detail.name}'s interview pending"
     redirect_to :back
   end
   

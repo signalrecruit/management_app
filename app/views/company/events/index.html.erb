@@ -13,6 +13,8 @@
 					<th>Interview Date</th>
 					<th>Test Date</th>
 					<th>Confirm Status</th>
+					<th>Interview/Test Setup By:</th>
+					<th>Interview/Test Results</th>
 					<th></th>
 				</tr>
 			</thead>
@@ -27,13 +29,46 @@
 				    <% if event.confirm? %>
 				    <span class="badge badge-success">Confirmed</span> 
 					<% else %>
-					<span class="badge badge-important">Not Confirmed </span><div class="btn-group">
+					<span class="badge badge-important">Not Confirmed </span>
+					<div class="btn-group">
                 			<button data-toggle="dropdown" class="btn btn-primary btn-mini dropdown-toggle">confirm?<span class="caret"></span></button>
                 			<ul class="dropdown-menu">
                 				<li><%= link_to fa_icon("thumbs-o-up") + " confirm schedule", company_confirm_schedule_url(event), method: :patch, data: { confirm: "Click Ok to confirm #{event.applicant_detail.name}'s schedule"} if !event.confirm? %></li>
                 			</ul>
                 		</div>
 					<% end %>		
+					</td>
+					<td>
+						<div class="btn-group">
+						<button data-toggle="dropdown" class="btn btn-primary btn-mini dropdown-toggle"><%= "#{event.scheduler}" || "interview/test setup" %><span class="caret"></span></button>
+							<ul class="dropdown-menu">
+								<li><%= link_to "#{current_company.name}", company_choose_company_url(event), method: :patch, data: { confirm: "Click OK if #{current_company.name} has a agreed to set up the interview/test" } %></li>
+								<li><%= link_to "Recruiter", company_choose_recruiter_url(event), method: :patch, data: { confirm: "Click OK if you want the recruiter to set up the interview/test on your behalf" } %></li>
+							</ul>
+						</div>	
+					</td>
+					<td>
+					<% if event.passed_interview? %>
+					  <span class="date badge badge-success">
+					  <%= event.interview_results %>
+					<% elsif event.failed_interview? %>
+					  <span class="date badge badge-important">
+					  <%= event.interview_results %>  
+					<% elsif event.pending_interview? %>
+					  <span class="date badge badge-default">
+					  <%= event.interview_results %>
+					<% end %>
+					</span>
+					<% if event.scheduler == current_company.name %>
+					  <div class="btn-group">
+						<button data-toggle="dropdown" class="btn btn-primary btn-mini dropdown-toggle"><span class="caret"></span></button>
+							<ul class="dropdown-menu">
+								<li><%= link_to "pass", company_pass_interview_url(event), method: :patch  %></li>
+								<li><%= link_to "fail", company_fail_interview_url(event),  method: :patch %></li>
+								<li><%= link_to "pending", company_interview_pending_url(event), method: :patch %></li>
+							</ul>
+						</div>	
+					<% end %>	
 					</td>
 					<td><%= link_to fa_icon("eye") + " schedule", [:company, event] %></td>
 				</tr>

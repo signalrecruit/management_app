@@ -32,6 +32,23 @@
 					<span class="badge badge-important">Not Confirmed</span> 
 					<% end %>
 				</p>
+				<p>Test Results: 
+				<% if @event.passed_interview? %>
+				<span class="date badge badge-success">	
+				<%= @event.interview_results %>
+				<% elsif @event.failed_interview? %>
+				<span class="date badge badge-important">
+				<%= @event.interview_results %>
+				<% elsif @event.pending_interview? %>
+				<span class="date badge badge-default">
+				<%= @event.interview_results %>
+				<% end %>
+				</span>	
+				</p>
+				<% if !@event.scheduler.nil? %>
+				<p><span class="date badge badge-inverse"><i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+NB: setup of interview/test by <%= @event.scheduler %></span></p>
+				<% end %>
 			</div>
 		</div>
 	</div>
@@ -51,6 +68,8 @@
 					<th>Interview Date</th>
 					<th>Test Date</th>
 					<th>Confirm Status</th>
+					<th>Interview/Test Setup By:</th>
+					<th>Test Results</th>
 					<th></th>
 				</tr>
 			</thead>
@@ -84,6 +103,30 @@
                 			</ul>
                 		</div>
 					<% end %> 	
+					</td>
+					<td><span class="date badge badge-inverse"><%= event.scheduler || "not set" %></span></td>
+					<td>
+					<% if event.passed_interview? %>
+					  <span class="date badge badge-success">
+					  <%= event.interview_results %>
+					<% elsif event.failed_interview? %>
+					  <span class="date badge badge-important">
+					  <%= event.interview_results %>  
+					<% elsif event.pending_interview? %>
+					  <span class="date badge badge-default">
+					  <%= event.interview_results %>
+					<% end %>
+					</span>
+					<% if event.scheduler == current_company.name %>
+					  <div class="btn-group">
+						<button data-toggle="dropdown" class="btn btn-primary btn-mini dropdown-toggle"><span class="caret"></span></button>
+							<ul class="dropdown-menu">
+								<li><%= link_to "pass", company_pass_interview_url(event), method: :patch  %></li>
+								<li><%= link_to "fail", company_fail_interview_url(event),  method: :patch %></li>
+								<li><%= link_to "pending", company_interview_pending_url(event), method: :patch %></li>
+							</ul>
+						</div>	
+					<% end %>	
 					</td>
 					<td><%= link_to fa_icon("eye") + " schedule", [:company, event] %></td>
 				</tr>

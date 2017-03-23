@@ -17,6 +17,8 @@
 					<th>Interview Date</th>
 					<th>Test Date</th>
 					<th>Confirm Status</th>
+					<th>Interview/Test Setup By:</th>
+					<th>Interview/Test Results</th>
 					<th></th>
 				</tr>
 			</thead>
@@ -45,6 +47,30 @@
 					<% else %>
 					<span class="badge badge-important">Not Confirmed</span> 
 					<% end %> </td>
+					<td><span class="date badge badge-inverse"><%= event.scheduler || "not set" %></span></td>
+					<td>
+					<% if event.passed_interview? %>
+					  <span class="date badge badge-success">
+					  <%= event.interview_results %>
+					<% elsif event.failed_interview? %>
+					  <span class="date badge badge-important">
+					  <%= event.interview_results %>  
+					<% elsif event.pending_interview? %>
+					  <span class="date badge badge-default">
+					  <%= event.interview_results %>
+					<% end %>
+					</span>
+					<% if event.scheduler == "Recruiter" %>
+					  <div class="btn-group">
+						<button data-toggle="dropdown" class="btn btn-primary btn-mini dropdown-toggle"><span class="caret"></span></button>
+							<ul class="dropdown-menu">
+								<li><%= link_to "pass", recruiter_pass_interview_url(event), method: :patch  %></li>
+								<li><%= link_to "fail", recruiter_fail_interview_url(event),  method: :patch %></li>
+								<li><%= link_to "pending", recruiter_interview_pending_url(event), method: :patch %></li>
+							</ul>
+						</div>	
+					<% end %>	
+					</td>
 					<td><%= link_to fa_icon("eye") + " schedule", [:recruiter, event.applicant_detail, event] %></td>
 				</tr>
 				<% end %>

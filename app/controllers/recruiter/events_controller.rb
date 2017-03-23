@@ -1,6 +1,6 @@
 class Recruiter::EventsController <  Recruiter::ApplicationController
-  before_action :set_applicant_detail, except: [:index, :send_schedule]
-  before_action :set_event, only: [:show, :edit, :update, :destroy, :send_schedule]
+  before_action :set_applicant_detail, except: [:index, :send_schedule, :pass_interview, :fail_interview, :interview_pending]
+  before_action :set_event, only: [:show, :edit, :update, :destroy, :send_schedule, :pass_interview, :fail_interview, :interview_pending]
   layout "recruiter"
 
   def index
@@ -47,6 +47,24 @@ class Recruiter::EventsController <  Recruiter::ApplicationController
   def send_schedule
     @event.update(sent: true)
     flash[:success] = "#{@event.applicant_detail.name}'s sent successfully"
+    redirect_to :back
+  end
+
+  def pass_interview
+    @event.update(interview_results: "PASSED")
+    flash[:success] = "#{@event.applicant_detail.name} passed the interview/test"
+    redirect_to :back
+  end
+
+  def fail_interview
+    @event.update(interview_results: "FAILED")
+    flash[:success] = "#{@event.applicant_detail.name} failed the interview/test"
+    redirect_to :back
+  end
+
+  def interview_pending
+    @event.update(interview_results: "PENDING")
+    flash[:success] = "#{@event.applicant_detail.name}'s interview pending"
     redirect_to :back
   end
   
