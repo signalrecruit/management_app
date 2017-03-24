@@ -99,12 +99,23 @@ NB: setup of interview/test by <%= @event.scheduler %></span></p>
 					<span class="badge badge-important">Not Confirmed</span> <div class="btn-group">
                 			<button data-toggle="dropdown" class="btn btn-primary btn-mini dropdown-toggle">confirm?<span class="caret"></span></button>
                 			<ul class="dropdown-menu">
-                				<li><%= link_to fa_icon("thumbs-o-up") + " confirm schedule", company_confirm_schedule_url(event), method: :patch, data: { confirm: "Click Ok to confirm #{event.applicant_detail.name}'s schedule"} if !event.confirm? %></li>
+                				<li><%= link_to fa_icon("thumbs-o-up") + " confirm schedule", company_confirm_schedule_url(event), method: :patch, data: { confirm: "Click Ok to confirm #{event.applicant_detail.name}'s schedule"} %></li>
+                				<li><%= link_to fa_icon("thumbs-o-down") + " reject schedule", company_reject_schedule_url(event), method: :patch, data: { confirm: "Click Ok to reject #{event.applicant_detail.name}'s schedule"} %></li>
                 			</ul>
                 		</div>
 					<% end %> 	
 					</td>
-					<td><span class="date badge badge-inverse"><%= event.scheduler || "not set" %></span></td>
+					<td><span class="date badge badge-inverse"><%= event.scheduler || "not set" %></span>
+					    <% if event.scheduler.nil? %>
+						<div class="btn-group">
+						<button data-toggle="dropdown" class="btn btn-primary btn-mini dropdown-toggle"><%= event.scheduler || "not set" %><span class="caret"></span></button>
+							<ul class="dropdown-menu">
+								<li><%= link_to "#{current_company.name}", company_choose_company_url(event), method: :patch, data: { confirm: "Click OK if #{current_company.name} has a agreed to set up the interview/test" } %></li>
+								<li><%= link_to "Recruiter", company_choose_recruiter_url(event), method: :patch, data: { confirm: "Click OK if you want the recruiter to set up the interview/test on your behalf" } %></li>
+							</ul>
+						</div>	
+						<% end %>
+					</td>
 					<td>
 					<% if event.passed_interview? %>
 					  <span class="date badge badge-success">

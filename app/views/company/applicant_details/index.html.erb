@@ -31,10 +31,10 @@
               </thead>
               <tbody>
               <% @applicant_details.each do |applicant_detail| %>
-              <% if applicant_detail.sent? %>
+              <% if applicant_detail.sent_by == "Recruiter" %>
                 <tr class="odd gradeX" style="font-size: 14px;">
                      <td>
-                       <% if !applicant_detail.sent? %>  
+                       <% if !applicant_detail.sent_by_recruiter? %>  
                       <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
                       <% end %>
                       <% if applicant_detail.accept? %>
@@ -83,6 +83,59 @@
                   <% end %>
                   </span>  
                 	</td>
+                </tr>
+                <% elsif applicant_detail.sent_by == "#{current_company.name}" %>
+                <tr class="odd gradeX" style="font-size: 14px;">
+                     <td>
+                       <% if !applicant_detail.sent_by_recruiter? %>  
+                      <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
+                      <% end %>
+                      <% if applicant_detail.accept? %>
+                      <span class="date badge badge-success"><i class="fa fa-check-circle" aria-hidden="true"></i></span>
+                      <% else %>
+                      <span class="date badge badge-important"><i class="fa fa-hand-paper-o" aria-hidden="true"></i></span>
+                      <% end %>
+                     </td>
+                     <td>
+                     <span class="date badge badge-warning" ><%= link_to applicant_detail.name, [:company, applicant_detail] %></span></td>
+                    <td>
+                    <% applicant_detail.job_types.each do |job_type| %>
+                           <%= link_to job_type.name, [:company, applicant_detail] %>,
+                         <% end %>
+                    </td>
+                  <td><%= applicant_detail.location %></td>
+                  <td><%= applicant_detail.experience %></td>
+                  <td class="center"><%= applicant_detail.min_salary %> - <%= applicant_detail.max_salary %></td>
+                  <td class="center">
+                  <% applicant_detail.skills.each do |skill| %>
+                    <%= skill.name %>,
+                  <% end %> 
+                  </td>
+                  <td>
+                    <% applicant_detail.qualifications.each do |qualification| %>
+                      <%= qualification.name %>,
+                    <% end %> 
+                  </td>
+                  <td>
+                  <% if applicant_detail.score.present? %>
+                    <% if applicant_detail.score.total_score < 50.00 %>  
+                      <span class="date badge badge-important">
+                    <% elsif applicant_detail.score.total_score == 50.00 %>
+                      <span class="date badge badge-warning">
+                    <% elsif applicant_detail.score.total_score > 50.00 && applicant_detail.score.total_score < 90.00 %>
+                      <span class="date badge badge-info">
+                    <% elsif applicant_detail.score.total_score == 90.00 || applicant_detail.score.total_score > 90.00 %>
+                     <span class="date badge badge-success">     
+                    <% end %>
+                  <% end %>
+
+                  <% if applicant_detail.score.present? %>
+                    <%= number_with_precision applicant_detail.score.total_score, precision: 2, scale: 2 %>%
+                  <% else %>
+                    no score
+                  <% end %>
+                  </span>  
+                  </td>
                 </tr>
                 <% end %>
               <% end %>

@@ -17,7 +17,7 @@ class Recruiter::EventsController <  Recruiter::ApplicationController
 
   def create
     @event = @applicant_detail.build_event(event_params)
-    # @event.applicant_detail_id = @applicant_detail.id 
+    @event.company_id = @applicant_detail.requirement.company.id
 
     if @event.save
       flash[:success] = "successfully created an event"
@@ -45,7 +45,7 @@ class Recruiter::EventsController <  Recruiter::ApplicationController
   end
 
   def send_schedule
-    @event.update(sent: true)
+    @event.update(sent_by: "Recruiter")
     flash[:success] = "#{@event.applicant_detail.name}'s sent successfully"
     redirect_to :back
   end

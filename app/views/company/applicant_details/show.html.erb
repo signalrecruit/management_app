@@ -37,7 +37,7 @@
             <h5>Job Type: <% @applicant_detail.job_types.each do |job_type| %>
             	             <%= job_type.name %>, 
             	           <% end %></h5><span class="pull-right" >
-            	           <% if @applicant_detail.sent? %> 
+            	           <% if @applicant_detail.sent_by_recruiter? %> 
             	           <%= link_to fa_icon("check-circle") + " accept", company_accept_applicant_url(@applicant_detail), method: :patch, class: "btn btn-success" %> 
             	           <% if @applicant_detail.accept? %>
             	           <%= link_to fa_icon("hand-paper-o") + " reject", company_reject_applicant_url(@applicant_detail), method: :patch, class: "btn btn-danger" %> 

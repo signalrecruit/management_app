@@ -39,4 +39,9 @@ class ApplicantDetail < ActiveRecord::Base
     end
   end
 
+  def sent_by_recruiter?
+    return true if self.sent_by == "Recruiter"
+    return false if (self.sent_by == "Company" || self.sent_by == nil )
+  end
+
 end

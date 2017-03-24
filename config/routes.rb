@@ -53,7 +53,8 @@ Rails.application.routes.draw do
     patch 'applicant_details/:id/send_recruiter_applicant_details', to: 'applicant_details#send_recruiter_applicant_details', as: :send_recruiter_applicant_details
 
     patch 'events/:id/confirm_schedule', to: 'events#confirm_schedule', as: :confirm_schedule
-    
+    patch 'events/:id/reject_schedule', to: 'events#reject_schedule', as: :reject_schedule
+
     patch 'events/:id/choose_recruiter', to: 'events#choose_recruiter', as: :choose_recruiter
     patch 'events/:id/choose_company', to: 'events#choose_company', as: :choose_company
     patch 'events/:id/pass_interview', to: 'events#pass_interview', as: :pass_interview

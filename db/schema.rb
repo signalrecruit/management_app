@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170323002835) do
+ActiveRecord::Schema.define(version: 20170323125145) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,10 +28,10 @@ ActiveRecord::Schema.define(version: 20170323002835) do
     t.datetime "created_at",                           null: false
     t.datetime "updated_at",                           null: false
     t.string   "job_title"
-    t.boolean  "sent",                 default: false
     t.boolean  "accept",               default: false
     t.text     "reason_for_rejection"
     t.string   "attachment"
+    t.string   "sent_by"
   end
 
   add_index "applicant_details", ["requirement_id"], name: "index_applicant_details_on_requirement_id", using: :btree
@@ -116,17 +116,19 @@ ActiveRecord::Schema.define(version: 20170323002835) do
     t.string   "name"
     t.text     "brief_description"
     t.integer  "applicant_detail_id"
-    t.datetime "created_at",                              null: false
-    t.datetime "updated_at",                              null: false
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
     t.datetime "interview_date"
     t.datetime "test_date"
-    t.boolean  "confirm",             default: false
-    t.boolean  "sent",                default: false
+    t.string   "confirm",             default: "Not Confirmed"
+    t.string   "sent_by"
     t.string   "scheduler"
     t.string   "interview_results",   default: "PENDING"
+    t.integer  "company_id"
   end
 
   add_index "events", ["applicant_detail_id"], name: "index_events_on_applicant_detail_id", using: :btree
+  add_index "events", ["company_id"], name: "index_events_on_company_id", using: :btree
 
   create_table "experiences", force: :cascade do |t|
     t.string   "company_name"
@@ -266,6 +268,7 @@ ActiveRecord::Schema.define(version: 20170323002835) do
 
   add_foreign_key "applicant_details", "requirements"
   add_foreign_key "events", "applicant_details"
+  add_foreign_key "events", "companies"
   add_foreign_key "experiences", "applicant_details"
   add_foreign_key "requirements", "companies"
 end

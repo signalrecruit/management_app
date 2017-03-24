@@ -48,7 +48,7 @@ class Company::ApplicantDetailsController < Company::ApplicationController
   end
 
   def send_recruiter_applicant_details
-    @applicant_detail.update(sent: false)
+    @applicant_detail.update(sent_by: "#{current_company.name}")
     flash[:success] = "you have successfully sent #{@applicant_detail.name}'s application to recruiter"
     redirect_to :back
   end

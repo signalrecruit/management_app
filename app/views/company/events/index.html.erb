@@ -1,7 +1,13 @@
 <h1>Scheduled Events</h1>
 <div class="widget-box">
 <div class="widget-title"> <span class="icon"> <i class="icon-calendar"></i> </span>
-		<h5><%= pluralize(@events.count, "Scheduled Event") %></h5>
+		<h5>
+		<% if @events %>
+		<%= pluralize(@events.count, "Scheduled Event") %>
+		<% else %>
+		No Scheduled Event	
+		<% end %>	
+		</h5>
 	</div>
 
 	<div class="widget-content nopadding">
@@ -19,7 +25,9 @@
 				</tr>
 			</thead>
 			<tbody>
+			<% if @events %>
 				<% @events.each do |event| %>
+				<% if event.sent_by == "Recruiter" %>
 				<tr class="odd gradeX" style="font-size: 14px;">
 					<td><%= event.applicant_detail.name %></td>
 					<td><%= event.name %></td>
@@ -33,7 +41,8 @@
 					<div class="btn-group">
                 			<button data-toggle="dropdown" class="btn btn-primary btn-mini dropdown-toggle">confirm?<span class="caret"></span></button>
                 			<ul class="dropdown-menu">
-                				<li><%= link_to fa_icon("thumbs-o-up") + " confirm schedule", company_confirm_schedule_url(event), method: :patch, data: { confirm: "Click Ok to confirm #{event.applicant_detail.name}'s schedule"} if !event.confirm? %></li>
+                				<li><%= link_to fa_icon("thumbs-o-up") + " confirm schedule", company_confirm_schedule_url(event), method: :patch, data: { confirm: "Click Ok to confirm #{event.applicant_detail.name}'s schedule"} %></li>
+                				<li><%= link_to fa_icon("thumbs-o-down") + " reject schedule", company_reject_schedule_url(event), method: :patch, data: { confirm: "Click Ok to reject #{event.applicant_detail.name}'s schedule"} %></li>
                 			</ul>
                 		</div>
 					<% end %>		
@@ -72,6 +81,16 @@
 					</td>
 					<td><%= link_to fa_icon("eye") + " schedule", [:company, event] %></td>
 				</tr>
+				<% end %>
+				<% end %>
+				<% else %>
+				<td>No data</td>
+				<td>No data</td>
+				<td>No data</td>
+				<td>No data</td>
+				<td>No data</td>
+				<td>No data</td>
+				<td>No data</td>
 				<% end %>
 			</tbody>
 		</table>

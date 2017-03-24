@@ -36,7 +36,7 @@
               <% @applicant_details.each do |applicant_detail| %>
                 <tr class="odd gradeX" style="font-size: 14px;">
                     <td>
-                    <% if applicant_detail.sent? %>  
+                    <% if applicant_detail.sent_by_recruiter? %>  
                     <i class="fa fa-paper-plane-o" aria-hidden="true"></i><% end %>
                     <% if applicant_detail.accept? %>
                       <span class="date badge badge-success"><i class="fa fa-check-circle" aria-hidden="true"></i></span>
@@ -86,7 +86,7 @@
                   </span>  
                 	</td>
                   <td>
-                  <% if applicant_detail.requirement.nil? || !applicant_detail.sent? %>
+                  <% if applicant_detail.requirement.nil? || applicant_detail.sent_by_recruiter? %>
                   <span class="date badge badge-default">Not Applicable</span>
                   <% elsif applicant_detail.event.present? %>
                   <%= link_to fa_icon("eye") + " view schedule", recruiter_applicant_detail_event_url(applicant_detail, applicant_detail.event) %>

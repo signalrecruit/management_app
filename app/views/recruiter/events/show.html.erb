@@ -4,7 +4,7 @@
 		<div class="accordion-heading">
 			<div class="widget-title"> <a data-parent="#collapse-group" href="#collapseGOne" data-toggle="collapse"> <span class="icon"><i class="icon-eye-open"></i></span>
 				<h5><%= @applicant_detail.name %>'s schedule</h5>
-				<% if @applicant_detail.event.sent? %>	
+				<% if @applicant_detail.event.sent_by_recruiter? %>	
 				<% else %>
 				<%= link_to fa_icon("pencil") + " Edit", [:edit, :recruiter, @applicant_detail, @applicant_detail.event] , class: "btn btn-primary pull-right" %> <%= link_to fa_icon("paper-plane-o") + " send", recruiter_send_schedule_url(@event), method: :patch, class: "btn btn-primary pull-right" %>     
 				<% end %>

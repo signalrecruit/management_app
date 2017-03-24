@@ -2,11 +2,11 @@ class Company::EventsController < Company::ApplicationController
   # before_action :set_applicant_detail, except: [:index, :send_schedule, :show, :edit, :update, :confirm_schedule]
   before_action :set_applicant_detail, only: [:new]
   before_action :set_event, only: [:show, :edit, :update, :destroy, :confirm_schedule, :choose_recruiter,
-    :choose_company, :pass_interview, :fail_interview, :interview_pending]
+    :choose_company, :pass_interview, :fail_interview, :interview_pending, :reject_schedule]
   layout 'company' 
 
   def index
-    @events = Event.all.where(sent: true)
+    @events = Event.all.where(company_id: "#{current_company.id}")  
   end
 
   def show
@@ -19,7 +19,6 @@ class Company::EventsController < Company::ApplicationController
 
   def create
     @event = @applicant_detail.build_event(event_params)
-    # @event.applicant_detail_id = @applicant_detail.id 
 
     if @event.save
       flash[:success] = "successfully created an event"
@@ -48,9 +47,15 @@ class Company::EventsController < Company::ApplicationController
 
   # move these methods into it's own controller
   def confirm_schedule
-    @event.update(confirm: true)
+    @event.update(confirm: "Confirmed")
     flash[:success] = "#{@event.applicant_detail.name}'s sent successfully"
     redirect_to :back
+  end
+
+  def reject_schedule
+    @event.update(confirm: "Rejected")
+    flash[:success] = "please setup a schedule for #{@event.applicant_detail.name}'s interview/test"
+    redirect_to [:edit, :company, @event]
   end
 
   def choose_recruiter
