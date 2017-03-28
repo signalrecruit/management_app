@@ -1,0 +1,153 @@
+<div class="span12">
+        <div class="widget-box">
+          <div class="widget-title"> <span class="icon"> <i class="icon-pencil"></i> </span>
+            <h5>Complete Employee Profile</h5>
+          </div>
+          <div class="widget-content nopadding">
+<!--           <div id="form-wizard" class="form-horizontal" %>
+ -->            <%= simple_form_for([:recruiter, applicant_detail, employee], html: { id: "form-wizard", class: "form-horizontal" }) do |f| %>
+              <div id="form-wizard-1" class="step">
+                <div class="control-group">
+                  <label class="control-label">First name</label>
+                  <div class="controls">
+                    <%= f.input :firstname, label: false %>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label">Middle name</label>
+                  <div class="controls">
+                    <%= f.input :middlename, label: false %>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label">Last name</label>
+                  <div class="controls">
+                    <%= f.input :surname, label: false %>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label">Date Of Birth</label>
+                  <div class="controls">
+                    <%= f.input :birthdate, as: :date, start_year: Date.today.year - 100, end_year: Date.today.year - 10, label: false %>
+                  </div>
+                </div>
+              </div>
+              <div id="form-wizard-2" class="step">
+                <div class="control-group">
+                  <label class="control-label">Marital Status</label>
+                  <div class="controls">
+                    <%= f.input :marital_status, collection: [["single", "single"], ["married", "married"], ["divorce", "divorce"]], label: false %>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label">Gender</label>
+                  <div class="controls">
+                    <%= f.collection_radio_buttons :gender, [["male",  "male"], ["female", "female"]], :first, :last, item_wrapper_class: 'inline'  %>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label">Place of Birth</label>
+                  <div class="controls">
+                    <%= f.input :birthplace, label: false %>
+                  </div>
+                </div>
+                 <div class="control-group">
+                  <label class="control-label">Region</label>
+                  <div class="controls">
+                    <%= f.input :region, label: false %>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label">Country</label>
+                  <div class="controls">
+                    <%= f.input :country, label: false %>
+                  </div>
+                </div>
+              </div>
+              <div id="form-wizard-3" class="step">
+                <div class="control-group">
+                  <label class="control-label">Commencement Date</label>
+                  <div class="controls">
+                    <%= f.input :commencement_date, as: :date, start_year: Date.today.year, end_year: Date.today.year - 2, label: false  %>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label">Position</label>
+                  <div class="controls">
+                    <%= f.input :position, label: false %>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label">Department</label>
+                  <div class="controls">
+                    <%= f.input :department, label: false %>
+                  </div>
+                </div>
+              </div>
+              <div id="form-wizard-4" class="step">
+                <div class="control-group">
+                  <label class="control-label">Postal Address</label>
+                  <div class="controls">
+                    <%= f.input :postal_address, label: false %>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label">City</label>
+                  <div class="controls">
+                    <%= f.input :city, label: false %>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label">House Number</label>
+                  <div class="controls">
+                    <%= f.input :house_number, label: false %>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label">Corporate Phone Number</label>
+                  <div class="controls">
+                    <%= f.input :office_number, label: false %>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label">Mobile Number</label>
+                  <div class="controls">
+                    <%= f.input :mobile_number, label: false %>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label">Email Address</label>
+                  <div class="controls">
+                    <%= f.input :email_address, label: false %>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label">Corporate Email</label>
+                  <div class="controls">
+                    <%= f.input :corporate_email, label: false %>
+                  </div>
+                </div>
+              </div>
+              <div class="form-actions">
+                <input id="back" class="btn btn-primary" type="reset" value="Back" />
+<!--                 <input id="next" class="btn btn-primary" type="submit" value="Next" />
+ -->                <%= f.button :submit, id: "next", class: "btn btn-primary" %>
+                <div id="status"></div>
+              </div>
+              <div id="submitted"></div>
+              <% end %>
+<!--               </div>
+ -->          </div>
+        </div>
+      </div>
+    </div>
+
+
+<%= javascript_include_tag "recruiter/jquery.min" %>
+<%= javascript_include_tag "recruiter/jquery.ui.custom" %>
+<%= javascript_include_tag "recruiter/bootstrap.min" %>
+<%#= javascript_include_tag "recruiter/jquery.validate" %>
+<%= javascript_include_tag "recruiter/jquery.wizard" %>
+<%= javascript_include_tag "recruiter/matrix" %>
+<%= javascript_include_tag "recruiter/matrix.wizard" %>   
+

@@ -45,4 +45,12 @@ class ApplicantDetail < ActiveRecord::Base
     return false if (self.sent_by == "Company" || self.sent_by == nil )
   end
 
+  def firstname
+    self.name.split().first
+  end
+
+  def lastname
+    self.name.split().last
+  end
+
 end

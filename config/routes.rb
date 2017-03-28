@@ -36,8 +36,10 @@ Rails.application.routes.draw do
       resources :scores, only: [:new, :show, :create, :edit, :update]
       resources :experiences
       resources :events, except: [:index]
+      resources :employees, only: [:show,  :create, :edit, :update]
     end    
-    resources :events, only: [:index]
+    resources :employees, only: [:index]
+    resources :events, only: [:index]    
   end
 
 
