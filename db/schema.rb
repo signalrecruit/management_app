@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170323125145) do
+ActiveRecord::Schema.define(version: 20170328102622) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -111,6 +111,34 @@ ActiveRecord::Schema.define(version: 20170323125145) do
   end
 
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
+
+  create_table "employees", force: :cascade do |t|
+    t.integer  "company_id"
+    t.integer  "applicant_detail_id"
+    t.datetime "created_at",                                                   null: false
+    t.datetime "updated_at",                                                   null: false
+    t.string   "surname",             default: "surname"
+    t.string   "middlename",          default: "middle name"
+    t.string   "firstname",           default: "first name"
+    t.string   "marital_status",      default: "single"
+    t.string   "gender",              default: "male"
+    t.string   "birthplace",          default: "your birth place"
+    t.string   "region",              default: "Region"
+    t.string   "country",             default: "Country"
+    t.datetime "commencement_date",   default: '2017-03-28 10:57:15'
+    t.string   "position",            default: "position"
+    t.string   "department",          default: "name of department"
+    t.string   "postal_address",      default: "employee postal address"
+    t.string   "city",                default: "name of your city"
+    t.string   "house_number",        default: "employee house number"
+    t.string   "office_number",       default: "office number here"
+    t.string   "mobile",              default: "employee mobile number"
+    t.string   "email_address",       default: "employee's email"
+    t.string   "corporate_email",     default: "corporate email for employee"
+  end
+
+  add_index "employees", ["applicant_detail_id"], name: "index_employees_on_applicant_detail_id", using: :btree
+  add_index "employees", ["company_id"], name: "index_employees_on_company_id", using: :btree
 
   create_table "events", force: :cascade do |t|
     t.string   "name"
@@ -267,6 +295,8 @@ ActiveRecord::Schema.define(version: 20170323125145) do
   end
 
   add_foreign_key "applicant_details", "requirements"
+  add_foreign_key "employees", "applicant_details"
+  add_foreign_key "employees", "companies"
   add_foreign_key "events", "applicant_details"
   add_foreign_key "events", "companies"
   add_foreign_key "experiences", "applicant_details"
