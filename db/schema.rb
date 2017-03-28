@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170328102622) do
+ActiveRecord::Schema.define(version: 20170328225504) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,17 @@ ActiveRecord::Schema.define(version: 20170328102622) do
   end
 
   add_index "applicant_details_skills", ["applicant_detail_id", "skill_id"], name: "applicant_skills", unique: true, using: :btree
+
+  create_table "children_details", force: :cascade do |t|
+    t.string   "name"
+    t.string   "birthdate"
+    t.string   "school"
+    t.integer  "employee_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "children_details", ["employee_id"], name: "index_children_details_on_employee_id", using: :btree
 
   create_table "companies", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -111,6 +122,31 @@ ActiveRecord::Schema.define(version: 20170328102622) do
   end
 
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
+
+  create_table "educational_qualifications", force: :cascade do |t|
+    t.string   "institution"
+    t.string   "certificate"
+    t.datetime "enrolled_at"
+    t.datetime "completed_at"
+    t.integer  "employee_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "educational_qualifications", ["employee_id"], name: "index_educational_qualifications_on_employee_id", using: :btree
+
+  create_table "employee_histories", force: :cascade do |t|
+    t.string   "organization"
+    t.string   "position"
+    t.datetime "from"
+    t.datetime "to"
+    t.text     "reason_for_leaving"
+    t.integer  "employee_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  add_index "employee_histories", ["employee_id"], name: "index_employee_histories_on_employee_id", using: :btree
 
   create_table "employees", force: :cascade do |t|
     t.integer  "company_id"
@@ -184,6 +220,29 @@ ActiveRecord::Schema.define(version: 20170328102622) do
 
   add_index "job_types_requirements", ["job_type_id", "requirement_id"], name: "job_and_requirements", unique: true, using: :btree
 
+  create_table "next_of_kins", force: :cascade do |t|
+    t.string   "name"
+    t.string   "relationship"
+    t.string   "phonenumber"
+    t.string   "address"
+    t.integer  "employee_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "next_of_kins", ["employee_id"], name: "index_next_of_kins_on_employee_id", using: :btree
+
+  create_table "parent_details", force: :cascade do |t|
+    t.string   "parent_name"
+    t.string   "birthdate"
+    t.string   "alive"
+    t.integer  "employee_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "parent_details", ["employee_id"], name: "index_parent_details_on_employee_id", using: :btree
+
   create_table "qualifications", force: :cascade do |t|
     t.string   "name"
     t.integer  "score"
@@ -252,6 +311,19 @@ ActiveRecord::Schema.define(version: 20170328102622) do
 
   add_index "requirements_skills", ["requirement_id", "skill_id"], name: "index_requirements_skills_on_requirement_id_and_skill_id", unique: true, using: :btree
 
+  create_table "salary_details", force: :cascade do |t|
+    t.string   "bankname"
+    t.string   "branch"
+    t.string   "account_number"
+    t.string   "account_name"
+    t.string   "ssnit_number"
+    t.integer  "employee_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "salary_details", ["employee_id"], name: "index_salary_details_on_employee_id", using: :btree
+
   create_table "scores", force: :cascade do |t|
     t.boolean  "skills_check",                                    default: false
     t.boolean  "qualifications_check",                            default: false
@@ -295,11 +367,31 @@ ActiveRecord::Schema.define(version: 20170328102622) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "spouse_details", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "birtdate"
+    t.string   "profession"
+    t.string   "phonenumber"
+    t.string   "address"
+    t.integer  "employee_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "spouse_details", ["employee_id"], name: "index_spouse_details_on_employee_id", using: :btree
+
   add_foreign_key "applicant_details", "requirements"
+  add_foreign_key "children_details", "employees"
+  add_foreign_key "educational_qualifications", "employees"
+  add_foreign_key "employee_histories", "employees"
   add_foreign_key "employees", "applicant_details"
   add_foreign_key "employees", "companies"
   add_foreign_key "events", "applicant_details"
   add_foreign_key "events", "companies"
   add_foreign_key "experiences", "applicant_details"
+  add_foreign_key "next_of_kins", "employees"
+  add_foreign_key "parent_details", "employees"
   add_foreign_key "requirements", "companies"
+  add_foreign_key "salary_details", "employees"
+  add_foreign_key "spouse_details", "employees"
 end
