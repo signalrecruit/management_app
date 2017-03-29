@@ -156,13 +156,13 @@ ActiveRecord::Schema.define(version: 20170328225504) do
     t.string   "surname",             default: "surname"
     t.string   "middlename",          default: "middle name"
     t.string   "firstname",           default: "first name"
-    t.datetime "birthdate",           default: '2017-03-28 16:03:10'
+    t.datetime "birthdate",           default: '2017-03-29 12:50:42'
     t.string   "marital_status",      default: "single"
     t.string   "gender",              default: "male"
     t.string   "birthplace",          default: "your birth place"
     t.string   "region",              default: "Region"
     t.string   "country",             default: "Country"
-    t.datetime "commencement_date",   default: '2017-03-28 16:03:11'
+    t.datetime "commencement_date",   default: '2017-03-29 12:50:44'
     t.string   "position",            default: "position"
     t.string   "department",          default: "name of department"
     t.string   "postal_address",      default: "employee postal address"

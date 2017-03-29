@@ -3,8 +3,8 @@ class CreateEmployeeHistories < ActiveRecord::Migration
     create_table :employee_histories do |t|
       t.string :organization
       t.string :position
-      t.datetime :from
-      t.datetime :to
+      t.datetime :from, default: nil
+      t.datetime :to, default: nil
       t.text :reason_for_leaving
       t.references :employee, index: true, foreign_key: true
 

@@ -1,6 +1,7 @@
 class Recruiter::EmployeesController < Recruiter::ApplicationController
   before_action :set_applicant_detail, except: [:index]
   before_action :set_employee, except: [:index]
+  layout 'recruiter'
 
   def index
   	@applicant_details = ApplicantDetail.includes(:event).where(:events => { interview_results: "PASSED" }).all
@@ -49,7 +50,7 @@ class Recruiter::EmployeesController < Recruiter::ApplicationController
   def employee_params
     params.require(:employee).permit(:surname, :middlename, :firstname, :marital_status, :birthdate, :gender, :birthplace,
       :region, :country, :commencement_date, :position, :department, :postal_address, :city, :house_number, :office_number,
-      :mobile_number, :email_address, :coporate_email)
+      :mobile_number, :email_address, :corporate_email)
   end
 
   def on_success(msg, path)

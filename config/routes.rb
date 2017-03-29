@@ -38,7 +38,9 @@ Rails.application.routes.draw do
       resources :events, except: [:index]
       resources :employees, only: [:show,  :create, :edit, :update]
     end    
-    resources :employees, only: [:index]
+    resources :employees, only: [:index] do
+      resources :educational_qualifications, only: [:new]
+    end
     resources :events, only: [:index]    
   end
 
