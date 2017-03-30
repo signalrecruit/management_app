@@ -1,2 +1,91 @@
-<h1>Recruiter::Employees#show</h1>
-<p>Find me in app/views/recruiter/employees/show.html.erb</p>
+<h3>View <span class="badge badge-info" style="font-size: 28px; padding: 20px;"><%= @employee.firstname %></span>'s Profile</h3>
+<div class="accordion" id="collapse-group">
+  <div class="accordion-group widget-box">
+    <div class="accordion-heading">
+     <div class="widget-title"> <a data-parent="#collapse-group" href="#collapseGThree" data-toggle="collapse"> <span class="icon"><i class="icon-chevron-down"></i></span>
+        <h5><%= @employee.firstname %>'s profile</h5>
+      </a> </div>
+    </div>
+    <div class="collapse accordion-body" id="collapseGThree">
+      <div class="widget-content"> 
+        <p>First Name: <%= @employee.firstname %></p>
+        <p>Middle Name: <%= @employee.middlename %></p>
+        <p>Last Name: <%= @employee.surname %></p>
+        <p>Date of Birth:  <%= @employee.birthdate.strftime("%B %d, %Y") %></p>
+        <p>Marital Status: <%= @employee.marital_status %></p>
+        <p>Gender: <%= @employee.gender %></p>
+        <p>Place of Birth: <%= @employee.birthplace %></p>
+        <p>Region: <%= @employee.region %></p>
+        <p>Country: <%= @employee.country %></p>
+        <p>Commencement Date: <%= @employee.commencement_date %></p>
+        <p>Position: <%= @employee.position %></p>
+        <p>Department: <%= @employee.department %></p>
+        <p>Postal Address: <%= @employee.postal_address %></p>
+        <p>City: <%= @employee.city %></p>
+        <p>House Number: <%= @employee.house_number %></p>
+        <p>Corporate Phone Number: <%= @employee.office_number %></p>
+        <p>Mobile Number: <%= @employee.mobile_number %></p>
+        <p>Personal Email Address: <%= @employee.email_address %></p>
+        <p>Corporate Email Address: <%= @employee.corporate_email %></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="accordion" id="collapse-group">
+   <div class="accordion-group widget-box">
+    <div class="accordion-heading">
+     <div class="widget-title"> <a data-parent="#collapse-group" href="#collapseGOne" data-toggle="collapse"> <span class="icon"><i class="icon-chevron-down"></i></span>
+        <h5><%= @employee.firstname %>'s educational qualifications</h5>
+      </a> </div>
+    </div>
+    <div class="collapse in accordion-body" id="collapseGOne">
+      <div class="widget-content"> 
+      <div class="widget-content nopadding">
+		<table class="table table-bordered table-striped">
+			<thead>
+				<tr>
+					<th>Institution</th>
+					<th>Certificate</th>
+					<th>Date of Enrolement</th>
+					<th>Date of Completion</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @employee.educational_qualifications.each do |qualification| %>
+				<tr class="odd gradeX">
+				<% if !qualification.update_button_clicked? %>
+					<td><%= qualification.institution %> <%= link_to "edit", recruiter_employee_update_button_url(@employee, qualification), method: :patch, class: "btn-sm btn-primary" %> <%= link_to "remove", recruiter_employee_educational_qualification_url(@employee, qualification), method: :delete, data: { confirm: "Are you sure want to delete this?" }, class: "btn-sm btn-primary" %></td>
+					<td><%= qualification.certificate %></td>
+					<td><%= qualification.enrolled_at.strftime("%B %d, %Y")%></td>
+					<td><%= qualification.completed_at.strftime("%B %d, %Y") %></td>
+				<% end %>
+				</tr>
+				<tr>
+				<% if qualification.update_button_clicked? %>
+					<%= simple_form_for([:recruiter, @employee, qualification]) do |f| %>
+					<td><%= f.input :institution, label: false %><%= f.button :submit, "update", class: "btn btn-primary" %></td>
+					<td><%= f.input :certificate, label: false %></td>
+					<td><%= f.input :enrolled_at, as: :date, label: false %></td>
+					<td><%= f.input :completed_at, as: :date, label: false %></td>
+					<% end %>
+			    <% end %>		
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+	<%= link_to fa_icon("pencil") + " add another educational qualifications", new_recruiter_employee_educational_qualification_url(@employee), class: "btn btn-primary" %>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= link_to fa_icon("pencil") + " add educational qualifications", new_recruiter_employee_educational_qualification_url(@employee), class: "btn btn-primary" if @employee.educational_qualifications.empty? %>
+
+
+<%= javascript_include_tag "recruiter/jquery.min" %>
+<%= javascript_include_tag "recruiter/jquery.ui.custom" %>
+<%= javascript_include_tag "recruiter/bootstrap.min" %>
+<%= javascript_include_tag "recruiter/matrix" %>

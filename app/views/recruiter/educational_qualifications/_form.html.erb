@@ -1,0 +1,44 @@
+<div class="span12">
+<div class="widget-box">
+        <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+          <h5>Educational Qualification for <span class="badge badge-success"><%= @employee.firstname %></span></h5>
+        </div>
+        <br>
+        <div class="widget-content nopadding form-horizontal">
+<%= simple_form_for([:recruiter, employee, educational_qualification]) do |f| %>
+
+<div class="control-group">
+	<label class="control-label">Institution :</label>
+	<div class="controls">
+		<%= f.input :institution, label: false %>
+	</div>
+</div>
+
+<div class="control-group">
+	<label class="control-label">Certificate :</label>
+	<div class="controls">
+		<%= f.input :certificate, label: false %>
+	</div>
+</div>
+
+<div class="control-group">
+	<label class="control-label">Date of Enrolement:</label>
+	<div class="controls">
+		<%= f.input :enrolled_at, as: :date, label: false %>
+	</div>
+</div>
+
+<div class="control-group">
+	<label class="control-label">Date of Completion:</label>
+	<div class="controls">
+		<%= f.input :completed_at, as: :date, label: false %>
+	</div>
+</div>
+
+   <div class="modal-footer"> 
+   <%= f.button :submit, "add educational qualification", class: "btn btn-primary" %>
+   </div>
+<% end %>
+</div>
+</div>
+</div>

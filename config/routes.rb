@@ -39,7 +39,8 @@ Rails.application.routes.draw do
       resources :employees, only: [:show,  :create, :edit, :update]
     end    
     resources :employees, only: [:index] do
-      resources :educational_qualifications, only: [:new]
+      resources :educational_qualifications, only: [:new, :create, :edit, :update, :destroy]
+      patch 'educational_qualifications/:id/update_button', to: 'educational_qualifications#update_button', as: :update_button
     end
     resources :events, only: [:index]    
   end

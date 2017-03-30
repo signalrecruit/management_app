@@ -1,0 +1,2 @@
+module Recruiter::EducationalQualificationsHelper
+end
