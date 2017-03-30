@@ -2,10 +2,6 @@ class Recruiter::EducationalQualificationsController < Recruiter::ApplicationCon
   before_action :set_employee
   before_action :set_educational_qualification, only: [:show, :edit, :update, :destroy, :update_button]
   layout "recruiter"
- 
-
-  def index
-  end
 
   def show
   end
@@ -52,12 +48,14 @@ class Recruiter::EducationalQualificationsController < Recruiter::ApplicationCon
   def set_employee
   	@employee = Employee.find(params[:employee_id])
   rescue ActiveRecord::RecordNotFound
+  	flash[:error] = "could not find the record you were looking for"
   	redirect_to :back
   end
 
   def set_educational_qualification
   	@educational_qualification = @employee.educational_qualifications.find(params[:id])
   rescue ActiveRecord::RecordNotFound
+  	flash[:error] = "could not find the record you were looking for"
     redirect_to :back 
   end
 

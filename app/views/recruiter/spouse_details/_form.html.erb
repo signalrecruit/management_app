@@ -1,0 +1,51 @@
+<div class="span12">
+<div class="widget-box">
+        <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+          <h5>Spouse Details for <span class="badge badge-success"><%= @employee.firstname %></span></h5>
+        </div>
+        <br>
+        <div class="widget-content nopadding form-horizontal">
+<%= simple_form_for([:recruiter, employee, spouse_details]) do |f| %>
+
+<div class="control-group">
+	<label class="control-label">Spouse Name :</label>
+	<div class="controls">
+		<%= f.input :name, label: false %>
+	</div>
+</div>
+
+<div class="control-group">
+	<label class="control-label">Date of Birth :</label>
+	<div class="controls">
+		<%= f.input :birthdate, as: :date, start_year: Date.today.year - 100, end_year: Date.today.year - 10, label: false %>
+	</div>
+</div>
+
+<div class="control-group">
+	<label class="control-label">Profession:</label>
+	<div class="controls">
+		<%= f.input :profession, label: false %>
+	</div>
+</div>
+
+<div class="control-group">
+	<label class="control-label">Phonenumber:</label>
+	<div class="controls">
+		<%= f.input :phonenumber, label: false %>
+	</div>
+</div>
+
+<div class="control-group">
+	<label class="control-label">Address:</label>
+	<div class="controls">
+		<%= f.input :address, label: false %>
+	</div>
+</div>
+
+   <div class="modal-footer"> 
+   <%= f.button :submit, "create employment history" ,class: "btn btn-primary" %>
+   </div>
+<% end %>
+</div>
+</div>
+</div>

@@ -55,13 +55,13 @@
 				<% @employee.educational_qualifications.each do |qualification| %>
 				<tr class="odd gradeX">
 				<% if !qualification.update_button_clicked? %>
-					<td><%= qualification.institution %> <%= link_to "edit", recruiter_employee_update_button_url(@employee, qualification), method: :patch, class: "btn-sm btn-primary" %> <%= link_to "remove", recruiter_employee_educational_qualification_url(@employee, qualification), method: :delete, data: { confirm: "Are you sure want to delete this?" }, class: "btn-sm btn-primary" %></td>
+					<td><%= qualification.institution %> <%= link_to "edit", recruiter_employee_qualification_update_button_url(@employee, qualification), method: :patch, class: "btn-sm btn-primary" %> <%= link_to "remove", recruiter_employee_educational_qualification_url(@employee, qualification), method: :delete, data: { confirm: "Are you sure want to delete this?" }, class: "btn-sm btn-primary" %></td>
 					<td><%= qualification.certificate %></td>
 					<td><%= qualification.enrolled_at.strftime("%B %d, %Y")%></td>
 					<td><%= qualification.completed_at.strftime("%B %d, %Y") %></td>
 				<% end %>
 				</tr>
-				<tr>
+				<tr class="odd gradeX">
 				<% if qualification.update_button_clicked? %>
 					<%= simple_form_for([:recruiter, @employee, qualification]) do |f| %>
 					<td><%= f.input :institution, label: false %><%= f.button :submit, "update", class: "btn btn-primary" %></td>
@@ -75,14 +75,126 @@
 			</tbody>
 		</table>
 	</div>
-	<%= link_to fa_icon("pencil") + " add another educational qualifications", new_recruiter_employee_educational_qualification_url(@employee), class: "btn btn-primary" %>
+	<br/>
+	<%= link_to fa_icon("plus") + " add another educational qualifications", new_recruiter_employee_educational_qualification_url(@employee), class: "btn btn-primary" %>
         
       </div>
     </div>
   </div>
 </div>
 
-<%= link_to fa_icon("pencil") + " add educational qualifications", new_recruiter_employee_educational_qualification_url(@employee), class: "btn btn-primary" if @employee.educational_qualifications.empty? %>
+
+<div class="accordion" id="collapse-group">
+   <div class="accordion-group widget-box">
+    <div class="accordion-heading">
+     <div class="widget-title"> <a data-parent="#collapse-group" href="#collapseGTwo" data-toggle="collapse"> <span class="icon"><i class="icon-chevron-down"></i></span>
+        <h5><%= @employee.firstname %>'s employment history</h5>
+      </a> </div>
+    </div>
+    <div class="collapse in accordion-body" id="collapseGTwo">
+      <div class="widget-content"> 
+      <div class="widget-content nopadding">
+		<table class="table table-bordered table-striped">
+			<thead>
+				<tr>
+					<th>Organization</th>
+					<th>Position</th>
+					<th>Start Date</th>
+					<th>End Date</th>
+					<th>Reason for leaving</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @employee.employment_histories.each do |employment| %>
+				<tr class="odd gradeX">
+				<% if !employment.update_button_clicked? %>
+					<td><%= employment.organization %> <%= link_to "edit", recruiter_employee_employment_update_button_url(@employee, employment), method: :patch, class: "btn-sm btn-primary" %> <%= link_to "remove", recruiter_employee_employment_history_url(@employee, employment), method: :delete, data: { confirm: "Are you sure want to delete this?" }, class: "btn-sm btn-primary" %></td>
+					<td><%= employment.position %></td>
+					<td><%= employment.from.strftime("%B %d, %Y")%></td>
+					<td><%= employment.to.strftime("%B %d, %Y") %></td>
+					<td><%= employment.reason_for_leaving %></td>
+				<% end %>
+				</tr>
+				<tr class="odd gradeX">
+				<% if employment.update_button_clicked? %>
+					<%= simple_form_for([:recruiter, @employee, employment]) do |f| %>
+					<td><%= f.input :organization, label: false %><%= f.button :submit, "update", class: "btn btn-primary" %></td>
+					<td><%= f.input :position, label: false %></td>
+					<td><%= f.input :from, as: :date, label: false %></td>
+					<td><%= f.input :to, as: :date, label: false %></td>
+					<td><%= f.input :reason_for_leaving, label: false %></td>
+					<% end %>
+			    <% end %>		
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+	<br/>
+	<%= link_to fa_icon("plus") + " add another employment history", new_recruiter_employee_employment_history_url(@employee), class: "btn btn-primary" %>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="accordion" id="collapse-group">
+   <div class="accordion-group widget-box">
+    <div class="accordion-heading">
+     <div class="widget-title"> <a data-parent="#collapse-group" href="#collapseGFour" data-toggle="collapse"> <span class="icon"><i class="icon-chevron-down"></i></span>
+        <h5><%= @employee.firstname %>'s spouse details</h5>
+      </a> </div>
+    </div>
+    <div class="collapse in accordion-body" id="collapseGFour">
+      <div class="widget-content"> 
+      <div class="widget-content nopadding">
+		<table class="table table-bordered table-striped">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Date of Birth</th>
+					<th>Profession</th>
+					<th>Phonenumber</th>
+					<th>Address</th>
+				</tr>
+			</thead>
+			<tbody>
+			    <% if !@employee.spouse_detail.nil? %>
+				<tr class="odd gradeX">
+				<% if !@employee.spouse_detail.update_button_clicked? %>
+					<td><%= @employee.spouse_detail.name %> <%= link_to "edit", recruiter_employee_spouse_update_button_url(@employee, @employee.spouse_detail), method: :patch, class: "btn-sm btn-primary" %> <%= link_to "remove", recruiter_employee_spouse_detail_url(@employee, @employee.spouse_detail), method: :delete, data: { confirm: "Are you sure want to delete this?" }, class: "btn-sm btn-primary" %></td>
+					<td><%= @employee.spouse_detail.birthdate.strftime("%B %d, %Y")%></td>
+					<td><%= @employee.spouse_detail.profession %></td>
+					<td><%= @employee.spouse_detail.phonenumber %></td>
+					<td><%= @employee.spouse_detail.address %></td>
+				<% end %>
+				</tr>
+				<tr class="odd gradeX">
+				<% if @employee.spouse_detail.update_button_clicked? %>
+					<%= simple_form_for([:recruiter, @employee, @employee.spouse_detail]) do |f| %>
+					<td><%= f.input :name, label: false %><%= f.button :submit, "update", class: "btn btn-primary" %></td>
+					<td><%= f.input :birthdate, as: :date, start_year: Date.today.year - 100, end_year: Date.today.year - 10, label: false %></td>
+					<td><%= f.input :profession, label: false %></td>
+					<td><%= f.input :phonenumber, label: false %></td>
+					<td><%= f.input :address, label: false %></td>
+					<% end %>
+			    <% end %>		
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>        
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= link_to fa_icon("plus") + " add educational qualifications", new_recruiter_employee_educational_qualification_url(@employee), class: "btn btn-primary" if @employee.educational_qualifications.empty? %>
+<%= link_to fa_icon("plus") + " add employment history", new_recruiter_employee_employment_history_url(@employee), class: "btn btn-primary" if @employee.educational_qualifications.any? && @employee.employment_histories.empty? %>
+<%= link_to fa_icon("plus") + " add spouse details",  new_recruiter_employee_spouse_detail_url(@employee), class: "btn btn-primary" if @employee.employment_histories.any? && @employee.spouse_detail.nil? %>
+
+
 
 
 <%= javascript_include_tag "recruiter/jquery.min" %>

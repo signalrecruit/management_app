@@ -1,0 +1,51 @@
+<div class="span12">
+<div class="widget-box">
+        <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+          <h5>Employment History for <span class="badge badge-success"><%= @employee.firstname %></span></h5>
+        </div>
+        <br>
+        <div class="widget-content nopadding form-horizontal">
+<%= simple_form_for([:recruiter, employee, employment_history]) do |f| %>
+
+<div class="control-group">
+	<label class="control-label">Organization :</label>
+	<div class="controls">
+		<%= f.input :organization, label: false %>
+	</div>
+</div>
+
+<div class="control-group">
+	<label class="control-label">Position :</label>
+	<div class="controls">
+		<%= f.input :position, label: false %>
+	</div>
+</div>
+
+<div class="control-group">
+	<label class="control-label">Start Date:</label>
+	<div class="controls">
+		<%= f.input :from, as: :date, start_year: Date.today.year - 100, end_year: Date.today.year - 10, label: false %>
+	</div>
+</div>
+
+<div class="control-group">
+	<label class="control-label">End Date:</label>
+	<div class="controls">
+		<%= f.input :to, as: :date, start_year: Date.today.year - 100, end_year: Date.today.year - 10, label: false %>
+	</div>
+</div>
+
+<div class="control-group">
+	<label class="control-label">Reason for leaving:</label>
+	<div class="controls">
+		<%= f.input :reason_for_leaving, label: false %>
+	</div>
+</div>
+
+   <div class="modal-footer"> 
+   <%= f.button :submit, "create employment history" ,class: "btn btn-primary" %>
+   </div>
+<% end %>
+</div>
+</div>
+</div>

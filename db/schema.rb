@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170330002751) do
+ActiveRecord::Schema.define(version: 20170330034805) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -177,6 +177,20 @@ ActiveRecord::Schema.define(version: 20170330002751) do
 
   add_index "employees", ["applicant_detail_id"], name: "index_employees_on_applicant_detail_id", using: :btree
   add_index "employees", ["company_id"], name: "index_employees_on_company_id", using: :btree
+
+  create_table "employment_histories", force: :cascade do |t|
+    t.string   "organization"
+    t.string   "position"
+    t.datetime "from"
+    t.datetime "to"
+    t.text     "reason_for_leaving"
+    t.integer  "employee_id"
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.boolean  "update_button",      default: false
+  end
+
+  add_index "employment_histories", ["employee_id"], name: "index_employment_histories_on_employee_id", using: :btree
 
   create_table "events", force: :cascade do |t|
     t.string   "name"
@@ -370,13 +384,14 @@ ActiveRecord::Schema.define(version: 20170330002751) do
 
   create_table "spouse_details", force: :cascade do |t|
     t.string   "name"
-    t.datetime "birtdate"
+    t.datetime "birthdate"
     t.string   "profession"
     t.string   "phonenumber"
     t.string   "address"
     t.integer  "employee_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.boolean  "update_button", default: false
   end
 
   add_index "spouse_details", ["employee_id"], name: "index_spouse_details_on_employee_id", using: :btree
@@ -387,6 +402,7 @@ ActiveRecord::Schema.define(version: 20170330002751) do
   add_foreign_key "employee_histories", "employees"
   add_foreign_key "employees", "applicant_details"
   add_foreign_key "employees", "companies"
+  add_foreign_key "employment_histories", "employees"
   add_foreign_key "events", "applicant_details"
   add_foreign_key "events", "companies"
   add_foreign_key "experiences", "applicant_details"

@@ -1,4 +1,4 @@
-class SpouseDetail < ActiveRecord::Base
+class EmploymentHistory < ActiveRecord::Base
   belongs_to :employee
 
   def update_button_clicked?
