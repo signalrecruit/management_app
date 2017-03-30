@@ -27,6 +27,8 @@ Rails.application.routes.draw do
     patch 'events/:id/pass_interview', to: 'events#pass_interview', as: :pass_interview
     patch 'events/:id/fail_interview', to: 'events#fail_interview', as: :fail_interview
     patch 'events/:id/interview_pending', to: 'events#interview_pending', as: :interview_pending
+    patch 'employees/:id/complete', to: 'employees#complete', as: :employee_complete_profile
+    patch 'employees/:id/send_employee_to_company', to: 'employees#send_employee_to_company', as: :send_employee_to_company
 
 
     resources :requests, only: [:new, :create]
@@ -37,7 +39,8 @@ Rails.application.routes.draw do
       resources :experiences
       resources :events, except: [:index]
       resources :employees, only: [:show,  :create, :edit, :update]
-    end    
+    end  
+
     resources :employees, only: [:index] do
       resources :educational_qualifications, only: [:new, :show, :create, :edit, :update, :destroy]
       patch 'educational_qualifications/:id/update_button', to: 'educational_qualifications#update_button', as: :qualification_update_button
@@ -53,6 +56,12 @@ Rails.application.routes.draw do
 
       resources :parent_details, only: [:new, :create, :show, :edit, :update, :destroy]
       patch 'parent_details/:id/update_button', to: 'parent_details#update_button', as: :parent_update_button
+
+      resources :next_of_kins,  only: [:new, :create, :show, :edit, :update, :destroy]
+      patch 'next_of_kins/:id/update_button', to: 'next_of_kins#update_button', as: :kin_update_button
+
+      resources :salary_details,  only: [:new, :create, :show, :edit, :update, :destroy]
+      patch 'salary_details/:id/update_button', to: 'salary_details#update_button', as: :salary_update_button
     end
     resources :events, only: [:index]    
   end
@@ -89,7 +98,7 @@ Rails.application.routes.draw do
     #   resources :events, except: [:index]
     # end
     resources :events
-    
+    resources :employees    
   end
 
   root 'welcome#landing_page'

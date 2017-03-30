@@ -1,0 +1,44 @@
+<div class="span12">
+<div class="widget-box">
+        <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+          <h5>Salary Details for <span class="badge badge-success"><%= @employee.firstname %></span></h5>
+        </div>
+        <br>
+        <div class="widget-content nopadding form-horizontal">
+<%= simple_form_for([:recruiter, employee, salary_details]) do |f| %>
+
+<div class="control-group">
+	<label class="control-label">Bank Name :</label>
+	<div class="controls">
+		<%= f.input :bankname, label: false %>
+	</div>
+</div>
+
+<div class="control-group">
+	<label class="control-label">Branch :</label>
+	<div class="controls">
+		<%= f.input :branch, label: false %>
+	</div>
+</div>
+
+<div class="control-group">
+	<label class="control-label">Account Number:</label>
+	<div class="controls">
+		<%= f.input :account_number, label: false %>
+	</div>
+</div>
+
+<div class="control-group">
+	<label class="control-label">SSNIT Number :</label>
+	<div class="controls">
+		<%= f.input :ssnit_number, label: false %>
+	</div>
+</div>
+
+<div class="modal-footer"> 
+  <%= f.button :submit, "fill salary details" ,class: "btn btn-primary" %>
+</div>
+<% end %>
+</div>
+</div>
+</div>

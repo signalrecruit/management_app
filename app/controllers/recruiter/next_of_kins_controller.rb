@@ -1,19 +1,19 @@
-class Recruiter::ParentDetailsController < Recruiter::ApplicationController
+class Recruiter::NextOfKinsController < Recruiter::ApplicationController
   before_action :set_employee
-  before_action :set_parent_details, only: [:show, :edit, :update, :destroy, :update_button]	
+  before_action :set_next_of_kin_details, only: [:show, :edit, :update, :destroy, :update_button]	
   layout "recruiter"
   
   def show
   end
 
   def new
-  	@parent_details = @employee.parent_details.build
+  	@next_of_kin = @employee.next_of_kins.build
   end
 
   def create
-  	@parent_details = @employee.parent_details.build(parent_params)
+  	@next_of_kin = @employee.next_of_kins.build(kin_params)
 
-  	if @parent_details.save
+  	if @next_of_kin.save
   	  on_success "children details successfully created", recruiter_applicant_detail_employee_url(@employee.applicant_detail, @employee)  
   	else
   	  on_failure "ooops! something went wrong", :new	
@@ -24,21 +24,21 @@ class Recruiter::ParentDetailsController < Recruiter::ApplicationController
   end
 
   def update
-    if @parent_details.update(parent_params)
-       @parent_details.update(update_button: false)	
-      on_success "parent details updated successfully", :back	
+    if @next_of_kin.update(kin_params)
+       @next_of_kin.update(update_button: false)	
+      on_success "children details updated successfully", :back	
     else
       on_failure "ooops! something went wrong", :back
     end
   end
 
   def destroy
-  	@parent_details.destroy
-  	on_success "parent detail removed successfully", :back
+  	@next_of_kin.destroy
+  	on_success "children detail removed successfully", :back
   end
 
   def update_button
-  	@parent_details.update(update_button: true)
+  	@next_of_kin.update(update_button: true)
   	redirect_to :back
   end
 
@@ -53,12 +53,12 @@ class Recruiter::ParentDetailsController < Recruiter::ApplicationController
   	redirect_to :back
   end
 
-  def set_parent_details
-    @parent_details = @employee.parent_details.find(params[:id])
+  def set_next_of_kin_details
+    @next_of_kin = @employee.next_of_kins.find(params[:id])
   end
 
-  def parent_params
-    params.require(:parent_detail).permit(:name, :birthdate, :status)
+  def kin_params
+    params.require(:next_of_kin).permit(:name, :relationship, :phonenumber, :address)
   end
 
   def on_success(msg, path)

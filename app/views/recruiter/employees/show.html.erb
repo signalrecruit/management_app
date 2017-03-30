@@ -296,6 +296,106 @@
 </div>
 <% end %>
 
+<% if @employee.next_of_kins.any? %>
+<div class="accordion" id="collapse-group">
+   <div class="accordion-group widget-box">
+    <div class="accordion-heading">
+     <div class="widget-title"> <a data-parent="#collapse-group" href="#collapseGSeven" data-toggle="collapse"> <span class="icon"><i class="icon-chevron-down"></i></span>
+        <h5><%= @employee.firstname %>'s Next Of Details</h5>
+      </a> </div>
+    </div>
+    <div class="collapse in accordion-body" id="collapseGSeven">
+      <div class="widget-content"> 
+      <div class="widget-content nopadding">
+		<table class="table table-bordered table-striped">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Relationship</th>
+					<th>Phonenumber</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @employee.next_of_kins.each do |kin| %>
+				<tr class="odd gradeX">
+				<% if !kin.update_button_clicked? %>
+					<td><%= kin.name %> <%= link_to "edit", recruiter_employee_kin_update_button_url(@employee, kin), method: :patch, class: "btn-sm btn-primary" %> <%= link_to "remove", recruiter_employee_next_of_kin_url(@employee, kin), method: :delete, data: { confirm: "Are you sure want to delete this?" }, class: "btn-sm btn-primary" %></td>
+					<td><%= kin.phonenumber %></td>
+					<td><%= kin.address %></td>
+				<% end %>
+				</tr>
+				<tr class="odd gradeX">
+				<% if kin.update_button_clicked? %>
+					<%= simple_form_for([:recruiter, @employee, kin]) do |f| %>
+					<td><%= f.input :name, label: false %><%= f.button :submit, "update", class: "btn btn-primary" %></td>
+					<td><%= f.input :relationship, label: false %></td>
+					<td><%= f.input :address, label: false  %></td>
+					<% end %>
+			    <% end %>		
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+	<br/>
+	<%= link_to fa_icon("plus") + " add another kin's detail", new_recruiter_employee_next_of_kin_url(@employee), class: "btn btn-primary" %>
+        
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>
+
+<% if !@employee.salary_detail.nil? %>
+<div class="accordion" id="collapse-group">
+   <div class="accordion-group widget-box">
+    <div class="accordion-heading">
+     <div class="widget-title"> <a data-parent="#collapse-group" href="#collapseGEight" data-toggle="collapse"> <span class="icon"><i class="icon-chevron-down"></i></span>
+        <h5><%= @employee.firstname %>'s salary details</h5>
+      </a> </div>
+    </div>
+    <div class="collapse in accordion-body" id="collapseGEight">
+      <div class="widget-content"> 
+      <div class="widget-content nopadding">
+		<table class="table table-bordered table-striped">
+			<thead>
+				<tr>
+					<th>Bank Name</th>
+					<th>Branch</th>
+					<th>Account Number</th>
+					<th>SSNIT Number</th>
+				</tr>
+			</thead>
+			<tbody>
+			    <% if !@employee.salary_detail.nil? %>
+				<tr class="odd gradeX">
+				<% if !@employee.salary_detail.update_button_clicked? %>
+					<td><%= @employee.salary_detail.bankname %> <%= link_to "edit", recruiter_employee_salary_update_button_url(@employee, @employee.salary_detail), method: :patch, class: "btn-sm btn-primary" %> <%= link_to "remove", recruiter_employee_salary_detail_url(@employee, @employee.salary_detail), method: :delete, data: { confirm: "Are you sure want to delete this?" }, class: "btn-sm btn-primary" %></td>
+					<td><%= @employee.salary_detail.branch %></td>
+					<td><%= @employee.salary_detail.account_number %></td>
+					<td><%= @employee.salary_detail.ssnit_number %></td>
+				<% end %>
+				</tr>
+				<tr class="odd gradeX">
+				<% if @employee.salary_detail.update_button_clicked? %>
+					<%= simple_form_for([:recruiter, @employee, @employee.salary_detail]) do |f| %>
+					<td><%= f.input :bankname, label: false %><%= f.button :submit, "update", class: "btn btn-primary" %></td>
+					<td><%= f.input :branch, label: false %></td>
+					<td><%= f.input :account_number, label: false %></td>
+					<td><%= f.input :ssnit_number, label: false %></td>
+					<% end %>
+			    <% end %>		
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>        
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>
+
 
 
 
@@ -304,6 +404,11 @@
 <%= link_to fa_icon("plus") + " add spouse details",  new_recruiter_employee_spouse_detail_url(@employee), class: "btn btn-primary" if @employee.employment_histories.any? && @employee.spouse_detail.nil? %>
 <%= link_to fa_icon("plus") + " add children details",   new_recruiter_employee_children_detail_url(@employee), class: "btn btn-primary" if !@employee.spouse_detail.nil? && @employee.children_details.empty? %>
 <%= link_to fa_icon("plus") + " add parent details",   new_recruiter_employee_parent_detail_url(@employee), class: "btn btn-primary" if @employee.children_details.any? && @employee.parent_details.empty? %>
+<%= link_to fa_icon("plus") + " add details for next of kin",   new_recruiter_employee_next_of_kin_url(@employee), class: "btn btn-primary" if @employee.parent_details.any? && @employee.next_of_kins.empty? %>
+<%= link_to fa_icon("plus") + " add salary details",   new_recruiter_employee_salary_detail_url(@employee), class: "btn btn-primary" if @employee.next_of_kins.any? && @employee.salary_detail.nil? %>
+<%= link_to fa_icon("arrow-right") + " complete employee profile", recruiter_employee_complete_profile_url(@employee), method: :patch, class: "btn btn-primary" if @employee.next_of_kins.any? && !@employee.salary_detail.nil? %>
+
+
 
 
 

@@ -1,0 +1,44 @@
+<div class="span12">
+<div class="widget-box">
+        <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+          <h5>Next of kin for <span class="badge badge-success"><%= @employee.firstname %></span></h5>
+        </div>
+        <br>
+        <div class="widget-content nopadding form-horizontal">
+<%= simple_form_for([:recruiter, employee, next_of_kin]) do |f| %>
+
+<div class="control-group">
+	<label class="control-label">Kin's Name :</label>
+	<div class="controls">
+		<%= f.input :name, label: false %>
+	</div>
+</div>
+
+<div class="control-group">
+	<label class="control-label">Relationship :</label>
+	<div class="controls">
+		<%= f.input :relationship, label: false %>
+	</div>
+</div>
+
+<div class="control-group">
+	<label class="control-label">Phonenumber :</label>
+	<div class="controls">
+		<%= f.input :phonenumber, label: false %>
+	</div>
+</div>
+
+<div class="control-group">
+	<label class="control-label">Address :</label>
+	<div class="controls">
+		<%= f.input :address, label: false %>
+	</div>
+</div>
+
+<div class="modal-footer"> 
+  <%= f.button :submit, "fill next of kin details" ,class: "btn btn-primary" %>
+</div>
+<% end %>
+</div>
+</div>
+</div>

@@ -9,4 +9,14 @@ class Employee < ActiveRecord::Base
   has_many :children_details, dependent: :destroy
   has_one :spouse_detail, dependent: :destroy
   has_one :salary_detail, dependent: :destroy
+
+
+  def is_profile_complete?
+    if educational_qualifications.empty? || employment_histories.empty? || next_of_kins.empty?  ||
+      parent_details.empty? ||children_details.empty? || spouse_detail.nil? || salary_detail.nil?
+      false
+    else 
+      true  
+    end
+  end
 end

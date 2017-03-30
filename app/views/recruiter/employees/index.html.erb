@@ -8,8 +8,6 @@
 <div class="widget-box">
           <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
             <h5><%= pluralize(@applicant_details.count, "Job Applicant") %></h5>
-            <%#= link_to fa_icon("plus") + " Create Job Application", new_recruiter_applicant_detail_url, class: "btn btn-primary pull-right" %>                 
-
           </div>
           <div class="widget-content nopadding">
           <div class="table-responsive">
@@ -25,6 +23,7 @@
                 	<th>Required Skill Set</th>
                 	<th>Educational Qualifications</th>
                 	<th>Score</th>
+                  <th></th>
                   <th></th>
                 </tr>
               </thead>
@@ -83,11 +82,28 @@
                 	</td>
                   <td>
                     <% if applicant_detail.employee.nil? %>
-                     <%= link_to "Create Profile", recruiter_applicant_detail_employees_url(applicant_detail), method: :post %>
-                    <% else %>
-                      <p>profile already created!</p> 
+                     <span class="badge badge-success"><%= link_to fa_icon("plus") + " Create Profile", recruiter_applicant_detail_employees_url(applicant_detail), method: :post %></span>
+                    <% elsif applicant_detail.employee.is_profile_complete? %>
+                    <%= link_to recruiter_applicant_detail_employee_url(applicant_detail, applicant_detail.employee) do %>
+                      <p><span class="badge badge-success">Profile Completed!</span></p> 
+                    <% end %>  
+                    <% elsif !applicant_detail.employee.is_profile_complete? %> 
+                    <%= link_to recruiter_applicant_detail_employee_url(applicant_detail, applicant_detail.employee) do %>
+                      <p><span class="badge badge-important">Profile Incomplete</span></p> 
+                    <% end %>  
                     <% end %> 
                   </td> 
+                  <td>
+                  <% if applicant_detail.employee.profile_status == "COMPLETE" && !applicant_detail.employee.sent? %>
+                  <%= link_to recruiter_send_employee_to_company_url(applicant_detail.employee), method: :patch, data: { confirm: "are you sure you want to send profile to #{applicant_detail.employee.company.name}?" } do  %>
+                   <p><span class="badge badge-info">Send</span></p>
+                  <% end %>
+                  <% elsif applicant_detail.employee.profile_status == "INCOMPLETE" %>
+                    <p><span class="badge badge-important">can't send</span></p>
+                  <% elsif applicant_detail.employee.profile_status == "COMPLETE" && applicant_detail.employee.sent? %>
+                    <p><span class="badge badge-default">sent</span></p>
+                  <% end %>
+                  </td>
                 </tr>
               <% end %>
               </tbody>

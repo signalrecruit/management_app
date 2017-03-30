@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170330050035) do
+ActiveRecord::Schema.define(version: 20170330132747) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -174,6 +174,8 @@ ActiveRecord::Schema.define(version: 20170330050035) do
     t.string   "mobile_number",       default: "employee mobile number"
     t.string   "email_address",       default: "employee's email"
     t.string   "corporate_email",     default: "corporate email for employee"
+    t.string   "profile_status",      default: "INCOMPLETE"
+    t.boolean  "sent",                default: false
   end
 
   add_index "employees", ["applicant_detail_id"], name: "index_employees_on_applicant_detail_id", using: :btree
@@ -242,8 +244,9 @@ ActiveRecord::Schema.define(version: 20170330050035) do
     t.string   "phonenumber"
     t.string   "address"
     t.integer  "employee_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.boolean  "update_button", default: false
   end
 
   add_index "next_of_kins", ["employee_id"], name: "index_next_of_kins_on_employee_id", using: :btree
@@ -335,8 +338,9 @@ ActiveRecord::Schema.define(version: 20170330050035) do
     t.string   "account_name"
     t.string   "ssnit_number"
     t.integer  "employee_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.boolean  "update_button",  default: false
   end
 
   add_index "salary_details", ["employee_id"], name: "index_salary_details_on_employee_id", using: :btree

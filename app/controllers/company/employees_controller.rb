@@ -1,10 +1,10 @@
-class Recruiter::EmployeesController < Recruiter::ApplicationController
-  before_action :set_applicant_detail, except: [:index, :complete, :send_employee_to_company]
+class Company::EmployeesController < Company::ApplicationController
+   before_action :set_applicant_detail, except: [:index, :complete, :send_employee_to_company]
   before_action :set_employee, except: [:index, :complete, :send_employee_to_company]
-  layout 'recruiter'
+  layout 'company'
 
   def index
-  	@applicant_details = ApplicantDetail.includes(:event).where(:events => { interview_results: "PASSED" }).all
+  	@employees = current_company.employees.where(sent: true)
   end
 
   def show
@@ -94,5 +94,4 @@ class Recruiter::EmployeesController < Recruiter::ApplicationController
       on_failure "oops something went wrong", :back
     end
   end
-
 end

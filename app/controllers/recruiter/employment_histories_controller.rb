@@ -63,7 +63,7 @@ class Recruiter::EmploymentHistoriesController < Recruiter::ApplicationControlle
   	params.require(:employment_history).permit(:organization, :position, :from, :to, :reason_for_leaving)
   end
 
-   def on_success(msg, path)
+  def on_success(msg, path)
     flash[:success] = msg
     redirect_to path
   end
