@@ -56,7 +56,9 @@
 				<% @employee.educational_qualifications.each do |qualification| %>
 				<tr class="odd gradeX">
 				<% if !qualification.update_button_clicked? %>
-					<td><%= qualification.institution %> <%= link_to "edit", recruiter_employee_qualification_update_button_url(@employee, qualification), method: :patch, class: "btn-sm btn-primary" %> <%= link_to "remove", recruiter_employee_educational_qualification_url(@employee, qualification), method: :delete, data: { confirm: "Are you sure want to delete this?" }, class: "btn-sm btn-primary" %></td>
+					<td><%= qualification.institution %> 	
+					<%= link_to fa_icon("pencil"), recruiter_employee_qualification_update_button_url(@employee, qualification), method: :patch %>
+				    <%= link_to fa_icon("times"), recruiter_employee_educational_qualification_url(@employee, qualification), method: :delete, data: { confirm: "Are you sure want to delete this?" } %></td>
 					<td><%= qualification.certificate %></td>
 					<td><%= qualification.enrolled_at.strftime("%B %d, %Y")%></td>
 					<td><%= qualification.completed_at.strftime("%B %d, %Y") %></td>
@@ -110,7 +112,7 @@
 				<% @employee.employment_histories.each do |employment| %>
 				<tr class="odd gradeX">
 				<% if !employment.update_button_clicked? %>
-					<td><%= employment.organization %> <%= link_to "edit", recruiter_employee_employment_update_button_url(@employee, employment), method: :patch, class: "btn-sm btn-primary" %> <%= link_to "remove", recruiter_employee_employment_history_url(@employee, employment), method: :delete, data: { confirm: "Are you sure want to delete this?" }, class: "btn-sm btn-primary" %></td>
+					<td><%= employment.organization %> <%= link_to fa_icon("pencil"), recruiter_employee_employment_update_button_url(@employee, employment), method: :patch %> <%= link_to fa_icon("times"),  recruiter_employee_employment_history_url(@employee, employment), method: :delete, data: { confirm: "Are you sure want to delete this?" } %></td>
 					<td><%= employment.position %></td>
 					<td><%= employment.from.strftime("%B %d, %Y")%></td>
 					<td><%= employment.to.strftime("%B %d, %Y") %></td>
@@ -167,7 +169,7 @@
 			    <% if !@employee.spouse_detail.nil? %>
 				<tr class="odd gradeX">
 				<% if !@employee.spouse_detail.update_button_clicked? %>
-					<td><%= @employee.spouse_detail.name %> <%= link_to "edit", recruiter_employee_spouse_update_button_url(@employee, @employee.spouse_detail), method: :patch, class: "btn-sm btn-primary" %> <%= link_to "remove", recruiter_employee_spouse_detail_url(@employee, @employee.spouse_detail), method: :delete, data: { confirm: "Are you sure want to delete this?" }, class: "btn-sm btn-primary" %></td>
+					<td><%= @employee.spouse_detail.name %> <%= link_to fa_icon("pencil"),  recruiter_employee_spouse_update_button_url(@employee, @employee.spouse_detail), method: :patch %> <%= link_to fa_icon("times"), recruiter_employee_spouse_detail_url(@employee, @employee.spouse_detail), method: :delete, data: { confirm: "Are you sure want to delete this?" } %></td>
 					<td><%= @employee.spouse_detail.birthdate.strftime("%B %d, %Y")%></td>
 					<td><%= @employee.spouse_detail.profession %></td>
 					<td><%= @employee.spouse_detail.phonenumber %></td>
@@ -219,7 +221,7 @@
 				<% @employee.children_details.each do |child| %>
 				<tr class="odd gradeX">
 				<% if !child.update_button_clicked? %>
-					<td><%= child.name %> <%= link_to "edit", recruiter_employee_child_update_button_url(@employee, child), method: :patch, class: "btn-sm btn-primary" %> <%= link_to "remove", recruiter_employee_children_detail_url(@employee, child), method: :delete, data: { confirm: "Are you sure want to delete this?" }, class: "btn-sm btn-primary" %></td>
+					<td><%= child.name %> <%= link_to fa_icon("pencil"),  recruiter_employee_child_update_button_url(@employee, child), method: :patch %> <%= link_to fa_icon("times"),  recruiter_employee_children_detail_url(@employee, child), method: :delete, data: { confirm: "Are you sure want to delete this?" } %></td>
 					<td><%= child.birthdate.strftime("%B %d, %Y")%></td>
 					<td><%= child.school %></td>
 				<% end %>
@@ -269,7 +271,7 @@
 				<% @employee.parent_details.each do |parent| %>
 				<tr class="odd gradeX">
 				<% if !parent.update_button_clicked? %>
-					<td><%= parent.name %> <%= link_to "edit", recruiter_employee_parent_update_button_url(@employee, parent), method: :patch, class: "btn-sm btn-primary" %> <%= link_to "remove", recruiter_employee_parent_detail_url(@employee, parent), method: :delete, data: { confirm: "Are you sure want to delete this?" }, class: "btn-sm btn-primary" %></td>
+					<td><%= parent.name %> <%= link_to fa_icon("pencil"), recruiter_employee_parent_update_button_url(@employee, parent), method: :patch %> <%= link_to fa_icon("times"),  recruiter_employee_parent_detail_url(@employee, parent), method: :delete, data: { confirm: "Are you sure want to delete this?" }%></td>
 					<td><%= parent.birthdate.strftime("%B %d, %Y")%></td>
 					<td><%= parent.status %></td>
 				<% end %>
@@ -319,7 +321,7 @@
 				<% @employee.next_of_kins.each do |kin| %>
 				<tr class="odd gradeX">
 				<% if !kin.update_button_clicked? %>
-					<td><%= kin.name %> <%= link_to "edit", recruiter_employee_kin_update_button_url(@employee, kin), method: :patch, class: "btn-sm btn-primary" %> <%= link_to "remove", recruiter_employee_next_of_kin_url(@employee, kin), method: :delete, data: { confirm: "Are you sure want to delete this?" }, class: "btn-sm btn-primary" %></td>
+					<td><%= kin.name %> <%= link_to fa_icon("pencil"),  recruiter_employee_kin_update_button_url(@employee, kin), method: :patch %> <%= link_to fa_icon("times"),  recruiter_employee_next_of_kin_url(@employee, kin), method: :delete, data: { confirm: "Are you sure want to delete this?" } %></td>
 					<td><%= kin.phonenumber %></td>
 					<td><%= kin.address %></td>
 				<% end %>
@@ -370,7 +372,7 @@
 			    <% if !@employee.salary_detail.nil? %>
 				<tr class="odd gradeX">
 				<% if !@employee.salary_detail.update_button_clicked? %>
-					<td><%= @employee.salary_detail.bankname %> <%= link_to "edit", recruiter_employee_salary_update_button_url(@employee, @employee.salary_detail), method: :patch, class: "btn-sm btn-primary" %> <%= link_to "remove", recruiter_employee_salary_detail_url(@employee, @employee.salary_detail), method: :delete, data: { confirm: "Are you sure want to delete this?" }, class: "btn-sm btn-primary" %></td>
+					<td><%= @employee.salary_detail.bankname %> <%= link_to fa_icon("pencil"), recruiter_employee_salary_update_button_url(@employee, @employee.salary_detail), method: :patch %> <%= link_to fa_icon("times"),  recruiter_employee_salary_detail_url(@employee, @employee.salary_detail), method: :delete, data: { confirm: "Are you sure want to delete this?" } %></td>
 					<td><%= @employee.salary_detail.branch %></td>
 					<td><%= @employee.salary_detail.account_number %></td>
 					<td><%= @employee.salary_detail.ssnit_number %></td>
