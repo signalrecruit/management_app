@@ -1,14 +1,14 @@
 <div class="span12">
 <div class="widget-box">
         <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
-          <h5>Spouse Details for <span class="badge badge-success"><%= @employee.firstname %></span></h5>
+          <h5>Children Details for <span class="badge badge-success"><%= @employee.firstname %></span></h5>
         </div>
         <br>
         <div class="widget-content nopadding form-horizontal">
-<%= simple_form_for([:recruiter, employee, spouse_details]) do |f| %>
+<%= simple_form_for([:recruiter, employee, children_details]) do |f| %>
 
 <div class="control-group">
-	<label class="control-label">Spouse Name :</label>
+	<label class="control-label">Child's Name :</label>
 	<div class="controls">
 		<%= f.input :name, label: false %>
 	</div>
@@ -22,28 +22,16 @@
 </div>
 
 <div class="control-group">
-	<label class="control-label">Profession:</label>
+	<label class="control-label">School:</label>
 	<div class="controls">
-		<%= f.input :profession, label: false %>
+		<%= f.input :school, label: false %>
 	</div>
 </div>
 
-<div class="control-group">
-	<label class="control-label">Phonenumber:</label>
-	<div class="controls">
-		<%= f.input :phonenumber, label: false %>
-	</div>
-</div>
 
-<div class="control-group">
-	<label class="control-label">Address:</label>
-	<div class="controls">
-		<%= f.input :address, label: false %>
-	</div>
-</div>
 
    <div class="modal-footer"> 
-   <%= f.button :submit, "create spouse details" ,class: "btn btn-primary" %>
+   <%= f.button :submit, "fill in children details" ,class: "btn btn-primary" %>
    </div>
 <% end %>
 </div>

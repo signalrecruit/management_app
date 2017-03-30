@@ -47,6 +47,12 @@ Rails.application.routes.draw do
       
       resources :spouse_details, only: [:new, :create, :show, :edit, :update, :destroy]
       patch 'spouse_details/:id/update_button', to: 'spouse_details#update_button', as: :spouse_update_button
+
+      resources :children_details, only: [:new, :create, :show, :edit, :update, :destroy]
+      patch 'children_details/:id/update_button', to: 'children_details#update_button', as: :child_update_button
+
+      resources :parent_details, only: [:new, :create, :show, :edit, :update, :destroy]
+      patch 'parent_details/:id/update_button', to: 'parent_details#update_button', as: :parent_update_button
     end
     resources :events, only: [:index]    
   end

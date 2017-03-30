@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170330034805) do
+ActiveRecord::Schema.define(version: 20170330050035) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,11 +59,12 @@ ActiveRecord::Schema.define(version: 20170330034805) do
 
   create_table "children_details", force: :cascade do |t|
     t.string   "name"
-    t.string   "birthdate"
+    t.datetime "birthdate"
     t.string   "school"
     t.integer  "employee_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.boolean  "update_button", default: false
   end
 
   add_index "children_details", ["employee_id"], name: "index_children_details_on_employee_id", using: :btree
@@ -248,12 +249,13 @@ ActiveRecord::Schema.define(version: 20170330034805) do
   add_index "next_of_kins", ["employee_id"], name: "index_next_of_kins_on_employee_id", using: :btree
 
   create_table "parent_details", force: :cascade do |t|
-    t.string   "parent_name"
-    t.string   "birthdate"
-    t.string   "alive"
+    t.string   "name"
+    t.datetime "birthdate"
+    t.string   "status",        default: "alive"
     t.integer  "employee_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.boolean  "update_button", default: false
   end
 
   add_index "parent_details", ["employee_id"], name: "index_parent_details_on_employee_id", using: :btree

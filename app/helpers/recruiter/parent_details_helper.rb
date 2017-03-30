@@ -1,0 +1,2 @@
+module Recruiter::ParentDetailsHelper
+end
