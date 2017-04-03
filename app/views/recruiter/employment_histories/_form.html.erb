@@ -24,14 +24,14 @@
 <div class="control-group">
 	<label class="control-label">Start Date:</label>
 	<div class="controls">
-		<%= f.input :from, as: :date, start_year: Date.today.year - 100, end_year: Date.today.year - 10, label: false %>
+		<%= f.input :from, as: :date, start_year: Date.today.year - 80, end_year: Date.today.year , label: false %>
 	</div>
 </div>
 
 <div class="control-group">
 	<label class="control-label">End Date:</label>
 	<div class="controls">
-		<%= f.input :to, as: :date, start_year: Date.today.year - 100, end_year: Date.today.year - 10, label: false %>
+		<%= f.input :to, as: :date, start_year: Date.today.year - 80, end_year: Date.today.year, label: false %>
 	</div>
 </div>
 

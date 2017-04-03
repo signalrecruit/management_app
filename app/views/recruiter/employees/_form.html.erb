@@ -139,6 +139,7 @@
 <!--               </div>
  -->          </div>
         </div>
+        <%= link_to "cancel #{@employee.firstname}'s profile?", recruiter_applicant_detail_employee_url(@applicant_detail, @employee), method: :delete, data: { confirm: "are sure you want delete #{@employee.firstname}'s profile?"}, class: "btn btn-danger" %>
       </div>
     </div>
 

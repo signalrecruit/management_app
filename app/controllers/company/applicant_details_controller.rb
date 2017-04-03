@@ -9,7 +9,7 @@ class Company::ApplicantDetailsController < Company::ApplicationController
     @applicant_details = []
     @requirements.each do |requirement|
       requirement.applicant_details.each do |applicant_detail|
-      	@applicant_details << applicant_detail
+      	@applicant_details << applicant_detail if applicant_detail.sent_by == "Recruiter"
       end	
     end	
     @applicant_details = @applicant_details.uniq
@@ -43,7 +43,7 @@ class Company::ApplicantDetailsController < Company::ApplicationController
 
   def reject_applicant
     @applicant_detail.update(accept: false) if @applicant_detail.accept?
-    flash[:success] = "you have rejected #{@applicant_detail.name}'s application"
+    flash[:warning] = "you have rejected #{@applicant_detail.name}'s application"
     redirect_to :back
   end
 

@@ -1,37 +1,42 @@
+<span class="pull-right"><%= link_to fa_icon("pencil") + " Edit", [:edit, :company, @requirement], class:"btn btn-primary" if @requirement.sent.nil? %> <%= link_to fa_icon("trash") + " Remove", [:company, @requirement], method: :delete, data: {confirm: "Are you sure you want to delete this job description?"}, class:"btn btn-danger" if @requirement.sent.nil? %> <%= link_to fa_icon("arrow-circle-right", class: "pull-right") + "Add Compulsory Requirements", new_company_requirement_compulsory_requirement_url(@requirement), class:"btn btn-success" if @requirement.compulsory_requirement.nil? && @requirement.sent.nil? %>
+              <%= link_to fa_icon("paper-plane", class: "pull-right") + "Send Job Description", company_send_requirements_url(@requirement), data: { confirm: "Are sure you want to send this information to the recruiter?" }, class:"btn btn-success" if @requirement.sent.nil? %>
+            </span>
 <div class="widget-box">
           <div class="widget-title bg_lo"> <span class="icon"> <i class="icon-briefcase"></i> </span>
-            <h5>Job Type: <% @requirement.job_types.each do |job_type| %>
-                            <%= link_to job_type.name, [:company, @requirement] %>,
-                          <% end %>
-              <% if @requirement.sent? %>  
+            <h5>Job Type: 
+            <% @count = 0 %>
+            <% @requirement.job_types.each do |job_type| %>
+                            <% @count += 1 %>
+                            <%= job_type.name %>,
+                            <% break if @count == 3 %>
+                          <% end %>...
+            <% if @requirement.sent? %>  
              (Note that this job description has been sent to recruiter for review)
               <% end %>
-               </h5><span class="pull-right"><%= link_to fa_icon("pencil") + " Edit", [:edit, :company, @requirement], class:"btn btn-primary" if @requirement.sent.nil? %> <%= link_to fa_icon("trash") + " Remove", [:company, @requirement], method: :delete, data: {confirm: "Are you sure you want to delete this job description?"}, class:"btn btn-danger" if @requirement.sent.nil? %> <%= link_to fa_icon("arrow-circle-right", class: "pull-right") + "Add Compulsory Requirements", new_company_requirement_compulsory_requirement_url(@requirement), class:"btn btn-success" if @requirement.compulsory_requirement.nil? && @requirement.sent.nil? %>
-            	<%= link_to fa_icon("paper-plane", class: "pull-right") + "Send Job Description", company_send_requirements_url(@requirement), data: { confirm: "Are sure you want to send this information to the recruiter?" }, class:"btn btn-success" if @requirement.sent.nil? %>
-            </span>
+               </h5>
           </div>
           <div class="widget-content nopadding updates collapse in" id="collapseG3">
           <h5>
             <div class="new-update clearfix"><i class="icon-ok-sign"></i>
-              <div class="update-done"><a title="" href="#"><strong>Job Title</strong></a> <span><%= @requirement.title %></span> </div>
+              <div class="update-done"><strong>Job Title</strong><span><%= @requirement.title %></span> </div>
             </div>
-            <div class="new-update clearfix"> <i class="icon-ok-sign"></i> <span class="update-notice"> <a title="" href="#"><strong>Location/Address </strong></a> <span><%= @requirement.location %></span> </span> </div>
-            <div class="new-update clearfix"> <i class="icon-ok-sign"></i> <span class="update-alert"> <a title="" href="#"><strong>Experience</strong></a> <span><%= @requirement.experience %> Years</span> </span>  </div>
-            <div class="new-update clearfix"> <i class="icon-ok-sign"></i> <span class="update-done"> <a title="" href="#"><strong>Salary Range</strong></a><span>GHS <%= @requirement.min_salary %> - GHS <%= @requirement.max_salary %></span> </span> </div>
-            <div class="new-update clearfix"> <i class="icon-ok-sign"></i> <span class="update-notice"> <a title="" href="#"><strong>Required Skills</strong></a> <span>
+            <div class="new-update clearfix"> <i class="icon-ok-sign"></i> <span class="update-notice"><strong>Location/Address </strong><span><%= @requirement.location %></span> </span> </div>
+            <div class="new-update clearfix"> <i class="icon-ok-sign"></i> <span class="update-alert"><strong>Experience</strong><span><%= @requirement.experience %> Years</span> </span>  </div>
+            <div class="new-update clearfix"> <i class="icon-ok-sign"></i> <span class="update-done"><strong>Salary Range</strong><span>GHS <%= @requirement.min_salary %> - GHS <%= @requirement.max_salary %></span> </span> </div>
+            <div class="new-update clearfix"> <i class="icon-ok-sign"></i> <span class="update-notice"><strong>Required Skills</strong><span>
             	<% @requirement.skills.each do |skill| %>
             	  <%= skill.name %>, 
             	<% end %>
             </span> </span></div>
-            <div class="new-update clearfix"> <i class="icon-ok-sign"></i> <span class="update-notice"> <a title="" href="#"><strong>Education Qualifications</strong></a> <span>
+            <div class="new-update clearfix"> <i class="icon-ok-sign"></i> <span class="update-notice"><strong>Education Qualifications</strong><span>
             	<% @requirement.qualifications.each do |qualification| %>
             	  <%= qualification.name %>, 
             	<% end %>
             </span> </span></div>
-            <div class="new-update clearfix"> <i class="icon-ok-sign"></i> <span class="update-notice"> <a title="" href="#"><strong>Number of Vacancies</strong></a> <span>
+            <div class="new-update clearfix"> <i class="icon-ok-sign"></i> <span class="update-notice"><strong>Number of Vacancies</strong><span>
             	<%= @requirement.number_of_vacancies %>
             </span> </span></div>
-            <div class="new-update clearfix"> <i class="icon-ok-sign"></i> <span class="update-notice"> <a title="" href="#"><strong>Note To Recruiter</strong></a> <span>
+            <div class="new-update clearfix"> <i class="icon-ok-sign"></i> <span class="update-notice"><strong>Note To Recruiter</strong><span>
             	<% if @requirement.note.present? %>
             	  <%= @requirement.note %>
             	<% else %>
@@ -45,7 +50,7 @@
         <% if @requirement.compulsory_requirement %>
         <div class="widget-box">
           <div class="widget-title"> <span class="icon"><i class="icon-ok"></i></span>
-            <h5>Non-Negotiable Requirements (NOTE: Each requirement carries a score of 1. This will be used in assessing applicants)</h5><%= link_to fa_icon("pencil") + " Edit Non-Negotiable Requirements", edit_company_requirement_compulsory_requirement_url(@requirement, @compulsory_requirement), class: "btn btn-primary pull-right" if !@requirement.sent? && @requirement.compulsory_requirement %>
+            <h5>Non-Negotiable Requirements (NOTE: Each requirement carries a score of 1. This will be used in assessing applicants)</h5><%= link_to fa_icon("pencil") + " Edit", edit_company_requirement_compulsory_requirement_url(@requirement, @compulsory_requirement), class: "btn btn-primary pull-right" if !@requirement.sent? && @requirement.compulsory_requirement %>
           </div>
           <div class="widget-content">
             <div class="todo">

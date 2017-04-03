@@ -94,15 +94,19 @@
                     <% end %> 
                   </td> 
                   <td>
-                  <% if applicant_detail.employee.profile_status == "COMPLETE" && !applicant_detail.employee.sent? %>
-                  <%= link_to recruiter_send_employee_to_company_url(applicant_detail.employee), method: :patch, data: { confirm: "are you sure you want to send profile to #{applicant_detail.employee.company.name}?" } do  %>
-                   <p><span class="badge badge-info">Send</span></p>
-                  <% end %>
-                  <% elsif applicant_detail.employee.profile_status == "INCOMPLETE" %>
+                  <% if applicant_detail.employee %>
+                    <% if applicant_detail.employee.profile_status == "COMPLETE" && !applicant_detail.employee.sent? %>
+                      <%= link_to recruiter_send_employee_to_company_url(applicant_detail.employee), method: :patch, data: { confirm: "are you sure you want to send profile to #{applicant_detail.employee.company.name}?" } do  %>
+                      <p><span class="badge badge-info">Send</span></p>
+                      <% end %>
+                    <% elsif applicant_detail.employee.profile_status == "INCOMPLETE" %>
                     <p><span class="badge badge-important">can't send</span></p>
-                  <% elsif applicant_detail.employee.profile_status == "COMPLETE" && applicant_detail.employee.sent? %>
+                    <% elsif applicant_detail.employee.profile_status == "COMPLETE" && applicant_detail.employee.sent? %>
                     <p><span class="badge badge-default">sent</span></p>
-                  <% end %>
+                    <% end %>
+                  <% else %>
+                    <span class="badge badge-default">not applicable</span>  
+                  <% end %>  
                   </td>
                 </tr>
               <% end %>

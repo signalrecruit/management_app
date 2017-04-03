@@ -12,14 +12,8 @@ class Company::EmployeesController < Company::ApplicationController
 
   
 
- 
-
 
   private
-
-  def profile_is_completed?(employee)
-    employee.is_profile_complete?
-  end
 
   def set_applicant_detail
     @applicant_detail = ApplicantDetail.find(params[:applicant_detail_id])

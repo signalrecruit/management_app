@@ -4,9 +4,14 @@
 <hr>
 <div class="widget-box">
           <div class="widget-title bg_lo"> <span class="icon"> <i class="icon-briefcase"></i> </span>
-            <h5>Job Type: <% @requirement.job_types.each do |job_type| %>
+            <h5>Job Type: 
+                        <% @count = 0 %>
+                        <% @requirement.job_types.each do |job_type| %>
+                           <% @count += 1 %>
                            <%= job_type.name %>,
-                         <% end %></h5>
+                           <% break if @count == 3 %>
+                         <% end %>...
+                         </h5>
                          <span class="pull-right"><%= link_to fa_icon("eye") + " View List of Applicants", recruiter_applicant_details_url, class: "btn btn-primary" %></span>
             </span>
           </div>

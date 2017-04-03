@@ -7,7 +7,7 @@
                 <h5><%= @applicant_detail.name %>'s application details</h5>
                 </a> </div>
             </div>
-            <div class="collapse in accordion-body" id="collapseGOne">
+            <div class="collapse accordion-body" id="collapseGOne">
               <div class="widget-content">
               <h5> 
               <p>Job Type: <% @applicant_detail.job_types.each do |job_type| %>
@@ -78,16 +78,20 @@
                         <% if requirement.vacancies_left == 0 %> 
                         no vacancies available for this job
                         <% else %> 
-                        <%= link_to "get applicant's assessment for this role", new_recruiter_applicant_detail_score_url(@applicant_detail, requirement_id: requirement.id) %>
+                        <%= link_to "assess #{@applicant_detail.name} for this role", new_recruiter_applicant_detail_score_url(@applicant_detail, requirement_id: requirement.id) %>
                         <% end %>  
                         </li>
                       </ul>
                     </div>
 
                     </td>
-                    <td><% requirement.job_types.each do |job_type| %>
+                    <td>
+                       <% @count = 0 %>
+                       <% requirement.job_types.each do |job_type| %>
+                       <% @count += 1 %>
                           <%= link_to job_type.name, [:recruiter, requirement] %>,
-                        <% end %>
+                          <% break if @count == 3 %>
+                        <% end %>...
                     </td>
                 	<td><%= requirement.title %></td>
                 	<td><%= requirement.location %></td>

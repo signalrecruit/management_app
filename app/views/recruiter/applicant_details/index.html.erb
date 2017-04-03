@@ -48,8 +48,11 @@
                       <%= link_to applicant_detail.name, [:recruiter, applicant_detail] %>
                     </td>
                     <td>
+                      <% @count = 0 %> 
                       <% applicant_detail.job_types.each do |job_type| %>
+                           <% @count += 1 %>
                            <%= job_type.name %>,
+                           <% break if @count == 3 %>
                       <% end %>
                     </td>
                 	<td><%= applicant_detail.location %></td>

@@ -2,8 +2,10 @@
     <h3>
     <% if @applicant_detail.accept? %>
       <i class="fa fa-check-circle" aria-hidden="true"></i>
-    <% else %>
-      <i class="fa fa-hand-paper-o" aria-hidden="true"></i>
+    <% elsif !@applicant_detail.accept? && @applicant_detail.requirement.nil? %>
+      <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+    <% elsif !@applicant_detail.accept? %>
+      <i class="fa fa-hand-paper-o" aria-hidden="true"></i> 
     <% end %>  
     <span class="date badge badge-success" style="font-size: 18px; padding: 20px;"> <%= @applicant_detail.name %>'s </span> Job Assessement 
 
@@ -32,11 +34,15 @@
 <%#= simple_form_for([:recruiter, applicant_detail, score]) do |f| %>
 <div class="widget-box">
           <div class="widget-title bg_lo"> <span class="icon"> <i class="icon-briefcase"></i> </span>
-            <h5>Job Type: <% @applicant_detail.job_types.each do |job_type| %>
+            <h5>Job Type: <% @count = 0 %>
+                         <% @applicant_detail.job_types.each do |job_type| %>
+                           <% @count +=1 %>
             	             <%= job_type.name %>,
-            	           <% end %></h5>
+                           <% break if @count == 3 %>
+            	           <% end %>... 
+                         </h5>
             	           <%#= f.button :submit, "Submit Assessment", class: "btn btn-primary pull-right" %>
-                         <%= link_to "send applicant's details to #{@applicant_detail.requirement.company.name}", recruiter_send_company_applicant_details_url(@applicant_detail), method: :patch, data: { confirm: "Do you want to send #{@applicant_detail.name}'s application details to #{@applicant_detail.requirement.company.name}?"}, class: "btn btn-primary pull-right" if !@applicant_detail.sent_by_recruiter? %>
+                         <%= link_to "send #{@applicant_detail.name}'s details to #{@applicant_detail.requirement.company.name}", recruiter_send_company_applicant_details_url(@applicant_detail), method: :patch, data: { confirm: "Do you want to send #{@applicant_detail.name}'s application details to #{@applicant_detail.requirement.company.name}?"}, class: "btn btn-primary pull-right" if !@applicant_detail.sent_by_recruiter? %>
                          <% if !@applicant_detail.accept? && @applicant_detail.reason_for_rejection %>
                           <button data-toggle="modal" data-target="#demoRequest" class="btn btn-danger center-block pull-right">click to view reason for rejection</button>
                           <% end %>
@@ -45,18 +51,18 @@
           <div class="widget-content nopadding updates collapse in" id="collapseG3">
           <h5>
             <div class="new-update clearfix"><i class="icon-ok-sign"></i>
-              <div class="update-done"><a title="" href="#"><strong><%= @applicant_detail.name %> applied for </strong></a> <span><%= @applicant_detail.job_title %></span> </div>
+              <div class="update-done"><strong><%= @applicant_detail.name %> applied for </strong><span><%= @applicant_detail.job_title %></span> </div>
             </div>
             <div class="new-update clearfix"><i class="icon-ok-sign"></i>
-              <div class="update-done"><a title="" href="#"><strong>Email</strong></a> <span><%= @applicant_detail.email %></span> </div>
+              <div class="update-done"><strong>Email</strong><span><%= @applicant_detail.email %></span> </div>
             </div>
             <div class="new-update clearfix"><i class="icon-ok-sign"></i>
-              <div class="update-done"><a title="" href="#"><strong>Phonenumber</strong></a> <span><%= @applicant_detail.phonenumber %></span> </div>
+              <div class="update-done"><strong>Phonenumber</strong><span><%= @applicant_detail.phonenumber %></span> </div>
             </div>
-            <div class="new-update clearfix"> <i class="icon-ok-sign"></i> <span class="update-notice"> <a title="" href="#"><strong>Location/Address </strong></a> <span><%= @applicant_detail.location %></span> </span> </div>
-            <div class="new-update clearfix"> <i class="icon-ok-sign"></i> <span class="update-alert"> <a title="" href="#"><strong>Work Experience</strong></a> <span><%= @applicant_detail.experience %> Years</span> </span>  </div>
-            <div class="new-update clearfix"> <i class="icon-ok-sign"></i> <span class="update-done"> <a title="" href="#"><strong>Salary Range</strong></a><span>GHS <%= @applicant_detail.min_salary %> - GHS <%= @applicant_detail.max_salary %></span> </span> </div>
-            <div class="new-update clearfix"> <i class="icon-ok-sign"></i> <span class="update-notice"> <a title="" href="#"><strong>Required Skills</strong></a> <span>
+            <div class="new-update clearfix"> <i class="icon-ok-sign"></i> <span class="update-notice"> <strong>Location/Address </strong><span><%= @applicant_detail.location %></span> </span> </div>
+            <div class="new-update clearfix"> <i class="icon-ok-sign"></i> <span class="update-alert"> <strong>Work Experience</strong><span><%= @applicant_detail.experience %> Years</span> </span>  </div>
+            <div class="new-update clearfix"> <i class="icon-ok-sign"></i> <span class="update-done"> <strong>Salary Range</strong><span>GHS <%= @applicant_detail.min_salary %> - GHS <%= @applicant_detail.max_salary %></span> </span> </div>
+            <div class="new-update clearfix"> <i class="icon-ok-sign"></i> <span class="update-notice"> <strong>Required Skills</strong><span>
             	<% @applicant_detail.skills.each do |skill| %>
             	  <%= skill.name %>, 
             	<% end %>
@@ -67,7 +73,7 @@
                 did not meet requirements
               <% end %>
             </div></div>
-            <div class="new-update clearfix"> <i class="icon-ok-sign"></i> <span class="update-notice"> <a title="" href="#"><strong>Education Qualifications</strong></a> <span>
+            <div class="new-update clearfix"> <i class="icon-ok-sign"></i> <span class="update-notice"> <strong>Education Qualifications</strong><span>
             	<% @applicant_detail.qualifications.each do |qualification| %>
             	  <%= qualification.name %>, 
             	<% end %>
@@ -79,7 +85,7 @@
             <% end %>
             </div>
             </div>
-            <div class="new-update clearfix"> <i class="icon-ok-sign"></i> <span class="update-done"> <a title="" href="#"><strong>Attachment</strong></a><span>
+            <div class="new-update clearfix"> <i class="icon-ok-sign"></i> <span class="update-done"> <strong>Attachment</strong><span>
               <% if @applicant_detail.attachment.blank? %>  
               no attachment
               <% else %>
@@ -95,7 +101,7 @@
         <div class="widget-box">
           <div class="widget-title"> <span class="icon"><i class="icon-ok"></i></span>
           <h5>Non-Negotiable Requirements</h5>
-          <%= link_to "send applicant's details to #{@applicant_detail.requirement.company.name}", recruiter_send_company_applicant_details_url(@applicant_detail), method: :patch, data: { confirm: "Do you want to send #{@applicant_detail.name}'s application details to #{@applicant_detail.requirement.company.name}?"}, class: "btn btn-primary pull-right" if !@applicant_detail.sent_by_recruiter? %>
+          <%= link_to "send #{@applicant_detail.name}'s details to #{@applicant_detail.requirement.company.name}", recruiter_send_company_applicant_details_url(@applicant_detail), method: :patch, data: { confirm: "Do you want to send #{@applicant_detail.name}'s application details to #{@applicant_detail.requirement.company.name}?"}, class: "btn btn-primary pull-right" if !@applicant_detail.sent_by_recruiter? %>
           </div>
 
         <div class="widget-content">

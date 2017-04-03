@@ -9,20 +9,19 @@
     <% end %>   
     <span class="date badge badge-success" style="font-size: 18px; padding: 20px;"> <%= @applicant_detail.name %>'s </span> Job Application
     <% if @applicant_detail.score %>
-    <% if @applicant_detail.score.total_score < 50.00 %>  
-    <span class="date badge badge-important pull-right" style="font-size: 28px; padding: 20px;">
-    <% elsif @applicant_detail.score.total_score == 50.00 %>
-      <span class="date badge badge-warning pull-right" style="font-size: 28px; padding: 20px;">
-    <% elsif @applicant_detail.score.total_score > 50.00 && @applicant_detail.score.total_score < 90.00 %>
-      <span class="date badge badge-info pull-right" style="font-size: 28px; padding: 20px;">
-    <% elsif @applicant_detail.score.total_score == 90.00 || @applicant_detail.score.total_score > 90.00 %>
-      <span class="date badge badge-success pull-right" style="font-size: 28px; padding: 20px;">
-    <% elsif @applicant_detail.score.total_score == nil %>
-    <span class="date badge badge-danger pull-right" style="font-size: 28px; padding: 20px;">
-            
+      <% if @applicant_detail.score.total_score < 50.00 %>  
+        <span class="date badge badge-important pull-right" style="font-size: 28px; padding: 20px;">
+      <% elsif @applicant_detail.score.total_score == 50.00 %>
+        <span class="date badge badge-warning pull-right" style="font-size: 28px; padding: 20px;">
+      <% elsif @applicant_detail.score.total_score > 50.00 && @applicant_detail.score.total_score < 90.00 %>
+        <span class="date badge badge-info pull-right" style="font-size: 28px; padding: 20px;">
+      <% elsif @applicant_detail.score.total_score == 90.00 || @applicant_detail.score.total_score > 90.00 %>
+        <span class="date badge badge-success pull-right" style="font-size: 28px; padding: 20px;">
+      <% elsif @applicant_detail.score.total_score == nil %>
+        <span class="date badge badge-danger pull-right" style="font-size: 28px; padding: 20px;">     
+      <% end %>
     <% end %>
-    <% end %>
-
+    <span class="pull-right">
     Score:
      <% if @applicant_detail.score.nil? %>   
      <span class="date badge badge-important" style="font-size: 28px; padding: 20px;">
@@ -30,15 +29,20 @@
      <% else %>
      <%= number_with_precision @applicant_detail.score.total_score, precision: 2, scale: 2 %>%
      <% end %>
-     </span>  
+     </span> 
+     </span> 
     </h3>
 </div>
 <hr>
 <div class="widget-box">
           <div class="widget-title bg_lo"> <span class="icon"> <i class="icon-briefcase"></i> </span>
-            <h5>Job Type: <% @applicant_detail.job_types.each do |job_type| %>
-            	             <%= job_type.name %>, 
-            	           <% end %> <span class="pull-right"> 
+            <h5>Job Type: <% @count = 0 %> 
+                         <% @applicant_detail.job_types.each do |job_type| %>
+                           <% @count += 1 %>
+            	             <%= job_type.name %>,
+                           <% break if @count == 3 %> 
+            	           <% end %>... 
+                         <span class="pull-right"> 
                          <% if @applicant_detail.sent_by_recruiter? %>
                          (NOTE: <%= @applicant_detail.name %>'s details have been sent to <%= @applicant_detail.requirement.company.name  %>)
                          <% end %>
@@ -62,18 +66,18 @@
           <div class="widget-content nopadding updates collapse in" id="collapseG3">
           <h5>
             <div class="new-update clearfix"><i class="icon-ok-sign"></i>
-              <div class="update-done"><a title="" href="#"><strong><%= @applicant_detail.name %> applied for </strong></a> <span><%= @applicant_detail.job_title %> </span> </div>
+              <div class="update-done"><strong><%= @applicant_detail.name %> applied for </strong><span><%= @applicant_detail.job_title %> </span> </div>
             </div>
             <div class="new-update clearfix"><i class="icon-ok-sign"></i>
-              <div class="update-done"><a title="" href="#"><strong>Email</strong></a> <span><%= @applicant_detail.email %></span> </div>
+              <div class="update-done"><strong>Email</strong><span><%= @applicant_detail.email %></span> </div>
             </div>
             <div class="new-update clearfix"><i class="icon-ok-sign"></i>
-              <div class="update-done"><a title="" href="#"><strong>Phonenumber</strong></a> <span><%= @applicant_detail.phonenumber %></span> </div>
+              <div class="update-done"><strong>Phonenumber</strong><span><%= @applicant_detail.phonenumber %></span> </div>
             </div>
-            <div class="new-update clearfix"> <i class="icon-ok-sign"></i> <span class="update-notice"> <a title="" href="#"><strong>Location/Address </strong></a> <span><%= @applicant_detail.location %></span> </span> </div>
-            <div class="new-update clearfix"> <i class="icon-ok-sign"></i> <span class="update-alert"> <a title="" href="#"><strong>Work Experience</strong></a> <span><%= @applicant_detail.experience %> Years</span> </span>  </div>
-            <div class="new-update clearfix"> <i class="icon-ok-sign"></i> <span class="update-done"> <a title="" href="#"><strong>Salary Range</strong></a><span>GHS <%= @applicant_detail.min_salary %> - GHS <%= @applicant_detail.max_salary %></span> </span> </div>
-            <div class="new-update clearfix"> <i class="icon-ok-sign"></i> <span class="update-notice"> <a title="" href="#"><strong>Required Skills</strong></a> <span>
+            <div class="new-update clearfix"> <i class="icon-ok-sign"></i> <span class="update-notice"><strong>Location/Address </strong><span><%= @applicant_detail.location %></span> </span> </div>
+            <div class="new-update clearfix"> <i class="icon-ok-sign"></i> <span class="update-alert"><strong>Work Experience</strong><span><%= @applicant_detail.experience %> Years</span> </span>  </div>
+            <div class="new-update clearfix"> <i class="icon-ok-sign"></i> <span class="update-done"><strong>Salary Range</strong><span>GHS <%= @applicant_detail.min_salary %> - GHS <%= @applicant_detail.max_salary %></span> </span> </div>
+            <div class="new-update clearfix"> <i class="icon-ok-sign"></i> <span class="update-notice"><strong>Required Skills</strong><span>
             	<% @applicant_detail.skills.each do |skill| %>
             	  <%= skill.name %>, 
             	<% end %>
@@ -88,7 +92,7 @@
             </div>
             <% end %>
             </div>
-            <div class="new-update clearfix"> <i class="icon-ok-sign"></i> <span class="update-notice"> <a title="" href="#"><strong>Education Qualifications</strong></a> <span>
+            <div class="new-update clearfix"> <i class="icon-ok-sign"></i> <span class="update-notice"><strong>Education Qualifications</strong><span>
             	<% @applicant_detail.qualifications.each do |qualification| %>
             	  <%= qualification.name %>, 
             	<% end %>
@@ -103,7 +107,7 @@
             </div>
             <% end %>
             </div>
-            <div class="new-update clearfix"> <i class="icon-ok-sign"></i> <span class="update-done"> <a title="" href="#"><strong>Attachment</strong></a><span>
+            <div class="new-update clearfix"> <i class="icon-ok-sign"></i> <span class="update-done"><strong>Attachment</strong><span>
               <% if @applicant_detail.attachment.blank? %>  
               no attachment
               <% else %>
@@ -113,7 +117,7 @@
             </h5>
           </div>
         </div>
-         <% if !@requirement.nil? %>
+         <% if !@requirement.nil? && !@score.nil? %>
          <% if @requirement.compulsory_requirement %>
         <div class="widget-box">
           <div class="widget-title"> <span class="icon"><i class="icon-ok"></i></span>
@@ -131,6 +135,7 @@
                          </span>
           </div>
 
+
         <div class="widget-content">
             <div class="todo">
               <ul>
@@ -140,6 +145,7 @@
                 <li class="clearfix">
                   <div class="txt">  
                   <%= @requirement.compulsory_requirement.requirement_1 %></div>
+
                   <div class="pull-right">
                   <% if @score.requirement_1_check? %>
                     met requirements

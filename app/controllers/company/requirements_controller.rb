@@ -51,7 +51,7 @@ class Company::RequirementsController < Company::ApplicationController
   def send_requirements
     # send email
     @requirement.send_requirements
-    flash[:notice] = "Your details have been sent to the recruiter."
+    flash[:notice] = "Your details have been sent to the recruiter for review."
     redirect_to :back
   end
   

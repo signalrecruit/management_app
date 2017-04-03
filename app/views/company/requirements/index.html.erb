@@ -35,9 +35,12 @@
                     <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
                     <% else %>
                     <% end %>
+                    <% @count = 0 %>
                     <% requirement.job_types.each do |job_type| %>
+                           <% @count += 1 %>
                            <%= link_to job_type.name, [:company, requirement] %>,
-                         <% end %>
+                           <% break if @count == 2 %>
+                         <% end %>...
                     </td>
                 	<td><%= requirement.title %></td>
                 	<td><%= requirement.location %></td>

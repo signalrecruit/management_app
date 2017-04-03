@@ -31,6 +31,8 @@ class Recruiter::EmployeesController < Recruiter::ApplicationController
   end
 
   def destroy
+    @employee.destroy
+    on_success "removed #{@employee.firstname}'s profile", recruiter_employees_url
   end
 
   def complete
