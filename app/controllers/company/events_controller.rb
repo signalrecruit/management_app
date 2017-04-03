@@ -6,7 +6,7 @@ class Company::EventsController < Company::ApplicationController
   layout 'company' 
 
   def index
-    @events = Event.all.where(company_id: "#{current_company.id}")  
+    @events = Event.all.where(company_id: "#{current_company.id}", sent_by: "Recruiter")  
   end
 
   def show

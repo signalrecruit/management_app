@@ -68,7 +68,7 @@
     <i class="icon icon-dashboard"></i> <span>Dashboard</span>
     <% end %>
     </li>
-    <li class="submenu"> <a href="#"><i class="icon icon-briefcase"></i> <span>Job Description(s)</span> <span class="label label-important"><%= current_company.requirements.count %></span></a>
+    <li class="submenu"> <a href="#"><i class="icon icon-briefcase"></i> <span>Job Description</span> <span class="label label-important"><%= current_company.requirements.count %></span></a>
         <ul>
         <li>
           <%= link_to new_company_requirement_path do %>

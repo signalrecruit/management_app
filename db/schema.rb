@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170403125923) do
+ActiveRecord::Schema.define(version: 20170403160024) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -155,27 +155,27 @@ ActiveRecord::Schema.define(version: 20170403125923) do
   create_table "employees", force: :cascade do |t|
     t.integer  "company_id"
     t.integer  "applicant_detail_id"
-    t.datetime "created_at",                                                   null: false
-    t.datetime "updated_at",                                                   null: false
-    t.string   "surname",             default: "surname"
-    t.string   "middlename",          default: "middle name"
-    t.string   "firstname",           default: "first name"
-    t.datetime "birthdate",           default: '2017-03-29 12:50:42'
-    t.string   "marital_status",      default: "single"
-    t.string   "gender",              default: "male"
-    t.string   "birthplace",          default: "your birth place"
-    t.string   "region",              default: "Region"
-    t.string   "country",             default: "Country"
-    t.datetime "commencement_date",   default: '2017-03-29 12:50:44'
-    t.string   "position",            default: "position"
-    t.string   "department",          default: "name of department"
-    t.string   "postal_address",      default: "employee postal address"
-    t.string   "city",                default: "name of your city"
-    t.string   "house_number",        default: "employee house number"
-    t.string   "office_number",       default: "office number here"
-    t.string   "mobile_number",       default: "employee mobile number"
-    t.string   "email_address",       default: "employee's email"
-    t.string   "corporate_email",     default: "corporate email for employee"
+    t.datetime "created_at",                                          null: false
+    t.datetime "updated_at",                                          null: false
+    t.string   "surname"
+    t.string   "middlename"
+    t.string   "firstname"
+    t.datetime "birthdate",           default: '2017-04-03 16:07:34'
+    t.string   "marital_status"
+    t.string   "gender"
+    t.string   "birthplace"
+    t.string   "region"
+    t.string   "country"
+    t.datetime "commencement_date",   default: '2017-04-03 16:07:34'
+    t.string   "position"
+    t.string   "department"
+    t.string   "postal_address"
+    t.string   "city"
+    t.string   "house_number"
+    t.string   "office_number"
+    t.string   "mobile_number"
+    t.string   "email_address"
+    t.string   "corporate_email"
     t.string   "profile_status",      default: "INCOMPLETE"
     t.boolean  "sent",                default: false
   end

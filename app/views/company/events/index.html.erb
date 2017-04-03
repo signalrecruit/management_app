@@ -25,12 +25,12 @@
 				</tr>
 			</thead>
 			<tbody>
-			<% if @events %>
+			<% if @events.any? %>
 				<% @events.each do |event| %>
 				<% if event.sent_by == "Recruiter" %>
 				<tr class="odd gradeX" style="font-size: 14px;">
-					<td><%= event.applicant_detail.name %></td>
-					<td><%= event.name %></td>
+					<td><%= truncate(event.applicant_detail.name, length: 12) %></td>
+					<td><%= truncate(event.name, length: 20) %></td>
 					<td><span class="badge badge-info"><%= event.interview_date.strftime("%B %d, %Y")%></span></td>
 					<td><span class="badge badge-info"><%= event.test_date.strftime("%B %d, %Y") %></span></td>
 					<td class="center">
@@ -91,6 +91,7 @@
 				<td>No data</td>
 				<td>No data</td>
 				<td>No data</td>
+				<td></td>
 				<% end %>
 			</tbody>
 		</table>

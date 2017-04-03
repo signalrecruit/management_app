@@ -25,4 +25,9 @@ class Event < ActiveRecord::Base
   	return true if self.confirm == "Confirmed"
   	return false if self.confirm == "Rejected"
   end
+
+  def passed?
+    return true if self.interview_results == "PASSED"
+    return false if (self.interview_results == "FAILED" || self.passed == "PENDING")
+  end
 end

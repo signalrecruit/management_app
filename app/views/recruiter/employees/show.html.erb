@@ -1,32 +1,32 @@
-<h3>View <span class="badge badge-info" style="font-size: 28px; padding: 20px;"><%= @employee.firstname %></span>'s Profile</h3>
+<h3> <span class="badge badge-info" style="font-size: 28px; padding: 20px;"><%= @employee.firstname %></span>'s Profile</h3>
 <div class="accordion" id="collapse-group">
   <div class="accordion-group widget-box">
     <div class="accordion-heading">
      <div class="widget-title"> <a data-parent="#collapse-group" href="#collapseGThree" data-toggle="collapse"> <span class="icon"><i class="icon-chevron-down"></i></span>
-        <h5><%= @employee.firstname %>'s profile</h5>
+        <h5>View <%= @employee.firstname %>'s profile</h5>
       </a> </div>
     </div>
     <div class="collapse accordion-body" id="collapseGThree">
       <div class="widget-content"> 
-        <p>First Name: <%= @employee.firstname %></p>
-        <p>Middle Name: <%= @employee.middlename %></p>
-        <p>Last Name: <%= @employee.surname %></p>
-        <p>Date of Birth:  <%= @employee.birthdate.strftime("%B %d, %Y") %></p>
-        <p>Marital Status: <%= @employee.marital_status %></p>
-        <p>Gender: <%= @employee.gender %></p>
-        <p>Place of Birth: <%= @employee.birthplace %></p>
-        <p>Region: <%= @employee.region %></p>
-        <p>Country: <%= @employee.country %></p>
-        <p>Commencement Date: <%= @employee.commencement_date %></p>
-        <p>Position: <%= @employee.position %></p>
-        <p>Department: <%= @employee.department %></p>
-        <p>Postal Address: <%= @employee.postal_address %></p>
-        <p>City: <%= @employee.city %></p>
-        <p>House Number: <%= @employee.house_number %></p>
-        <p>Corporate Phone Number: <%= @employee.office_number %></p>
-        <p>Mobile Number: <%= @employee.mobile_number %></p>
-        <p>Personal Email Address: <%= @employee.email_address %></p>
-        <p>Corporate Email Address: <%= @employee.corporate_email %></p>
+        <p>First Name: <span class="badge badge-info"><%= @employee.firstname %></span></p>
+        <p>Middle Name: <span class="badge badge-info"><%= @employee.middlename %></span></p>
+        <p>Last Name: <span class="badge badge-info"><%= @employee.surname %></span></p>
+        <p>Date of Birth:  <span class="badge badge-info"><%= @employee.birthdate.strftime("%B %d, %Y") %></span></p>
+        <p>Marital Status: <span class="badge badge-info"><%= @employee.marital_status %></span></p>
+        <p>Gender: <span class="badge badge-info"><%= @employee.gender %></span></p>
+        <p>Place of Birth: <span class="badge badge-info"><%= @employee.birthplace %></span></p>
+        <p>Region: <span class="badge badge-info"><%= @employee.region %></span></p>
+        <p>Country: <span class="badge badge-info"><%= @employee.country %></span></p>
+        <p>Commencement Date: <span class="badge badge-info"><%= @employee.commencement_date.strftime("%B %d, %Y") %></span></p>
+        <p>Position: <span class="badge badge-info"><%= @employee.position %></span></p>
+        <p>Department: <span class="badge badge-info"><%= @employee.department %></span></p>
+        <p>Postal Address: <span class="badge badge-info"><%= @employee.postal_address %></span></p>
+        <p>City: <span class="badge badge-info"><%= @employee.city %></p>
+        <p>House Number: <span class="badge badge-info"><%= @employee.house_number %></span></p>
+        <p>Corporate Phone Number: <span class="badge badge-info"><%= @employee.office_number %></span></p>
+        <p>Mobile Number: <span class="badge badge-info"><%= @employee.mobile_number %></span></p>
+        <p>Personal Email Address: <span class="badge badge-info"><%= @employee.email_address %></span></p>
+        <p>Corporate Email Address: <span class="badge badge-info"><%= @employee.corporate_email %></span></p>
       </div>
     </div>
   </div>

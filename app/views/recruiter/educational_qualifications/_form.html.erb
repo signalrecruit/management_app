@@ -24,14 +24,14 @@
 <div class="control-group">
 	<label class="control-label">Date of Enrolement:</label>
 	<div class="controls">
-		<%= f.input :enrolled_at, as: :date, label: false %>
+		<%= f.input :enrolled_at, as: :date, start_year: Date.today.year - 100, end_year: Date.today.year,  label: false %>
 	</div>
 </div>
 
 <div class="control-group">
 	<label class="control-label">Date of Completion:</label>
 	<div class="controls">
-		<%= f.input :completed_at, as: :date, label: false %>
+		<%= f.input :completed_at, as: :date, start_year: Date.today.year - 100, end_year: Date.today.year, label: false %>
 	</div>
 </div>
 

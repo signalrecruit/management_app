@@ -34,7 +34,12 @@
 <%#= simple_form_for([:recruiter, applicant_detail, score]) do |f| %>
 <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> = no matching job description 
   <i class="fa fa-check-circle" aria-hidden="true"></i> = accepted by company  <i class="fa fa-hand-paper-o" aria-hidden="true"></i> = rejected/not yet accepted by company 
-  <%= link_to "send to #{@applicant_detail.requirement.company.name}", recruiter_send_company_applicant_details_url(@applicant_detail), method: :patch, data: { confirm: "Do you want to send #{@applicant_detail.firstname}'s application details to #{@applicant_detail.requirement.company.name}?"}, class: "btn btn-primary pull-right" if !@applicant_detail.sent_by_recruiter? %>
+  <% if @applicant_detail.accept? %>
+  <span class="pull-right">
+  <%= link_to fa_icon("calendar") + " schedule interview/test", new_recruiter_applicant_detail_event_url(@applicant_detail), class: "btn btn-primary" if (@applicant_detail.event.nil? && @applicant_detail.sent_by == @applicant_detail.requirement.company.name) %>
+  <% end %>
+  <%= link_to "send to #{@applicant_detail.requirement.company.name}", recruiter_send_company_applicant_details_url(@applicant_detail), method: :patch, data: { confirm: "Do you want to send #{@applicant_detail.firstname}'s application details to #{@applicant_detail.requirement.company.name}?"}, class: "btn btn-primary" if !@applicant_detail.sent_by_recruiter? %>
+  </span>
 <div class="widget-box">
           <div class="widget-title bg_lo"> <span class="icon"><i class="icon-briefcase"></i> </span>
             <h5>Job Type: <% @count = 0 %>
@@ -103,7 +108,7 @@
         <div class="widget-box">
           <div class="widget-title"> <span class="icon"><i class="icon-ok"></i></span>
           <h5>Non-Negotiable Requirements</h5>
-          <%= link_to "send #{@applicant_detail.name}'s details to #{@applicant_detail.requirement.company.name}", recruiter_send_company_applicant_details_url(@applicant_detail), method: :patch, data: { confirm: "Do you want to send #{@applicant_detail.name}'s application details to #{@applicant_detail.requirement.company.name}?"}, class: "btn btn-primary pull-right" if !@applicant_detail.sent_by_recruiter? %>
+          <%= link_to "send #{@applicant_detail.requirement.company.name}", recruiter_send_company_applicant_details_url(@applicant_detail), method: :patch, data: { confirm: "Do you want to send #{@applicant_detail.name}'s application details to #{@applicant_detail.requirement.company.name}?"}, class: "btn btn-primary pull-right" if !@applicant_detail.sent_by_recruiter? %>
           </div>
 
         <div class="widget-content">

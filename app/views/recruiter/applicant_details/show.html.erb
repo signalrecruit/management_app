@@ -36,6 +36,20 @@
 <hr>
 <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> = no matching job description 
   <i class="fa fa-check-circle" aria-hidden="true"></i> = accepted by company  <i class="fa fa-hand-paper-o" aria-hidden="true"></i> = rejected/not yet accepted by company 
+      <span class="pull-right">
+                         <% if @applicant_detail.accept? %>
+                         <%= link_to fa_icon("calendar") + " schedule interview/test", new_recruiter_applicant_detail_event_url(@applicant_detail), class: "btn btn-primary" if (@applicant_detail.event.nil? && @applicant_detail.sent_by == @applicant_detail.requirement.company.name) %>
+                         <% end %>
+                         <% if @applicant_detail.score.nil? %>  
+                         <%= link_to "match job description", recruiter_match_job_description_url(@applicant_detail), class: "btn btn-primary" %>
+                         <% else %>
+                         <%= link_to fa_icon("repeat") + " re-assess candidate", edit_recruiter_applicant_detail_score_url(@applicant_detail, @applicant_detail.score, requirement_id: @applicant_detail.requirement), class: "btn btn-primary"  if @applicant_detail.sent_by == "#{@applicant_detail.requirement.company.name}" %>
+                         <%= link_to "send to #{@applicant_detail.requirement.company.name}", recruiter_send_company_applicant_details_url(@applicant_detail), method: :patch, data: { confirm: "Do you want to send #{@applicant_detail.name}'s application details to #{@applicant_detail.requirement.company.name}?"}, class: "btn btn-primary" if @applicant_detail.sent_by == "#{@applicant_detail.requirement.company.name}" %>
+                          <% end %> 
+                          <% if !@applicant_detail.accept? && @applicant_detail.reason_for_rejection %>
+                          <button data-toggle="modal" data-target="#demoRequest" class="btn btn-danger center-block">click to view reason for rejection</button>
+                          <% end %>
+                         </span>
 <div class="widget-box">
           <div class="widget-title bg_lo"> <span class="icon"> <i class="icon-briefcase"></i> </span>
             <h5>Job Type: <% @count = 0 %> 
@@ -49,20 +63,6 @@
                          (NOTE: <%= @applicant_detail.name %>'s details have been sent to <%= @applicant_detail.requirement.company.name  %>)
                          <% end %>
                          </span> </h5>
-                           <span class="pull-right">
-                         <% if @applicant_detail.accept? %>
-                         <%= link_to fa_icon("calendar") + " schedule interview/test", new_recruiter_applicant_detail_event_url(@applicant_detail), class: "btn btn-primary" if (@applicant_detail.event.nil? && @applicant_detail.sent_by == @applicant_detail.requirement.company.name) %>
-                         <% end %>
-                         <% if @applicant_detail.score.nil? %>  
-            	           <%= link_to "match job description", recruiter_match_job_description_url(@applicant_detail), class: "btn btn-primary" %>
-                         <% else %>
-                         <%= link_to fa_icon("repeat") + " re-assess candidate", edit_recruiter_applicant_detail_score_url(@applicant_detail, @applicant_detail.score, requirement_id: @applicant_detail.requirement), class: "btn btn-primary"  if @applicant_detail.sent_by == "#{@applicant_detail.requirement.company.name}" %>
-                         <%= link_to "send applicant's details to #{@applicant_detail.requirement.company.name}", recruiter_send_company_applicant_details_url(@applicant_detail), method: :patch, data: { confirm: "Do you want to send #{@applicant_detail.name}'s application details to #{@applicant_detail.requirement.company.name}?"}, class: "btn btn-primary" if @applicant_detail.sent_by == "#{@applicant_detail.requirement.company.name}" %>
-                          <% end %> 
-                          <% if !@applicant_detail.accept? && @applicant_detail.reason_for_rejection %>
-                          <button data-toggle="modal" data-target="#demoRequest" class="btn btn-danger center-block">click to view reason for rejection</button>
-                          <% end %>
-                         </span>
             </span>
           </div>
           <div class="widget-content nopadding updates collapse in" id="collapseG3">
@@ -129,7 +129,7 @@
                          <%= link_to "match job description", recruiter_match_job_description_url(@applicant_detail), class: "btn btn-primary" %>
                          <% else %>
                          <%= link_to fa_icon("repeat") + " re-assess candidate", edit_recruiter_applicant_detail_score_url(@applicant_detail, @applicant_detail.score, requirement_id: @applicant_detail.requirement), class: "btn btn-primary"  if @applicant_detail.sent_by_recruiter? %>
-                         <%= link_to "send applicant's details to #{@applicant_detail.requirement.company.name}", recruiter_send_company_applicant_details_url(@applicant_detail), method: :patch, data: { confirm: "Do you want to send #{@applicant_detail.name}'s application details to #{@applicant_detail.requirement.company.name}?"}, class: "btn btn-primary" if @applicant_detail.sent_by_recruiter? %>
+                         <%= link_to "send to #{@applicant_detail.requirement.company.name}", recruiter_send_company_applicant_details_url(@applicant_detail), method: :patch, data: { confirm: "Do you want to send #{@applicant_detail.name}'s application details to #{@applicant_detail.requirement.company.name}?"}, class: "btn btn-primary" if !@applicant_detail.sent_by_recruiter? %>
                           <% end %> 
                           <% if !@applicant_detail.accept? && @applicant_detail.reason_for_rejection %>
                           <button data-toggle="modal" data-target="#demoRequest" class="btn btn-danger center-block">click to view reason for rejection</button>
