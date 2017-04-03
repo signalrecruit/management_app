@@ -5,7 +5,7 @@ class Recruiter::ScoresController < Recruiter::ApplicationController
   layout "recruiter"
 
   def new
-    @applicant_detail.update(requirement_id: @requirement.id) #must associate applicant with requirement by updating requirement_id
+    @applicant_detail.update(requirement_id: @requirement.id, company_id: @requirement.company.id) #must associate applicant with requirement by updating requirement_id
     @requirement.update_vacancies_left
     @score = @applicant_detail.build_score
   end

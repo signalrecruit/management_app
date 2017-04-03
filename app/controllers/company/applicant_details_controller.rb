@@ -9,7 +9,7 @@ class Company::ApplicantDetailsController < Company::ApplicationController
     @applicant_details = []
     @requirements.each do |requirement|
       requirement.applicant_details.each do |applicant_detail|
-      	@applicant_details << applicant_detail if applicant_detail.sent_by == "Recruiter"
+      	@applicant_details << applicant_detail
       end	
     end	
     @applicant_details = @applicant_details.uniq

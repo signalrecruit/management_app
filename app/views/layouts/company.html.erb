@@ -68,7 +68,7 @@
     <i class="icon icon-dashboard"></i> <span>Dashboard</span>
     <% end %>
     </li>
-    <li class="submenu"> <a href="#"><i class="icon icon-briefcase"></i> <span>Job Description</span> <span class="label label-important">2</span></a>
+    <li class="submenu"> <a href="#"><i class="icon icon-briefcase"></i> <span>Job Description(s)</span> <span class="label label-important"><%= current_company.requirements.count %></span></a>
         <ul>
         <li>
           <%= link_to new_company_requirement_path do %>
@@ -120,14 +120,6 @@
       <%= link_to "#" do %>
       <i class="icon icon-th"></i> <span>Onboarding and Orientation</span>
       <% end %>
-      </li>
-      <li class="submenu"> <a href="#"><i class="icon icon-th-list"></i> <span>Manage Departments</span> <span class="label label-important">4</span></a>
-        <ul>
-          <li><a href="#">Sales Department</a></li>
-          <li><a href="#">HR Department</a></li>
-          <li><a href="#">Accounting Department</a></li>
-           <li><a href="#">Marketing Department</a></li>
-        </ul>
       </li>
       <li class="submenu"> <a href="#"><i class="icon icon-th-list"></i> <span>KPI/State of Progress</span> <span class="label label-important">4</span></a>
         <ul>

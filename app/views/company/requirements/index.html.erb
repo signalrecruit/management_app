@@ -4,13 +4,11 @@
 <hr>
 <div class="row-fluid">
 
-	<div class="span12">
-  
+	<div class="span12"> 
 <div class="widget-box">
           <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
             <h5><%= pluralize(@requirements.count, "Job Description") %></h5>
-            <%= link_to fa_icon("plus") + " Create Job Description", new_company_requirement_url, class: "btn btn-primary pull-right" %>                 
-
+            <%= link_to fa_icon("plus") + " Create Job Description", new_company_requirement_url, class: "btn btn-primary pull-right" %>
           </div>
           <div class="widget-content nopadding">
           <div class="table-responsive">
@@ -27,6 +25,7 @@
                 	<th>Number of Vacancies</th>
                 </tr>
               </thead>
+              <% if @requirements.any? %>
               <tbody>
               <% @requirements.each do |requirement| %>
                 <tr class="odd gradeX" style="font-size: 14px;">
@@ -62,6 +61,20 @@
                 </tr>
               <% end %>
               </tbody>
+              <% else %>
+              <tbody>
+                <tr class="odd gradeX">
+                  <td>No Data</td>
+                  <td>No Data</td>
+                  <td>No Data</td>
+                  <td>No Data</td>
+                  <td>No Data</td>
+                  <td>No Data</td>
+                  <td>No Data</td>
+                  <td>No Data</td>
+                </tr>
+              </tbody>
+              <% end %>
             </table>
           </div>
         </div>

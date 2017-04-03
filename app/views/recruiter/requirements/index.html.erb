@@ -6,13 +6,10 @@
 <div class="row-fluid">
 
 	<div class="span12">
-  
+  <%= link_to fa_icon("plus") + " Fill Out Applicant Form", new_recruiter_applicant_detail_url, class: "btn btn-primary pull-right" %>
 <div class="widget-box">
           <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
             <h5><%= pluralize(@requirements.count, "Job Description") %></h5>
-            <%= link_to fa_icon("plus") + " Fill Out Applicant Form", new_recruiter_applicant_detail_url, class: "btn btn-primary pull-right" %>                 
-                 
-
           </div>
           <div class="widget-content nopadding">
           <div class="table-responsive">
@@ -37,7 +34,7 @@
                       <% if requirement.applicant_details.empty? %>
                     <i class="fa fa-star" aria-hidden="true"></i>
                     <% end %>  
-                    <%= requirement.company.name %></span></td>
+                    <%= truncate(requirement.company.name, length: 12) %></span></td>
                     <td>
                     <% @count = 0 %>
                     <% requirement.job_types.each do |job_type| %>
@@ -46,7 +43,7 @@
                           <% break if @count == 2 %>
                     <% end %>...
                     </td>
-                	<td><%= requirement.title %></td>
+                	<td><%= truncate(requirement.title, length: 20) %></td>
                 	<td><%= requirement.location %></td>
                 	<td><%= requirement.experience %></td>
                 	<td class="center"><%= requirement.min_salary %> - <%= requirement.max_salary %></td>

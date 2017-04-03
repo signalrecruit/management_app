@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170330132747) do
+ActiveRecord::Schema.define(version: 20170403125923) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,8 +32,10 @@ ActiveRecord::Schema.define(version: 20170330132747) do
     t.text     "reason_for_rejection"
     t.string   "attachment"
     t.string   "sent_by"
+    t.integer  "company_id"
   end
 
+  add_index "applicant_details", ["company_id"], name: "index_applicant_details_on_company_id", using: :btree
   add_index "applicant_details", ["requirement_id"], name: "index_applicant_details_on_requirement_id", using: :btree
 
   create_table "applicant_details_job_types", id: false, force: :cascade do |t|
@@ -402,6 +404,7 @@ ActiveRecord::Schema.define(version: 20170330132747) do
 
   add_index "spouse_details", ["employee_id"], name: "index_spouse_details_on_employee_id", using: :btree
 
+  add_foreign_key "applicant_details", "companies"
   add_foreign_key "applicant_details", "requirements"
   add_foreign_key "children_details", "employees"
   add_foreign_key "educational_qualifications", "employees"

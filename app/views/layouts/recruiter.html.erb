@@ -67,17 +67,17 @@
     </li>
       <li>
       <%= link_to recruiter_demo_requests_url do %>
-      <i class="icon icon-th"></i> <span>Requests for demo</span>
+      <i class="icon icon-th"></i> <span>Requests for demo</span> <span class="label label-important"><%= Request.count %></span>
       <% end %>
       </li>
       <li class="submenu"> <a href="#"><i class="icon icon-user"></i> <span>Account Management</span> <span class="label label-important">2</span></a>
             <ul>
           <!-- <li><%#= link_to "Clients", "#", data: {confirm: "this feature is not ready yet"} %></li> -->
           <li><%= link_to fa_icon("users") + " Manage Candidate Profiles", "#", data: {confirm: "feature under development"} %></li>
-          <li><%= link_to fa_icon("briefcase") + " Companies", recruiter_list_of_companies_url %></li>
+          <li><%= link_to fa_icon("briefcase") + " #{pluralize(Company.count, "Company")}", recruiter_list_of_companies_url %></li>
         </ul>
       </li>
-      <li class="submenu"> <a href="#"><i class="icon icon-briefcase"></i> <span>Manage Job Descriptions</span> <span class="label label-important">1</span></a>
+      <li class="submenu"> <a href="#"><i class="icon icon-briefcase"></i> <span>Manage Job Descriptions</span> <span class="label label-important"><%= Requirement.count %></span></a>
         <ul>
           <li><%= link_to "View All Received Job Descriptions", recruiter_requirements_url %></li>
         </ul>

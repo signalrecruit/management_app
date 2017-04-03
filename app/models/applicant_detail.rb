@@ -7,6 +7,7 @@ class ApplicantDetail < ActiveRecord::Base
   has_and_belongs_to_many :job_types
   has_one :event, dependent: :destroy
   has_one :employee, dependent: :destroy
+  belongs_to :company
 
   mount_uploader :attachment, AttachmentUploader
   
@@ -42,7 +43,7 @@ class ApplicantDetail < ActiveRecord::Base
 
   def sent_by_recruiter?
     return true if self.sent_by == "Recruiter"
-    return false if (self.sent_by == "Company" || self.sent_by == nil )
+    return false if (self.sent_by == self.company.name || self.sent_by == nil )
   end
 
   def firstname

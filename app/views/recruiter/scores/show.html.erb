@@ -32,8 +32,11 @@
 </div>
 <hr>
 <%#= simple_form_for([:recruiter, applicant_detail, score]) do |f| %>
+<i class="fa fa-exclamation-triangle" aria-hidden="true"></i> = no matching job description 
+  <i class="fa fa-check-circle" aria-hidden="true"></i> = accepted by company  <i class="fa fa-hand-paper-o" aria-hidden="true"></i> = rejected/not yet accepted by company 
+  <%= link_to "send to #{@applicant_detail.requirement.company.name}", recruiter_send_company_applicant_details_url(@applicant_detail), method: :patch, data: { confirm: "Do you want to send #{@applicant_detail.firstname}'s application details to #{@applicant_detail.requirement.company.name}?"}, class: "btn btn-primary pull-right" if !@applicant_detail.sent_by_recruiter? %>
 <div class="widget-box">
-          <div class="widget-title bg_lo"> <span class="icon"> <i class="icon-briefcase"></i> </span>
+          <div class="widget-title bg_lo"> <span class="icon"><i class="icon-briefcase"></i> </span>
             <h5>Job Type: <% @count = 0 %>
                          <% @applicant_detail.job_types.each do |job_type| %>
                            <% @count +=1 %>
@@ -42,9 +45,8 @@
             	           <% end %>... 
                          </h5>
             	           <%#= f.button :submit, "Submit Assessment", class: "btn btn-primary pull-right" %>
-                         <%= link_to "send #{@applicant_detail.name}'s details to #{@applicant_detail.requirement.company.name}", recruiter_send_company_applicant_details_url(@applicant_detail), method: :patch, data: { confirm: "Do you want to send #{@applicant_detail.name}'s application details to #{@applicant_detail.requirement.company.name}?"}, class: "btn btn-primary pull-right" if !@applicant_detail.sent_by_recruiter? %>
                          <% if !@applicant_detail.accept? && @applicant_detail.reason_for_rejection %>
-                          <button data-toggle="modal" data-target="#demoRequest" class="btn btn-danger center-block pull-right">click to view reason for rejection</button>
+                          <button data-toggle="modal" data-target="#demoRequest" class="btn btn-danger center-block pull-right">reason for rejection</button>
                           <% end %>
             </span>
           </div>
