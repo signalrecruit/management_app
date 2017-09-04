@@ -6,7 +6,7 @@
 
 # Brief Description
  * [Brief Description Here](https://github.com/paa-yaw/management_app/blob/master/app_description.md)
- 
+
 
 
 # Ruby and Rails Versions
@@ -50,7 +50,7 @@
 
 ```  
 # User Credentials
-  * [check here](https://github.com/paa-yaw/management_app/blob/master/app_description.md)
+  * [check here](https://github.com/paa-yaw/management_app/blob/master/app_description.md#user-credentials)
 
 
 # Database initialization
