@@ -21,7 +21,7 @@ Things you may want to cover:
 
 # System Dependencies
 
-* check /Gemfile for gems/libraries to install
+* check [Here](https://github.com/paa-yaw/management_app/blob/master/Gemfile)
 
 # App Configuration and Setup
 
