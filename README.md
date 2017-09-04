@@ -50,8 +50,30 @@ Things you may want to cover:
 
 ```  
 
-* Database initialization
+**Database initialization**
 
+* NOTE: you must already have postgres setup with rails
+* In your database.yml setup your username and password for development and production using environment variables like so:
+
+```
+  
+development:
+  <<: *default
+  database: management_app_development
+  username: <%= ENV['MANAGEMENT_APP_DATABASE_USERNAME'] %>
+  password: <%= ENV['MANAGEMENT_APP_DATABASE_PASSWORD'] %>
+  host: localhost
+
+production:
+  <<: *default
+  database: management_app_production
+  username: management_app
+  password: <%= ENV['MANAGEMENT_APP_DATABASE_PASSWORD'] %>
+
+
+```
+
+ 
 * How to run the test suite
 
 * Services (job queues, cache servers, search engines, etc.)
