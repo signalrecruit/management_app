@@ -1,5 +1,7 @@
 == README
 
+== Project Name: RECMAN
+
 ![Build Status](https://travis-ci.org/paa-yaw/management_app.svg?branch=test)
 
 This README would normally document whatever steps are necessary to get the
@@ -33,8 +35,18 @@ here=>https://www.digitalocean.com/community/tutorials/how-to-use-postgresql-wit
 * run the following commands:
 
 ```
+  mkdir app_dir
+
+  cd app_dir
+
   git clone https://github.com/paa-yaw/management_app.git
   
+  cd app_dir/management_app
+
+  bundle install
+
+  bin/rails s
+
 ```  
 
 * Database initialization
