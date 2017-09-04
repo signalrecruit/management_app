@@ -1,6 +1,6 @@
 # RECMAN 
 * is a recruitement management software that enables recruiting agencies and companies/clients communicate effeciently to resolve recruiting 
-* requests. Below is the feature sets and basic user flow for the app.
+* requests. Below is the feature sets for the app.
 
 # Feature Sets
 
@@ -11,6 +11,7 @@
 # User Credentials
   ## Company
   * email: user@company.com, password: "password"
+  * email: user@recruiter.com, password: "password"
 
   * As a Company, you can do the following:
     * create a job description
@@ -26,7 +27,7 @@
     * manage kpi progress of candidates/applicants
 
   ## Recruiter
-  * email: user@recruiter.com, password: "password"
+  
 
 * As a Recruiter
   * you can process demo requests by
