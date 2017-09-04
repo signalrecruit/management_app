@@ -80,7 +80,7 @@ production:
 
   * RSpec is the tool used to run the test suit. Please make sure that it's installed and configured properly. [resource here](https://github.com/rspec/rspec-rails)
 
-  # the current test suite is INCOMPLETE AND BROKEN!!!
+  ## the current test suite is INCOMPLETE AND BROKEN!!!
     * 342 examples, 134 failures, 81 pending
 
   * You can run the test suite by running either of the following command:
