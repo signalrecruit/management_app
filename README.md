@@ -1,6 +1,6 @@
-**README**
+# README
 
-**Project Name: RECMAN**
+# Project Name: RECMAN
 
 ![Build Status](https://travis-ci.org/paa-yaw/management_app.svg?branch=test)
 
@@ -9,18 +9,18 @@ application up and running.
 
 Things you may want to cover:
 
-**Ruby and Rails Versions**
+# Ruby and Rails Versions
 
 * ruby 2.2.1p85
 
 * Rails 4.2.5.1
 
 
-**System Dependencies**
+# System Dependencies
 
 * check /Gemfile for gems/libraries to install
 
-**App Configuration and Setup**
+# App Configuration and Setup
 
 * NOTE: you must have the following installed:
 
@@ -31,7 +31,7 @@ Things you may want to cover:
 * [how to setup rails with postgres here](https://www.digitalocean.com/community/tutorials/how-to-setup-ruby-on-rails-with-postgres) OR
 [here](https://www.digitalocean.com/community/tutorials/how-to-use-postgresql-with-your-ruby-on-rails-application-on-ubuntu-14-04)
 
-**Getting Started**
+# Getting Started
 
 * run the following commands:
 
@@ -50,7 +50,7 @@ Things you may want to cover:
 
 ```  
 
-**Database initialization**
+# Database initialization
 
 * NOTE: you must already have postgres setup with rails
 * In your database.yml setup your username and password for development and production using environment variables like so:
@@ -74,7 +74,7 @@ production:
 ```
 
  
-**How to run the test suite**
+# How to run the test suite
 
 * NOTE THE FOLLOWING:
 
@@ -101,12 +101,5 @@ production:
 
   ```
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
