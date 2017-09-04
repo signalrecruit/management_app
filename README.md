@@ -24,12 +24,12 @@ Things you may want to cover:
 
 * NOTE: you must have the following installed:
 
-* ruby 2.2.1p85 here=>https://www.ruby-lang.org/en/downloads/
+* [ruby(2.2.1p85) installation here](https://www.ruby-lang.org/en/downloads/)
 
-* rails 4.2.5.1 here=>http://railsinstaller.org/en
+* [rails(4.2.5.1) installation here](http://railsinstaller.org/en)
 
-* postgres here=> https://www.digitalocean.com/community/tutorials/how-to-setup-ruby-on-rails-with-postgres OR
-here=>https://www.digitalocean.com/community/tutorials/how-to-use-postgresql-with-your-ruby-on-rails-application-on-ubuntu-14-04
+* [how to setup rails with postgres here](https://www.digitalocean.com/community/tutorials/how-to-setup-ruby-on-rails-with-postgres) OR
+[here](https://www.digitalocean.com/community/tutorials/how-to-use-postgresql-with-your-ruby-on-rails-application-on-ubuntu-14-04)
 
 **Getting Started**
 
