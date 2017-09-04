@@ -52,6 +52,9 @@ Things you may want to cover:
   bin/rails s
 
 ```  
+# User Credentials
+  * [check here](https://github.com/paa-yaw/management_app/blob/master/app_description.md)
+
 
 # Database initialization
 
