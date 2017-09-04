@@ -9,9 +9,10 @@
 * User can sign up through requesting a demo as a company. In order to sign in as a company or recruiter use the following seed data as provided in db/seed
 
 # User Credentials
-  ## Company
-  * email: user@company.com, password: "password"
-  * email: user@recruiter.com, password: "password"
+* email: user@company.com, password: "password"
+* email: user@recruiter.com, password: "password"
+
+# Company
 
   * As a Company, you can do the following:
     * create a job description
@@ -26,7 +27,7 @@
     * charts & graphs for visualization data/statistics
     * manage kpi progress of candidates/applicants
 
-  ## Recruiter
+# Recruiter
   
 
 * As a Recruiter
