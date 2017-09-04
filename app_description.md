@@ -1,4 +1,5 @@
-# RECMAN is a recruitement management software that enables recruiting agencies and companies/clients communicate effeciently to resolve recruiting 
+# RECMAN 
+* is a recruitement management software that enables recruiting agencies and companies/clients communicate effeciently to resolve recruiting 
 * requests. Below is the feature sets and basic user flow for the app.
 
 # Feature Sets
@@ -18,7 +19,7 @@
     * contacting, 
     * accepting,
     * and sending email to user(company)
-    
+
   *create demo request on behalf of company  
 
 
