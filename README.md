@@ -3,7 +3,7 @@
 # Project Name: RECMAN
 
 # Brief Description
- * [Here](https://github.com/paa-yaw/management_app/blob/master/app_description.md)
+ * [Brief Description Here](https://github.com/paa-yaw/management_app/blob/master/app_description.md)
 
 ![Build Status](https://travis-ci.org/paa-yaw/management_app.svg?branch=test)
 
