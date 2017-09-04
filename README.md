@@ -1,16 +1,13 @@
 # README
 
+![Build Status](https://travis-ci.org/paa-yaw/management_app.svg?branch=test)
+
 # Project Name: RECMAN
 
 # Brief Description
  * [Brief Description Here](https://github.com/paa-yaw/management_app/blob/master/app_description.md)
+ 
 
-![Build Status](https://travis-ci.org/paa-yaw/management_app.svg?branch=test)
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
 
 # Ruby and Rails Versions
 
