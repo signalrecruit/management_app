@@ -2,6 +2,9 @@
 
 # Project Name: RECMAN
 
+# Brief Description
+ * [Here](https://github.com/paa-yaw/management_app/blob/master/app_description.md)
+
 ![Build Status](https://travis-ci.org/paa-yaw/management_app.svg?branch=test)
 
 This README would normally document whatever steps are necessary to get the
@@ -82,6 +85,7 @@ production:
 
   ## the current test suite is INCOMPLETE AND BROKEN!!!
     * 342 examples, 134 failures, 81 pending
+    * You have to improve upon the test suite to have all 342 examples passing.
 
   * You can run the test suite by running either of the following command:
 
