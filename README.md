@@ -104,7 +104,7 @@ production:
 
 MIT License
 
-Copyright (c) [2017] [Paa Yaw]
+Copyright (c) [2017] [Paa Yaw](https://github.com/paa-yaw)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
