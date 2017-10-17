@@ -43,7 +43,7 @@ class ApplicantDetail < ActiveRecord::Base
 
   def sent_by_recruiter?
     return true if self.sent_by == "Recruiter"
-    return false if (self.sent_by == self.company.name || self.sent_by == nil )
+    return false if (self.sent_by == self.company.try(:name) || self.sent_by == nil )
   end
 
   def firstname
