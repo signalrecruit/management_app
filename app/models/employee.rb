@@ -12,11 +12,7 @@ class Employee < ActiveRecord::Base
 
 
   def is_profile_complete?
-    if educational_qualifications.empty? || employment_histories.empty? || next_of_kins.empty?  ||
+    educational_qualifications.empty? || employment_histories.empty? || next_of_kins.empty?  ||
       parent_details.empty? ||children_details.empty? || spouse_detail.nil? || salary_detail.nil?
-      false
-    else 
-      true  
-    end
   end
 end
