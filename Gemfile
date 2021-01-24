@@ -65,7 +65,7 @@ gem 'fog'
 gem 'fog-aws'
 gem 'figaro'
 gem 'aws-sdk', '< 2.0'
-gem 'mini_magick', '~> 3.4'
+gem 'mini_magick', '~> 4.9'
 gem 'rails_12factor'
 gem "simple_calendar", "~> 2.0"
 gem "country_select"
