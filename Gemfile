@@ -60,7 +60,7 @@ gem 'simple_form'
 gem "font-awesome-rails"
 gem 'devise'
 gem 'delayed_job_active_record'
-gem 'carrierwave', '~> 0.10.0'
+gem 'carrierwave', '~> 1.3.2'
 gem 'fog'
 gem 'fog-aws'
 gem 'figaro'
